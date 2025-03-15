@@ -1,17 +1,17 @@
-// leetcode solution and tests all in one file
+// https://leetcode.com/problems/two-sum/description/
 
 class Solution {
-  List<int> twoSum(List<int> nums, int target) {
-    Map<int, int> numMap = {};
-    for (int i = 0; i < nums.length; i++) {
-      int complement = target - nums[i];
-      if (numMap.containsKey(complement)) {
-        return [numMap[complement]!, i];
+    List<int> twoSum(List<int> nums, int target) {
+      Map<int, int> numMap = {};
+      for (int i = 0; i < nums.length; i++) {
+        int complement = target - nums[i];
+        if (numMap.containsKey(complement)) {
+          return [numMap[complement]!, i];
+        }
+        numMap[nums[i]] = i;
       }
-      numMap[nums[i]] = i;
+      return []; // No solution found
     }
-    return []; // No solution found
-  }
 }
 
 void main() {
