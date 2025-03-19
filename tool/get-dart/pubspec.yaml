@@ -1,0 +1,15 @@
+name: get_dart
+publish_to: none
+
+resolution: workspace
+environment:
+  sdk: ^3.7.0
+
+workspace:
+  - archive
+  - dart_sdk_archive
+  - sdk_builds
+
+dev_dependencies:
+  analysis_defaults:
+    path: ../../site-shared/pkgs/analysis_defaults

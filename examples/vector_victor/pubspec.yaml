@@ -1,0 +1,17 @@
+name: vector_victor
+description: A sample command-line application.
+version: 1.0.0
+# homepage: https://www.example.com
+
+resolution: workspace
+environment:
+  sdk: ^3.7.0
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  test: ^1.25.8
+
+dependencies:
+  vector_math: ^2.1.4

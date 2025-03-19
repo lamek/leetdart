@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Learn about the curly_braces_in_flow_control_structures linter rule.">
+  <title>curly_braces_in_flow_control_structures | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="curly_braces_in_flow_control_structures">
+  <meta name="twitter:description" content="Learn about the curly_braces_in_flow_control_structures linter rule.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="curly_braces_in_flow_control_structures">
+  <meta property="og:description" content="Learn about the curly_braces_in_flow_control_structures linter rule.">
+  <meta property="og:url" content="/tools/linter-rules/curly_braces_in_flow_control_structures.html">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="true" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link active collapsible"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="true" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#details">Details</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#enable">Enable</a>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              <h1>curly_<wbr>braces_<wbr>in_<wbr>flow_<wbr>control_<wbr>structures</h1>
+              
+
+<nav class="breadcrumbs" aria-label="breadcrumb">
+  <ol class="breadcrumb-list" vocab="http://schema.org/" typeof="BreadcrumbList">
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/tools" property="item" typeof="WebPage"><span property="name">Tools</span>
+      </a>
+      <meta property="position" content="0" />
+      <span class="material-symbols child-icon" aria-hidden="true">chevron_right</span>
+      
+    </li>
+  <li class="breadcrumb-item"
+      property="itemListElement" typeof="ListItem"><a href="/tools/linter-rules" property="item" typeof="WebPage"><span property="name">Linter rules</span>
+      </a>
+      <meta property="position" content="1" />
+      <span class="material-symbols child-icon" aria-hidden="true">chevron_right</span>
+      
+    </li>
+  <li class="breadcrumb-item active"
+      property="itemListElement" typeof="ListItem" aria-current="page"><a href="/tools/linter-rules/curly_braces_in_flow_control_structures.html" property="item" typeof="WebPage"><span property="name">curly_braces_in_flow_control_structures</span>
+      </a>
+      <meta property="position" content="2" />
+    </li>
+  
+  </ol>
+</nav></div>
+            
+
+
+  
+<div id="site-toc--inline" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#details">Details</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#enable">Enable</a>
+      </li>
+    </ul>
+  </div>
+<div class="tags">
+<div class="tag-label green" title="Lint is stable." aria-label="Lint is stable.">
+<span class="material-symbols" aria-hidden="true">verified_user</span>
+<span>Stable</span>
+</div>
+<div class="tag-label" title="Lint is included in the core set of rules." aria-label="Lint is included in the core set of rules.">
+<span class="material-symbols" aria-hidden="true">circles</span>
+<span>Core</span>
+</div>
+<div class="tag-label" title="Lint has one or more quick fixes available." aria-label="Lint has one or more quick fixes available.">
+<span class="material-symbols" aria-hidden="true">build</span>
+<span>Fix available</span>
+</div>
+</div>
+<p>DO use curly braces for all flow control structures.</p>
+<div class="header-wrapper">
+<h2 id="details">Details</h2>
+<a class="heading-link" href="#details" aria-label="Link to 'Details' section">#</a></div>
+<p><strong>DO</strong> use curly braces for all flow control structures.</p>
+<p>Doing so avoids the <a href="https://en.wikipedia.org/wiki/Dangling_else">dangling else</a>
+problem.</p>
+<p><strong>BAD:</strong></p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (overflowChars != other.overflowChars)</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> overflowChars &#x3C; other.overflowChars;</span></span></code></pre></div></div><p><strong>GOOD:</strong></p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (isWeekDay) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'Bike to work!'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">} </span><span style="color:#D43324">else</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'Go dancing or read a book!'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>There is one exception to this: an <code>if</code> statement with no <code>else</code> clause where
+the entire <code>if</code> statement (including the condition and the body) fits in one
+line. In that case, you may leave off the braces if you prefer:</p>
+<p><strong>GOOD:</strong></p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (arg == </span><span style="color:#11796D">null</span><span style="color:#222222">) </span><span style="color:#D43324">return</span><span style="color:#222222"> defaultValue;</span></span></code></pre></div></div><p>If the body wraps to the next line, though, use braces:</p>
+<p><strong>GOOD:</strong></p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (overflowChars != other.overflowChars) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> overflowChars &#x3C; other.overflowChars;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p><a id="usage" aria-hidden="true"></a></p>
+<div class="header-wrapper">
+<h2 id="enable">Enable</h2>
+<a class="heading-link" href="#enable" aria-label="Link to 'Enable' section">#</a></div>
+<p>To enable the <code>curly_braces_in_flow_control_structures</code> rule,
+add <code>curly_braces_in_flow_control_structures</code> under <strong>linter &gt; rules</strong> in your
+<a href="/tools/analysis"><code>analysis_options.yaml</code></a> file:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-header">analysis_options.yaml</div><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">linter</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  rules</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#222222">    - </span><span style="color:#11796D">curly_braces_in_flow_control_structures</span></span></code></pre></div></div><p>If you're instead using the YAML map syntax to configure linter rules,
+add <code>curly_braces_in_flow_control_structures: true</code> under <strong>linter &gt; rules</strong>:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-header">analysis_options.yaml</div><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">linter</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  rules</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">    curly_braces_in_flow_control_structures</span><span style="color:#222222">: </span><span style="color:#11796D">true</span></span></code></pre></div></div>
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/tools/linter-rules/individual-rules.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/tools/linter-rules/curly_braces_in_flow_control_structures.html&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/tools/linter-rules/individual-rules.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="How to migrate existing Dart code to be compatible with Dart 3.">
+  <title>Dart 3 migration guide | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Dart 3 migration guide">
+  <meta name="twitter:description" content="How to migrate existing Dart code to be compatible with Dart 3.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Dart 3 migration guide">
+  <meta property="og:description" content="How to migrate existing Dart code to be compatible with Dart 3.">
+  <meta property="og:url" content="/resources/dart-3-migration/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="true" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#introduction">Introduction</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#unversioned-vs-versioned-changes">Unversioned vs versioned changes</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#dart-3-backwards-compatibility">Dart 3 backwards compatibility</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#testing-for-impact">Testing for impact</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#dart-3-language-changes">Dart 3 language changes</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#100-sound-null-safety">100% sound null safety</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#colon-syntax-for-default-values">Colon-syntax for default values</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#mixin">mixin</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#switch">switch</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#continue">continue</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#dart-3-core-library-changes">Dart 3 core library changes</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#apis-removed">APIs removed</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#extends-implements">Extends &amp; implements</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#dart-3-tools-changes">Dart 3 tools changes</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#removed-tools">Removed tools</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#null-safety-migration-tools">Null safety migration tools</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#analyzer-config">Analyzer config</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#other-tools-changes">Other tools changes</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Dart 3 migration guide</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#introduction">Introduction</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#unversioned-vs-versioned-changes">Unversioned vs versioned changes</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#dart-3-backwards-compatibility">Dart 3 backwards compatibility</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#testing-for-impact">Testing for impact</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#dart-3-language-changes">Dart 3 language changes</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#100-sound-null-safety">100% sound null safety</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#colon-syntax-for-default-values">Colon-syntax for default values</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#mixin">mixin</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#switch">switch</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#continue">continue</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#dart-3-core-library-changes">Dart 3 core library changes</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#apis-removed">APIs removed</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#extends-implements">Extends &amp; implements</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#dart-3-tools-changes">Dart 3 tools changes</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#removed-tools">Removed tools</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#null-safety-migration-tools">Null safety migration tools</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#analyzer-config">Analyzer config</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#other-tools-changes">Other tools changes</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<p>Dart 3 is a major release that introduces new core capabilities to Dart:
+<a href="/language/records">records</a>, <a href="/language/patterns">patterns</a>, and <a href="/language/class-modifiers">class modifiers</a>.</p>
+<p>Alongside these new capabilities, Dart 3 contains a number of changes
+that may break existing code.</p>
+<p>This guide will help you resolve any migration issues you might encounter
+after <a href="/get-dart">upgrading to Dart 3</a>.</p>
+<div class="header-wrapper">
+<h2 id="introduction">Introduction</h2>
+<a class="heading-link" href="#introduction" aria-label="Link to 'Introduction' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="unversioned-vs-versioned-changes">Unversioned vs versioned changes</h3>
+<a class="heading-link" href="#unversioned-vs-versioned-changes" aria-label="Link to 'Unversioned vs versioned changes' section">#</a></div>
+<p>The potentially breaking changes listed below fall into one of two categories:</p>
+<ul>
+<li>
+<p><strong>Unversioned changes</strong>: These changes affect any Dart code
+after upgrading to a Dart 3.0 SDK or later.
+There is no way to &quot;turn off&quot; these changes.</p>
+</li>
+<li>
+<p><strong>Versioned changes</strong>: These changes only apply when the package or app's
+language version is set to &gt;= Dart 3.0.
+The <a href="/resources/language/evolution#language-version-numbers">language version</a>
+is derived from the <code>sdk</code> lower-constraint in the
+<a href="/tools/pub/packages#creating-a-pubspec"><code>pubspec.yaml</code> file</a>.
+An SDK constraint like this does <em>not</em> apply the Dart 3 versioned changes:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">environment</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  sdk</span><span style="color:#222222">: </span><span style="color:#11796D">'>=2.14.0 &#x3C;3.0.0'</span></span></code></pre></div></div><p>But an SDK constraint like this does:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">environment</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  sdk</span><span style="color:#222222">: </span><span style="color:#11796D">'>=3.0.0 &#x3C;4.0.0'</span></span></code></pre></div></div></li>
+</ul>
+<p>To use the new Dart 3 features you have to
+update the language version to 3.0.
+This gets you the Dart 3 versioned changes at the same time.</p>
+<div class="header-wrapper">
+<h3 id="dart-3-backwards-compatibility">Dart 3 backwards compatibility</h3>
+<a class="heading-link" href="#dart-3-backwards-compatibility" aria-label="Link to 'Dart 3 backwards compatibility' section">#</a></div>
+<p>Many packages and apps that used null safety with Dart 2.12 or
+later are likely backwards compatible with Dart 3.
+This is possible for any package where
+the lower bound of the SDK constraint is 2.12.0 or higher.</p>
+<p><a href="/tools/pub/packages">Dart's pub tool</a> allows resolution even when
+the upper bound is limited to versions below 3.0.0.
+For example, a package with the following constraint
+will be allowed to resolve with a Dart 3.x SDK,
+as pub will re-interpret the upper-constraint <code>&lt;3.0.0</code> as <code>&lt;4.0.0</code>
+when the lower constraint is <code>2.12</code> or higher:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">environment</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  sdk</span><span style="color:#222222">: </span><span style="color:#11796D">'>=2.14.0 &#x3C;3.0.0'</span><span style="color:#6E6E70">           # This is interpreted as '>=2.14.0 &#x3C;4.0.0'</span></span></code></pre></div></div><p>This allows developers to use Dart 3 sound null safety with packages
+that already support 2.12 null safety
+without needing a second migration, unless
+the code is affected by any other Dart 3 changes.</p>
+<div class="header-wrapper">
+<h3 id="testing-for-impact">Testing for impact</h3>
+<a class="heading-link" href="#testing-for-impact" aria-label="Link to 'Testing for impact' section">#</a></div>
+<p>To understand if your source code is impacted by any Dart 3 changes,
+use these steps:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart --version    </span><span style="color:#6E6E70"># Make sure this reports 3.0.0 or higher.</span></span>
+<span class="line"><span style="color:#222222">$ dart pub get      </span><span style="color:#6E6E70"># This should resolve without issues.</span></span>
+<span class="line"><span style="color:#222222">$ dart analyze      </span><span style="color:#6E6E70"># This should pass without errors.</span></span></code></pre></div></div><p>If the <code>pub get</code> step fails, try to upgrade your dependencies
+to see if more recent versions might support Dart 3:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart pub upgrade</span></span>
+<span class="line"><span style="color:#222222">$ dart analyze      </span><span style="color:#6E6E70"># This should pass without errors.</span></span></code></pre></div></div><p>Or, if needed, also include <a href="/tools/pub/cmd/pub-upgrade#major-versions">major versions</a> upgrades:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart pub upgrade --major-versions</span></span>
+<span class="line"><span style="color:#222222">$ dart analyze      </span><span style="color:#6E6E70"># This should pass without errors.</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="dart-3-language-changes">Dart 3 language changes</h2>
+<a class="heading-link" href="#dart-3-language-changes" aria-label="Link to 'Dart 3 language changes' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="100-sound-null-safety">100% sound null safety</h3>
+<a class="heading-link" href="#100-sound-null-safety" aria-label="Link to '100% sound null safety' section">#</a></div>
+<p>Dart 2.12 introduced null safety more than two years ago.
+In Dart 2.12, users needed to enable null safety <a href="/null-safety#enable-null-safety">with a pubspec setting</a>.
+In Dart 3, null safety is built in; you cannot turn it off.</p>
+<div class="header-wrapper">
+<h4 id="scope">Scope</h4>
+<a class="heading-link" href="#scope" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is an <a href="#unversioned-vs-versioned-changes"><em>unversioned</em> change</a>,
+that applies to all Dart 3 code.</p>
+<div class="header-wrapper">
+<h4 id="symptom">Symptom</h4>
+<a class="heading-link" href="#symptom" aria-label="Link to 'Symptom' section">#</a></div>
+<p>Packages developed without null safety support will cause issues
+when resolving dependencies with <code>pub get</code>:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart pub get</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">Because pkg1 doesn't support null safety, version solving failed.</span></span>
+<span class="line"><span style="color:#222222">The lower bound of "sdk: '>=2.9.0 &#x3C;3.0.0'" must be 2.12.0 or higher to enable null safety.</span></span></code></pre></div></div><p>Libraries that opt out of null safety with <a href="/resources/language/evolution#per-library-language-version-selection">language version comments</a>
+that select any language version below <code>2.12</code> will
+cause analysis or compilation errors:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart analyze </span><span style="color:#6200EE">.</span></span>
+<span class="line"><span style="color:#222222">Analyzing ....                         0.6s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  error • lib/pkg1.dart:1:1 • The language version must be >=2.12.0. </span></span>
+<span class="line"><span style="color:#222222">  Try removing the language version override and migrating the code.</span></span>
+<span class="line"><span style="color:#222222">  • illegal_language_version_override</span></span></code></pre></div></div><div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart run bin/my_app.dart</span></span>
+<span class="line"><span style="color:#222222">../pkg1/lib/pkg1.dart:1:1: Error: Library doesn't support null safety.</span></span>
+<span class="line"><span style="color:#222222">// @dart=2.9</span></span>
+<span class="line"><span style="color:#222222">^^^^^^^^^^^^</span></span></code></pre></div></div><div class="header-wrapper">
+<h4 id="migration">Migration</h4>
+<a class="heading-link" href="#migration" aria-label="Link to 'Migration' section">#</a></div>
+<p>Before beginning any migration to Dart 3,
+ensure your app or package has been 100% migrated to enable null safety.
+This requires a Dart <code>2.19</code> SDK, not a Dart 3 SDK.
+To learn how to first migrate your app or package to support null safety,
+check out the <a href="/null-safety/migration-guide">null safety migration guide</a>.</p>
+<div class="header-wrapper">
+<h3 id="colon-syntax-for-default-values">Colon-syntax for default values</h3>
+<a class="heading-link" href="#colon-syntax-for-default-values" aria-label="Link to 'Colon-syntax for default values' section">#</a></div>
+<p>For historical reasons, named optional parameters could
+specify their default value using either <code>:</code> or <code>=</code>.
+In Dart 3, only the <code>=</code> syntax is allowed.</p>
+<div class="header-wrapper">
+<h4 id="scope-1">Scope</h4>
+<a class="heading-link" href="#scope-1" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is a <a href="#unversioned-vs-versioned-changes"><em>versioned</em> change</a>,
+that only applies to language version 3.0 or later.</p>
+<div class="header-wrapper">
+<h4 id="symptom-1">Symptom</h4>
+<a class="heading-link" href="#symptom-1" aria-label="Link to 'Symptom' section">#</a></div>
+<p>Dart analysis produces errors like:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>line 2 • Using a colon as a separator before a default value is no longer supported.</span></span></code></pre></div></div><div class="header-wrapper">
+<h4 id="migration-1">Migration</h4>
+<a class="heading-link" href="#migration-1" aria-label="Link to 'Migration' section">#</a></div>
+<p>Change from using colons:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">int</span><span style="color:#6200EE"> someInt</span><span style="color:#222222">({</span><span style="color:#0468D7">int</span><span style="color:#222222"> x: </span><span style="color:#11796D">0</span><span style="color:#222222">}) => x;</span></span></code></pre></div></div><p>To using equals:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">int</span><span style="color:#6200EE"> someInt</span><span style="color:#222222">({</span><span style="color:#0468D7">int</span><span style="color:#222222"> x = </span><span style="color:#11796D">0</span><span style="color:#222222">}) => x;</span></span></code></pre></div></div><p>This migration can be made manually, or automated with <code>dart fix</code>:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart fix --apply --code=</span><span style="color:#11796D">obsolete_colon_for_default_value</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="mixin"><code>mixin</code></h3>
+<a class="heading-link" href="#mixin" aria-label="Link to 'mixin' section">#</a></div>
+<p>Pre-Dart 3, any <code>class</code> could be used as a <code>mixin</code>, as long as
+it had no declared constructors and no superclass other than <code>Object</code>.</p>
+<p>In Dart 3, classes declared in libraries at language version 3.0 or later
+can't be used as mixins unless marked <code>mixin</code>.
+This restriction applies to code in any library
+attempting to use the class as a mixin,
+regardless of the latter library's language version.</p>
+<div class="header-wrapper">
+<h4 id="scope-2">Scope</h4>
+<a class="heading-link" href="#scope-2" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is a <a href="#unversioned-vs-versioned-changes"><em>versioned</em> change</a>,
+that only applies to language version 3.0 or later.</p>
+<div class="header-wrapper">
+<h4 id="symptom-2">Symptom</h4>
+<a class="heading-link" href="#symptom-2" aria-label="Link to 'Symptom' section">#</a></div>
+<p>An analysis error like:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>Mixin can only be applied to class.</span></span></code></pre></div></div><p>The analyzer produces this diagnostic when a class that is neither a
+<code>mixin class</code> nor a <code>mixin</code> is used in a <code>with</code> clause.</p>
+<div class="header-wrapper">
+<h4 id="migration-2">Migration</h4>
+<a class="heading-link" href="#migration-2" aria-label="Link to 'Migration' section">#</a></div>
+<p>Determine if the class is intended to be used as a mixin.</p>
+<p>If the class defines an interface, consider using <code>implements</code>.</p>
+<div class="header-wrapper">
+<h3 id="switch"><code>switch</code></h3>
+<a class="heading-link" href="#switch" aria-label="Link to 'switch' section">#</a></div>
+<p>Dart 3.0 interprets <a href="/language/branches#switch">switch</a> cases
+as <a href="/language/patterns">patterns</a> instead of constant expressions.</p>
+<div class="header-wrapper">
+<h4 id="scope-3">Scope</h4>
+<a class="heading-link" href="#scope-3" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is a <a href="#unversioned-vs-versioned-changes"><em>versioned</em> change</a>,
+that only applies to language version 3.0 or later.</p>
+<div class="header-wrapper">
+<h4 id="symptom-3">Symptom</h4>
+<a class="heading-link" href="#symptom-3" aria-label="Link to 'Symptom' section">#</a></div>
+<p>Most constant expressions found in switch cases are valid patterns
+with the same meaning (named constants, literals, etc.).
+These will behave the same and no symptoms will arise.</p>
+<p>The few constant expressions that aren't valid patterns
+will trigger the <a href="/tools/linter-rules/invalid_case_patterns"><code>invalid_case_patterns</code> lint</a>.</p>
+<div class="header-wrapper">
+<h4 id="migration-3">Migration</h4>
+<a class="heading-link" href="#migration-3" aria-label="Link to 'Migration' section">#</a></div>
+<p>You can revert back to the original behavior by prefixing
+the case pattern with <code>const</code>, so it's no longer interpreted as a pattern:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">case</span><span style="color:#D43324"> const</span><span style="color:#222222"> [</span><span style="color:#11796D">1</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">]:</span></span>
+<span class="line"><span style="color:#D43324">case</span><span style="color:#D43324"> const</span><span style="color:#222222"> {</span><span style="color:#11796D">'k'</span><span style="color:#222222">: </span><span style="color:#11796D">'v'</span><span style="color:#222222">}:</span></span>
+<span class="line"><span style="color:#D43324">case</span><span style="color:#D43324"> const</span><span style="color:#222222"> {</span><span style="color:#11796D">1</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">}:</span></span>
+<span class="line"><span style="color:#D43324">case</span><span style="color:#D43324"> const</span><span style="color:#0468D7"> Point</span><span style="color:#222222">(</span><span style="color:#11796D">1</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">):</span></span></code></pre></div></div><p>You can run a quick fix for this breaking change,
+by using <code>dart fix</code> or from your IDE.</p>
+<div class="header-wrapper">
+<h3 id="continue"><code>continue</code></h3>
+<a class="heading-link" href="#continue" aria-label="Link to 'continue' section">#</a></div>
+<p>Dart 3 reports a compile-time error if a continue statement targets a label
+that is not a loop (<code>for</code>, <code>do</code>, and <code>while</code> statements) or a switch member.</p>
+<div class="header-wrapper">
+<h4 id="scope-4">Scope</h4>
+<a class="heading-link" href="#scope-4" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is a <a href="#unversioned-vs-versioned-changes"><em>versioned</em> change</a>,
+that only applies to language version 3.0 or later.</p>
+<div class="header-wrapper">
+<h4 id="symptom-4">Symptom</h4>
+<a class="heading-link" href="#symptom-4" aria-label="Link to 'Symptom' section">#</a></div>
+<p>You will see an error like:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>The label used in a 'continue' statement must be defined on either a loop or a switch member.</span></span></code></pre></div></div><div class="header-wrapper">
+<h4 id="migration-4">Migration</h4>
+<a class="heading-link" href="#migration-4" aria-label="Link to 'Migration' section">#</a></div>
+<p>If changing behavior is acceptable,
+change the <code>continue</code> to target a valid labeled statement,
+which must be attached to a <code>for</code>, <code>do</code> or <code>while</code> statement.</p>
+<p>If you want to preserve behavior, change the
+<code>continue</code> statement to a <code>break</code> statement.
+In previous versions of Dart, a <code>continue</code> statement
+that wasn't targeted at a loop or a switch member
+behaved like <code>break</code>.</p>
+<div class="header-wrapper">
+<h2 id="dart-3-core-library-changes">Dart 3 core library changes</h2>
+<a class="heading-link" href="#dart-3-core-library-changes" aria-label="Link to 'Dart 3 core library changes' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="apis-removed">APIs removed</h3>
+<a class="heading-link" href="#apis-removed" aria-label="Link to 'APIs removed' section">#</a></div>
+<p><strong>Breaking change <a href="https://github.com/dart-lang/sdk/issues/49529">#49529</a></strong>: The core libraries have been cleaned up
+to remove APIs that have been deprecated for several years.
+The following APIs no longer exist in the Dart core libraries.</p>
+<div class="header-wrapper">
+<h4 id="scope-5">Scope</h4>
+<a class="heading-link" href="#scope-5" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is an <a href="#unversioned-vs-versioned-changes"><em>unversioned</em> change</a>,
+that applies to all Dart 3 code.</p>
+<div class="header-wrapper">
+<h4 id="dart-core"><code>dart:core</code></h4>
+<a class="heading-link" href="#dart-core" aria-label="Link to 'dart:core' section">#</a></div>
+<ul>
+<li>Removed the deprecated <code>List</code> constructor, as it wasn't null safe.
+Use list literals (e.g. <code>[]</code> for an empty list or <code>&lt;int&gt;[]</code> for an empty
+typed list) or <a href="https://api.dart.dev/dart-core/List/List.filled.html"><code>List.filled</code></a>. This only impacts non-null safe code,
+as null safe code already couldn't use this constructor.</li>
+<li>Removed the deprecated <code>onError</code> argument on <a href="https://api.dart.dev/dart-core/int/parse.html"><code>int.parse</code></a>, <a href="https://api.dart.dev/dart-core/double/parse.html"><code>double.parse</code></a>,
+and <a href="https://api.dart.dev/dart-core/num/parse.html"><code>num.parse</code></a>. Use the <a href="https://api.dart.dev/dart-core/num/tryParse.html"><code>tryParse</code></a> method instead.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/proxy-constant.html"><code>proxy</code></a> and <a href="https://api.dart.dev/stable/2.19.6/dart-core/Provisional-class.html"><code>Provisional</code></a> annotations.
+The original <code>proxy</code> annotation has no effect in Dart 2,
+and the <code>Provisional</code> type and <a href="https://api.dart.dev/stable/2.19.6/dart-core/Provisional-class.html"><code>provisional</code></a> constant
+were only used internally during the Dart 2.0 development process.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/Deprecated/expires.html"><code>Deprecated.expires</code></a> getter.
+Use <a href="https://api.dart.dev/dart-core/Deprecated/message.html"><code>Deprecated.message</code></a> instead.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/CastError-class.html"><code>CastError</code></a> error.
+Use <a href="https://api.dart.dev/dart-core/TypeError-class.html"><code>TypeError</code></a> instead.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/FallThroughError-class.html"><code>FallThroughError</code></a> error. The kind of
+fall-through previously throwing this error was made a compile-time
+error in Dart 2.0.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/NullThrownError-class.html"><code>NullThrownError</code></a> error. This error is never
+thrown from null safe code.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/AbstractClassInstantiationError-class.html"><code>AbstractClassInstantiationError</code></a> error. It was made
+a compile-time error to call the constructor of an abstract class in Dart 2.0.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/CyclicInitializationError-class.html"><code>CyclicInitializationError</code></a>. Cyclic dependencies are
+no longer detected at runtime in null safe code. Such code will fail in other
+ways instead, possibly with a StackOverflowError.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/NoSuchMethodError/NoSuchMethodError.html"><code>NoSuchMethodError</code></a> default constructor.
+Use the <a href="https://api.dart.dev/dart-core/NoSuchMethodError/NoSuchMethodError.withInvocation.html"><code>NoSuchMethodError.withInvocation</code></a> named constructor instead.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-core/BidirectionalIterator-class.html"><code>BidirectionalIterator</code></a> class.
+Existing bidirectional iterators can still work, they just don't have
+a shared supertype locking them to a specific name for moving backwards.</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-async"><code>dart:async</code></h4>
+<a class="heading-link" href="#dart-async" aria-label="Link to 'dart:async' section">#</a></div>
+<ul>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-async/DeferredLibrary-class.html"><code>DeferredLibrary</code></a> class.
+Use the <a href="/language/libraries#lazily-loading-a-library"><code>deferred as</code></a> import syntax instead.</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-developer"><code>dart:developer</code></h4>
+<a class="heading-link" href="#dart-developer" aria-label="Link to 'dart:developer' section">#</a></div>
+<ul>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-developer/UserTag/MAX_USER_TAGS-constant.html"><code>MAX_USER_TAGS</code></a> constant.
+Use <a href="https://api.dart.dev/dart-developer/UserTag/maxUserTags-constant.html"><code>maxUserTags</code></a> instead.</li>
+<li>Removed the deprecated <a href="https://api.dart.dev/stable/2.19.6/dart-developer/Metrics-class.html"><code>Metrics</code></a>, <a href="https://api.dart.dev/stable/2.19.6/dart-developer/Metric-class.html"><code>Metric</code></a>, <a href="https://api.dart.dev/stable/2.19.6/dart-developer/Counter-class.html"><code>Counter</code></a>,
+and <a href="https://api.dart.dev/stable/2.19.6/dart-developer/Gauge-class.html"><code>Gauge</code></a> classes as they have been broken since Dart 2.0.</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-html"><code>dart:html</code></h4>
+<a class="heading-link" href="#dart-html" aria-label="Link to 'dart:html' section">#</a></div>
+<ul>
+<li>As previously announced, the deprecated <code>registerElement</code>
+and <code>registerElement2</code> methods in <code>Document</code> and <code>HtmlDocument</code> have been
+removed.  See <a href="https://github.com/dart-lang/sdk/issues/49536">#49536</a> for
+details.</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-math"><code>dart:math</code></h4>
+<a class="heading-link" href="#dart-math" aria-label="Link to 'dart:math' section">#</a></div>
+<ul>
+<li>The <code>Random</code> interface can only be implemented, not extended.</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-io"><code>dart:io</code></h4>
+<a class="heading-link" href="#dart-io" aria-label="Link to 'dart:io' section">#</a></div>
+<ul>
+<li>Update <code>NetworkProfiling</code> to accommodate new <code>String</code> ids
+that are introduced in vm_service:11.0.0</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="symptom-5">Symptom</h4>
+<a class="heading-link" href="#symptom-5" aria-label="Link to 'Symptom' section">#</a></div>
+<p>Dart analysis (e.g. in your IDE, or in <code>dart analyze</code>/<code>flutter analyze</code>)
+will fail with errors like:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>error line 2 • Undefined class 'CyclicInitializationError'.</span></span></code></pre></div></div><div class="header-wrapper">
+<h4 id="migration-5">Migration</h4>
+<a class="heading-link" href="#migration-5" aria-label="Link to 'Migration' section">#</a></div>
+<p>Manually migrate away from using these APIs.</p>
+<div class="header-wrapper">
+<h3 id="extends-implements">Extends &amp; implements</h3>
+<a class="heading-link" href="#extends-implements" aria-label="Link to 'Extends &amp; implements' section">#</a></div>
+<p>Dart 3 supports new <a href="/language/class-modifiers">class modifiers</a> that
+can restrict the capabilities of a class.
+They have been applied to a number of classes in the core libraries.</p>
+<div class="header-wrapper">
+<h4 id="scope-6">Scope</h4>
+<a class="heading-link" href="#scope-6" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is a <a href="#unversioned-vs-versioned-changes"><em>versioned</em> change</a>,
+that only applies to language version 3.0 or later.</p>
+<div class="header-wrapper">
+<h4 id="dart-async-1"><code>dart:async</code></h4>
+<a class="heading-link" href="#dart-async-1" aria-label="Link to 'dart:async' section">#</a></div>
+<ul>
+<li>
+<p>The following declarations can only be implemented, not extended:</p>
+<ul>
+<li><code>StreamConsumer</code></li>
+<li><code>StreamIterator</code></li>
+<li><code>StreamTransformer</code></li>
+<li><code>MultiStreamController</code></li>
+</ul>
+<p>None of these declarations contained any implementation to inherit.
+They are marked as <code>interface</code> to signify that
+they are only intended as interfaces.</p>
+</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-core-1"><code>dart:core</code></h4>
+<a class="heading-link" href="#dart-core-1" aria-label="Link to 'dart:core' section">#</a></div>
+<ul>
+<li>
+<p>The <code>Function</code> type can no longer be implemented, extended or mixed in.
+Since Dart 2.0, writing <code>implements Function</code> has been allowed
+for backwards compatibility, but it has not had any effect.
+In Dart 3.0, the <code>Function</code> type is final and cannot be subtyped,
+preventing code from mistakenly assuming it works.</p>
+</li>
+<li>
+<p>The following declarations can only be implemented, not extended:</p>
+<ul>
+<li><code>Comparable</code></li>
+<li><code>Exception</code></li>
+<li><code>Iterator</code></li>
+<li><code>Pattern</code></li>
+<li><code>Match</code></li>
+<li><code>RegExp</code></li>
+<li><code>RegExpMatch</code></li>
+<li><code>StackTrace</code></li>
+<li><code>StringSink</code></li>
+</ul>
+<p>None of these declarations contained any implementation to inherit.
+They are marked as <code>interface</code> to signify that
+they are only intended as interfaces.</p>
+</li>
+<li>
+<p>The following declarations can no longer be implemented or extended:</p>
+<ul>
+<li><code>MapEntry</code></li>
+<li><code>OutOfMemoryError</code></li>
+<li><code>StackOverflowError</code></li>
+<li><code>Expando</code></li>
+<li><code>WeakReference</code></li>
+<li><code>Finalizer</code></li>
+</ul>
+<p>The <code>MapEntry</code> value class is restricted to enable later optimizations.
+The remaining classes are tightly coupled to the platform and not
+intended to be subclassed or implemented.</p>
+</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="dart-collection"><code>dart:collection</code></h4>
+<a class="heading-link" href="#dart-collection" aria-label="Link to 'dart:collection' section">#</a></div>
+<ul>
+<li>
+<p>The following interface can no longer be extended, only implemented:</p>
+<ul>
+<li><code>Queue</code></li>
+</ul>
+</li>
+<li>
+<p>The following implementation classes can no longer be implemented:</p>
+<ul>
+<li><code>LinkedList</code></li>
+<li><code>LinkedListEntry</code></li>
+</ul>
+</li>
+<li>
+<p>The following implementation classes can no longer be implemented
+or extended:</p>
+<ul>
+<li><code>HasNextIterator</code> (Also deprecated.)</li>
+<li><code>HashMap</code></li>
+<li><code>LinkedHashMap</code></li>
+<li><code>HashSet</code></li>
+<li><code>LinkedHashSet</code></li>
+<li><code>DoubleLinkedQueue</code></li>
+<li><code>ListQueue</code></li>
+<li><code>SplayTreeMap</code></li>
+<li><code>SplayTreeSet</code></li>
+</ul>
+</li>
+</ul>
+<div class="header-wrapper">
+<h2 id="dart-3-tools-changes">Dart 3 tools changes</h2>
+<a class="heading-link" href="#dart-3-tools-changes" aria-label="Link to 'Dart 3 tools changes' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="removed-tools">Removed tools</h3>
+<a class="heading-link" href="#removed-tools" aria-label="Link to 'Removed tools' section">#</a></div>
+<p>Historically the Dart team has offered a number of smaller developer tools for
+things like formatting code (<code>dartfmt</code>), analyzing code (<code>dartanalyzer</code>), etc.
+In Dart 2.10 (October 2020) we introduced a new unified Dart developer tool, the
+<a href="/tools/dart-tool"><code>dart</code> tool</a>.</p>
+<div class="header-wrapper">
+<h4 id="scope-7">Scope</h4>
+<a class="heading-link" href="#scope-7" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is an <a href="#unversioned-vs-versioned-changes"><em>unversioned</em> change</a>,
+that applies to all Dart 3 code.</p>
+<div class="header-wrapper">
+<h4 id="symptom-6">Symptom</h4>
+<a class="heading-link" href="#symptom-6" aria-label="Link to 'Symptom' section">#</a></div>
+<p>In Dart 3 these smaller tools do not exist, and
+have been replaced by the new combined <code>dart</code> tool.</p>
+<div class="header-wrapper">
+<h4 id="migration-6">Migration</h4>
+<a class="heading-link" href="#migration-6" aria-label="Link to 'Migration' section">#</a></div>
+<p>Use new sub-commands available in the <code>dart</code> tool:</p>
+<div class="table-wrapper">
+<table  class="table table-striped nowrap">
+<thead>
+<tr>
+<th>Historical tool</th>
+<th><code>dart</code> replacement</th>
+<th>Deprecation</th>
+<th>Discontinuation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stagehand</code></td>
+<td><a href="/tools/dart-create"><code>dart create</code></a></td>
+<td><a href="https://github.com/dart-lang/stagehand/issues/671">2.14</a></td>
+<td>2.14*</td>
+</tr>
+<tr>
+<td><code>dartfmt</code></td>
+<td><a href="/tools/dart-format"><code>dart format</code></a></td>
+<td><a href="https://github.com/dart-lang/dart_style/issues/986">2.14</a></td>
+<td><a href="https://github.com/dart-lang/dart_style/issues/986">2.15</a></td>
+</tr>
+<tr>
+<td><code>dart2native</code></td>
+<td><a href="/tools/dart-compile#exe"><code>dart compile exe</code></a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/cac00e9d956a6f7ef28628989912d971f6b908d4">2.14</a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/6c5fb84716b1f257b170351efe8096fe2af2809b">2.15</a></td>
+</tr>
+<tr>
+<td><code>dart2js</code></td>
+<td><a href="/tools/dart-compile"><code>dart compile js</code></a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/8415b70e75b1d5bbe8251fa6a9eab2d970cf9eec">2.17</a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/69249df50bcc7a0489176efd3fd79fff018f1b91">2.18</a></td>
+</tr>
+<tr>
+<td><code>dartdevc</code></td>
+<td><a href="/tools/webdev"><code>webdev</code></a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/5173fd2d224f669fd8d0a1d21adbfd6187d10f53">2.17</a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/69249df50bcc7a0489176efd3fd79fff018f1b91">2.18</a></td>
+</tr>
+<tr>
+<td><code>dartanalyzer</code></td>
+<td><a href="/tools/dart-analyze"><code>dart analyze</code></a></td>
+<td><a href="https://github.com/dart-lang/sdk/commit/f7af5c5256ee6f3a167f380722b96e8af4360b46">2.16</a></td>
+<td><a href="https://github.com/dart-lang/sdk/issues/48457">2.18</a></td>
+</tr>
+<tr>
+<td><code>dartdoc</code></td>
+<td><a href="/tools/dart-doc"><code>dart doc</code></a></td>
+<td><a href="https://github.com/dart-lang/sdk/issues/44610">2.16</a></td>
+<td><a href="https://dart-review.googlesource.com/c/sdk/+/228647">2.17</a></td>
+</tr>
+<tr>
+<td><code>pub</code></td>
+<td><a href="/tools/dart-pub"><code>dart pub</code></a></td>
+<td><a href="https://github.com/dart-lang/pub/issues/2736">2.15</a></td>
+<td><a href="https://dart-review.googlesource.com/c/sdk/+/234283">2.17</a></td>
+</tr>
+</tbody>
+</table>
+</div><div class="header-wrapper">
+<h3 id="null-safety-migration-tools">Null safety migration tools</h3>
+<a class="heading-link" href="#null-safety-migration-tools" aria-label="Link to 'Null safety migration tools' section">#</a></div>
+<p>The following null safety migration commands have been removed,
+as Dart 3 <a href="#100-sound-null-safety">doesn't support code without null safety</a>:</p>
+<ul>
+<li><code>dart migrate</code></li>
+<li><code>dart pub upgrade --null-safety</code></li>
+<li><code>dart pub outdated --mode=null-safety</code></li>
+</ul>
+<div class="header-wrapper">
+<h4 id="scope-8">Scope</h4>
+<a class="heading-link" href="#scope-8" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is an <a href="#unversioned-vs-versioned-changes"><em>unversioned</em> change</a>,
+that applies to all Dart 3 code.</p>
+<div class="header-wrapper">
+<h4 id="symptom-7">Symptom</h4>
+<a class="heading-link" href="#symptom-7" aria-label="Link to 'Symptom' section">#</a></div>
+<p>These commands will fail.</p>
+<div class="header-wrapper">
+<h4 id="migration-7">Migration</h4>
+<a class="heading-link" href="#migration-7" aria-label="Link to 'Migration' section">#</a></div>
+<p>Use Dart 2.19 to <a href="/null-safety/migration-guide">migrate to null safety</a>.</p>
+<div class="header-wrapper">
+<h3 id="analyzer-config">Analyzer config</h3>
+<a class="heading-link" href="#analyzer-config" aria-label="Link to 'Analyzer config' section">#</a></div>
+<p>The <a href="/tools/analysis#enabling-additional-type-checks">analyzer configuration options</a> for
+enabling stricter checking have changed.</p>
+<div class="header-wrapper">
+<h4 id="scope-9">Scope</h4>
+<a class="heading-link" href="#scope-9" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is an <a href="#unversioned-vs-versioned-changes"><em>unversioned</em> change</a>,
+that applies to all Dart 3 code.</p>
+<div class="header-wrapper">
+<h4 id="symptom-8">Symptom</h4>
+<a class="heading-link" href="#symptom-8" aria-label="Link to 'Symptom' section">#</a></div>
+<p>The former configuration options will fail with a warning like:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>The option 'implicit-casts' is no longer supported.</span></span>
+<span class="line"><span>Try using the new 'strict-casts' option.</span></span></code></pre></div></div><div class="header-wrapper">
+<h4 id="migration-8">Migration</h4>
+<a class="heading-link" href="#migration-8" aria-label="Link to 'Migration' section">#</a></div>
+<p>Replace this part of the analyzer config:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">analyzer</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  strong-mode</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">    implicit-casts</span><span style="color:#222222">: </span><span style="color:#11796D">false</span></span>
+<span class="line"><span style="color:#0468D7">    implicit-dynamic</span><span style="color:#222222">: </span><span style="color:#11796D">false</span></span></code></pre></div></div><p>with:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">analyzer</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  language</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">    strict-casts</span><span style="color:#222222">: </span><span style="color:#11796D">true</span></span>
+<span class="line"><span style="color:#0468D7">    strict-raw-types</span><span style="color:#222222">: </span><span style="color:#11796D">true</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="other-tools-changes">Other tools changes</h3>
+<a class="heading-link" href="#other-tools-changes" aria-label="Link to 'Other tools changes' section">#</a></div>
+<ul>
+<li>The deprecated Observatory has been hidden by default.
+We recommend using <a href="/tools/dart-devtools">DevTools</a>.</li>
+<li>The command <code>dart format fix</code> has been replaced by <code>dart fix</code>
+<a href="https://github.com/dart-lang/dart_style/issues/1153">#1153</a>.</li>
+<li>The snapshot files bundled in the SDK for the Dart web compiler
+have been cleaned up <a href="https://github.com/dart-lang/sdk/issues/50700">#50700</a>.</li>
+<li>The output of <code>dart format</code> changed a bit for
+<a href="https://github.com/dart-lang/sdk/blob/main/CHANGELOG.md#formatter">some code</a>.</li>
+<li>Ending backwards compatibility for the old location of pub-cache on Windows.
+Prior to Dart 3 <code>%APPDATA%\Pub\Cache</code> was a fallback location for pub-cache.
+Starting with Dart 3, the default pub-cache is located at
+<code>%LOCALAPPDATA%\Pub\Cache</code>.
+If you have added globally activated packages to your <code>PATH</code>, consider
+updating <code>PATH</code> to contain <code>%LOCALAPPDATA%\Pub\Cache\bin</code>.</li>
+</ul>
+<div class="header-wrapper">
+<h4 id="scope-10">Scope</h4>
+<a class="heading-link" href="#scope-10" aria-label="Link to 'Scope' section">#</a></div>
+<p>This is an <a href="#unversioned-vs-versioned-changes"><em>unversioned</em> change</a>,
+that applies to all Dart 3 code.</p>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/resources/dart-3-migration.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/resources/dart-3-migration/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/resources/dart-3-migration.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

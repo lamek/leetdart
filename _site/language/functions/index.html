@@ -1,0 +1,2079 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Everything about functions in Dart.">
+  <title>Functions | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Functions">
+  <meta name="twitter:description" content="Everything about functions in Dart.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Functions">
+  <meta property="og:description" content="Everything about functions in Dart.">
+  <meta property="og:url" content="/language/functions/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script defer src="/assets/js/inject_dartpad.js"></script>
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="true" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link active" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#parameters">Parameters</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#named-parameters">Named parameters</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#optional-positional-parameters">Optional positional parameters</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#main">The main() function</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#functions-as-first-class-objects">Functions as first-class objects</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#function-types">Function types</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#anonymous-functions">Anonymous functions</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#lexical-scope">Lexical scope</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#lexical-closures">Lexical closures</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#tear-offs">Tear-offs</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#testing-functions-for-equality">Testing functions for equality</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#return-values">Return values</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#generators">Generators</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#external">External functions</a>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Functions</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#parameters">Parameters</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#named-parameters">Named parameters</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#optional-positional-parameters">Optional positional parameters</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#main">The main() function</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#functions-as-first-class-objects">Functions as first-class objects</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#function-types">Function types</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#anonymous-functions">Anonymous functions</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#lexical-scope">Lexical scope</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#lexical-closures">Lexical closures</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#tear-offs">Tear-offs</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#testing-functions-for-equality">Testing functions for equality</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#return-values">Return values</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#generators">Generators</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#external">External functions</a>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<p>Dart is a true object-oriented language, so even functions are objects
+and have a type, <a href="https://api.dart.dev/dart-core/Function-class.html">Function.</a>
+This means that functions can be assigned to variables or passed as arguments
+to other functions. You can also call an instance of a Dart class as if
+it were a function. For details, see <a href="/language/callable-objects">Callable objects</a>.</p>
+<p>Here's an example of implementing a function:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (function)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">bool</span><span style="color:#6200EE"> isNoble</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> atomicNumber) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> _nobleGases[atomicNumber] != </span><span style="color:#11796D">null</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Although Effective Dart recommends
+<a href="/effective-dart/design#do-type-annotate-fields-and-top-level-variables-if-the-type-isnt-obvious">type annotations for public APIs</a>,
+the function still works if you omit the types:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (function-omitting-types)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">isNoble</span><span style="color:#222222">(atomicNumber) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> _nobleGases[atomicNumber] != </span><span style="color:#11796D">null</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>For functions that contain just one expression, you can use a shorthand
+syntax:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (function-shorthand)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">bool</span><span style="color:#6200EE"> isNoble</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> atomicNumber) => _nobleGases[atomicNumber] != </span><span style="color:#11796D">null</span><span style="color:#222222">;</span></span></code></pre></div></div><p>The <code>=&gt; <em>expr</em></code> syntax is a shorthand for
+<code>{ return <em>expr</em>; }</code>. The <code>=&gt;</code> notation
+is sometimes referred to as <em>arrow</em> syntax.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>Only <em>expressions</em> can appear between the arrow (<code>=&gt;</code>) and the semicolon (<code>;</code>).
+Expressions evaluate to values.
+This means that you can't write a statement where Dart expects a value.
+For example,
+you could use a <a href="/language/operators#conditional-expressions">conditional expression</a> but not an <a href="/language/branches#if">if statement</a>.
+In the previous example,
+<code>_nobleGases[atomicNumber] != null;</code> returns a boolean value.
+The function then returns a boolean value
+that indicates whether the <code>atomicNumber</code> falls into the noble gas range.</p>
+</div></aside>
+<div class="header-wrapper">
+<h2 id="parameters">Parameters</h2>
+<a class="heading-link" href="#parameters" aria-label="Link to 'Parameters' section">#</a></div>
+<p>A function can have any number of <em>required positional</em> parameters. These can be
+followed either by <em>named</em> parameters or by <em>optional positional</em> parameters
+(but not both).</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>Some APIs—notably <a href="https://flutter.dev">Flutter</a> widget constructors—use only named
+parameters, even for parameters that are mandatory. See the next section for
+details.</p>
+</div></aside>
+<p>You can use <a href="/language/collections#lists">trailing commas</a> when you pass arguments to a function
+or when you define function parameters.</p>
+<div class="header-wrapper">
+<h3 id="named-parameters">Named parameters</h3>
+<a class="heading-link" href="#named-parameters" aria-label="Link to 'Named parameters' section">#</a></div>
+<p>Named parameters are optional
+unless they're explicitly marked as <code>required</code>.</p>
+<p>When defining a function, use
+<code>{<em>param1</em>, <em>param2</em>, …}</code>
+to specify named parameters.
+If you don't provide a default value
+or mark a named parameter as <code>required</code>,
+their types must be nullable
+as their default value will be <code>null</code>:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (specify-named-parameters)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">/// Sets the </span><span style="color:#222222">[bold]</span><span style="color:#6E6E70"> and </span><span style="color:#222222">[hidden]</span><span style="color:#6E6E70"> flags ...</span></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> enableFlags</span><span style="color:#222222">({</span><span style="color:#0468D7">bool</span><span style="color:#222222">? bold, </span><span style="color:#0468D7">bool</span><span style="color:#222222">? hidden}) {</span></span>
+<span class="line"><span style="color:#222222">  ...</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>When calling a function,
+you can specify named arguments using
+<code><em>paramName</em>: <em>value</em></code>.
+For example:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (use-named-parameters)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">enableFlags</span><span style="color:#222222">(bold: </span><span style="color:#11796D">true</span><span style="color:#222222">, hidden: </span><span style="color:#11796D">false</span><span style="color:#222222">);</span></span></code></pre></div></div><p><a id="default-parameters"></a>
+To define a default value for a named parameter besides <code>null</code>,
+use <code>=</code> to specify a default value.
+The specified value must be a compile-time constant.
+For example:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (named-parameter-default-values)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">/// Sets the </span><span style="color:#222222">[bold]</span><span style="color:#6E6E70"> and </span><span style="color:#222222">[hidden]</span><span style="color:#6E6E70"> flags ...</span></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> enableFlags</span><span style="color:#222222">({</span><span style="color:#0468D7">bool</span><span style="color:#222222"> bold = </span><span style="color:#11796D">false</span><span style="color:#222222">, </span><span style="color:#0468D7">bool</span><span style="color:#222222"> hidden = </span><span style="color:#11796D">false</span><span style="color:#222222">}) {</span></span>
+<span class="line"><span style="color:#222222">  ...</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// bold will be true; hidden will be false.</span></span>
+<span class="line"><span style="color:#6200EE">enableFlags</span><span style="color:#222222">(bold: </span><span style="color:#11796D">true</span><span style="color:#222222">);</span></span></code></pre></div></div><p>If you instead want a named parameter to be mandatory,
+requiring callers to provide a value for the parameter,
+annotate them with <code>required</code>:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (required-named-parameters)" replace="/required/[!$&!]/g"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> Scrollbar</span><span style="color:#222222">({</span><span style="color:#D43324">super</span><span style="color:#222222">.key, </span><mark class="highlight"><span style="color:#D43324">required</span></mark><span style="color:#0468D7"> Widget</span><span style="color:#222222"> child});</span></span></code></pre></div></div><p>If someone tries to create a <code>Scrollbar</code>
+without specifying the <code>child</code> argument,
+then the analyzer reports an issue.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>A parameter marked as <code>required</code> can still be nullable:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (required-named-parameters-nullable)" replace="/Widget\?/[!$&!]/g; /ScrollbarTwo/Scrollbar/g;"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> Scrollbar</span><span style="color:#222222">({</span><span style="color:#D43324">super</span><span style="color:#222222">.key, </span><span style="color:#D43324">required</span><span style="color:#0468D7"> </span><mark class="highlight"><span style="color:#0468D7">Widget</span><span style="color:#222222">?</span></mark><span style="color:#222222"> child});</span></span></code></pre></div></div></div></aside>
+<p>You might want to place positional arguments first,
+but Dart doesn't require it.
+Dart allows named arguments to be placed anywhere in the
+argument list when it suits your API:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (named-arguments-anywhere)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">repeat</span><span style="color:#222222">(times: </span><span style="color:#11796D">2</span><span style="color:#222222">, () {</span></span>
+<span class="line"><span style="color:#222222">  ...</span></span>
+<span class="line"><span style="color:#222222">});</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="optional-positional-parameters">Optional positional parameters</h3>
+<a class="heading-link" href="#optional-positional-parameters" aria-label="Link to 'Optional positional parameters' section">#</a></div>
+<p>Wrapping a set of function parameters in <code>[]</code>
+marks them as optional positional parameters.
+If you don't provide a default value,
+their types must be nullable
+as their default value will be <code>null</code>:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (optional-positional-parameters)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">String</span><span style="color:#6200EE"> say</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> from, </span><span style="color:#0468D7">String</span><span style="color:#222222"> msg, [</span><span style="color:#0468D7">String</span><span style="color:#222222">? device]) {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> result = </span><span style="color:#11796D">'</span><span style="color:#11796D">$</span><span style="color:#222222">from</span><span style="color:#11796D"> says </span><span style="color:#11796D">$</span><span style="color:#222222">msg</span><span style="color:#11796D">'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">  if</span><span style="color:#222222"> (device != </span><span style="color:#11796D">null</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#222222">    result = </span><span style="color:#11796D">'</span><span style="color:#11796D">$</span><span style="color:#222222">result</span><span style="color:#11796D"> with a </span><span style="color:#11796D">$</span><span style="color:#222222">device</span><span style="color:#11796D">'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> result;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Here's an example of calling this function
+without the optional parameter:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (call-without-optional-param)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">assert</span><span style="color:#222222">(</span><span style="color:#6200EE">say</span><span style="color:#222222">(</span><span style="color:#11796D">'Bob'</span><span style="color:#222222">, </span><span style="color:#11796D">'Howdy'</span><span style="color:#222222">) == </span><span style="color:#11796D">'Bob says Howdy'</span><span style="color:#222222">);</span></span></code></pre></div></div><p>And here's an example of calling this function with the third parameter:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (call-with-optional-param)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">assert</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#6200EE">  say</span><span style="color:#222222">(</span><span style="color:#11796D">'Bob'</span><span style="color:#222222">, </span><span style="color:#11796D">'Howdy'</span><span style="color:#222222">, </span><span style="color:#11796D">'smoke signal'</span><span style="color:#222222">) ==</span></span>
+<span class="line"><span style="color:#11796D">      'Bob says Howdy with a smoke signal'</span><span style="color:#222222">,</span></span>
+<span class="line"><span style="color:#222222">);</span></span></code></pre></div></div><p>To define a default value for an optional positional parameter besides <code>null</code>,
+use <code>=</code> to specify a default value.
+The specified value must be a compile-time constant.
+For example:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (optional-positional-param-default)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">String</span><span style="color:#6200EE"> say</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> from, </span><span style="color:#0468D7">String</span><span style="color:#222222"> msg, [</span><span style="color:#0468D7">String</span><span style="color:#222222"> device = </span><span style="color:#11796D">'carrier pigeon'</span><span style="color:#222222">]) {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> result = </span><span style="color:#11796D">'</span><span style="color:#11796D">$</span><span style="color:#222222">from</span><span style="color:#11796D"> says </span><span style="color:#11796D">$</span><span style="color:#222222">msg</span><span style="color:#11796D"> with a </span><span style="color:#11796D">$</span><span style="color:#222222">device</span><span style="color:#11796D">'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> result;</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">assert</span><span style="color:#222222">(</span><span style="color:#6200EE">say</span><span style="color:#222222">(</span><span style="color:#11796D">'Bob'</span><span style="color:#222222">, </span><span style="color:#11796D">'Howdy'</span><span style="color:#222222">) == </span><span style="color:#11796D">'Bob says Howdy with a carrier pigeon'</span><span style="color:#222222">);</span></span></code></pre></div></div><p><a id="the-main-function" aria-hidden="true"></a></p>
+<div class="header-wrapper">
+<h2 id="main">The main() function</h2>
+<a class="heading-link" href="#main" aria-label="Link to 'The main() function' section">#</a></div>
+<p>Every app must have a top-level <code>main()</code> function, which serves as the
+entrypoint to the app. The <code>main()</code> function returns <code>void</code> and has an
+optional <code>List&lt;String&gt;</code> parameter for arguments.</p>
+<p>Here's a simple <code>main()</code> function:</p>
+<?code-excerpt "misc/test/samples_test.dart (hello-world)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'Hello, World!'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Here's an example of the <code>main()</code> function for a command-line app that
+takes arguments:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (main-args)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-header">args.dart</div><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Run the app like this: dart run args.dart 1 test</span></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> arguments) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(arguments);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(arguments.length == </span><span style="color:#11796D">2</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222">.</span><span style="color:#6200EE">parse</span><span style="color:#222222">(arguments[</span><span style="color:#11796D">0</span><span style="color:#222222">]) == </span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(arguments[</span><span style="color:#11796D">1</span><span style="color:#222222">] == </span><span style="color:#11796D">'test'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>You can use the <a href="https://pub.dev/packages/args">args library</a> to
+define and parse command-line arguments.</p>
+<div class="header-wrapper">
+<h2 id="functions-as-first-class-objects">Functions as first-class objects</h2>
+<a class="heading-link" href="#functions-as-first-class-objects" aria-label="Link to 'Functions as first-class objects' section">#</a></div>
+<p>You can pass a function as a parameter to another function. For example:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (function-as-param)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> printElement</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> element) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(element);</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> list = [</span><span style="color:#11796D">1</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">, </span><span style="color:#11796D">3</span><span style="color:#222222">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Pass printElement as a parameter.</span></span>
+<span class="line"><span style="color:#222222">list.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(printElement);</span></span></code></pre></div></div><p>You can also assign a function to a variable, such as:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (function-as-var)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> loudify = (msg) => </span><span style="color:#11796D">'!!! </span><span style="color:#11796D">${</span><span style="color:#222222">msg</span><span style="color:#11796D">.</span><span style="color:#6200EE">toUpperCase</span><span style="color:#11796D">()}</span><span style="color:#11796D"> !!!'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">assert</span><span style="color:#222222">(</span><span style="color:#6200EE">loudify</span><span style="color:#222222">(</span><span style="color:#11796D">'hello'</span><span style="color:#222222">) == </span><span style="color:#11796D">'!!! HELLO !!!'</span><span style="color:#222222">);</span></span></code></pre></div></div><p>This example uses an anonymous function.
+More about those in the next section.</p>
+<div class="header-wrapper">
+<h2 id="function-types">Function types</h2>
+<a class="heading-link" href="#function-types" aria-label="Link to 'Function types' section">#</a></div>
+<p>You can specify the type of a function, which is known as a <em>function type</em>.
+A function type is obtained from a function declaration header by
+replacing the function name by the keyword <code>Function</code>.
+Moreover, you are allowed to omit the names of positional parameters, but
+the names of named parameters can't be omitted. For example:</p>
+<?code-excerpt "misc/lib/language_tour/functions.dart (function-type)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> greet</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> name, {</span><span style="color:#0468D7">String</span><span style="color:#222222"> greeting = </span><span style="color:#11796D">'Hello'</span><span style="color:#222222">}) =></span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(</span><span style="color:#11796D">'</span><span style="color:#11796D">$</span><span style="color:#222222">greeting</span><span style="color:#11796D"> $</span><span style="color:#222222">name</span><span style="color:#11796D">!'</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Store `greet` in a variable and call it.</span></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#0468D7"> Function</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222">, {</span><span style="color:#0468D7">String</span><span style="color:#222222"> greeting}) g = greet;</span></span>
+<span class="line"><span style="color:#6200EE">g</span><span style="color:#222222">(</span><span style="color:#11796D">'Dash'</span><span style="color:#222222">, greeting: </span><span style="color:#11796D">'Howdy'</span><span style="color:#222222">);</span></span></code></pre></div></div><aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>In Dart, functions are first-class objects,
+meaning they can be assigned to variables,
+passed as arguments, and returned from other functions.</p>
+<p>You can use a <a href="/language/typedefs"><code>typedef</code></a> declaration to explicitly name function types,
+which can be useful for clarity and reusability.</p>
+</div></aside>
+<div class="header-wrapper">
+<h2 id="anonymous-functions">Anonymous functions</h2>
+<a class="heading-link" href="#anonymous-functions" aria-label="Link to 'Anonymous functions' section">#</a></div>
+<p>Though you name most functions, such as <code>main()</code> or <code>printElement()</code>.
+you can also create functions without names.
+These functions are called <em>anonymous functions</em>, <em>lambdas</em>, or <em>closures</em>.</p>
+<p>An anonymous function resembles a named function as it has:</p>
+<ul>
+<li>Zero or more parameters, comma-separated</li>
+<li>Optional type annotations between parentheses.</li>
+</ul>
+<p>The following code block contains the function's body:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">([[</span><span style="color:#0468D7">Type</span><span style="color:#222222">] param1[, ...]]) {</span></span>
+<span class="line"><span style="color:#222222">  codeBlock;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The following example defines an anonymous function
+with an untyped parameter, <code>item</code>.
+The anonymous function passes it to the <code>map</code> function.
+The <code>map</code> function, invoked for each item in the list,
+converts each string to uppercase.
+Then, the anonymous function passed to <code>forEach</code>,
+prints each converted string with its length.</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (anonymous-function)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#222222"> list = [</span><span style="color:#11796D">'apples'</span><span style="color:#222222">, </span><span style="color:#11796D">'bananas'</span><span style="color:#222222">, </span><span style="color:#11796D">'oranges'</span><span style="color:#222222">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> uppercaseList =</span></span>
+<span class="line"><span style="color:#222222">    list.</span><span style="color:#6200EE">map</span><span style="color:#222222">((item) {</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#222222"> item.</span><span style="color:#6200EE">toUpperCase</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">    }).</span><span style="color:#6200EE">toList</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#6E6E70">// Convert to list after mapping</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">for</span><span style="color:#222222"> (</span><span style="color:#D43324">var</span><span style="color:#222222"> item </span><span style="color:#D43324">in</span><span style="color:#222222"> uppercaseList) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'</span><span style="color:#11796D">$</span><span style="color:#222222">item</span><span style="color:#11796D">: </span><span style="color:#11796D">${</span><span style="color:#222222">item</span><span style="color:#11796D">.</span><span style="color:#222222">length</span><span style="color:#11796D">}</span><span style="color:#11796D">'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Click <strong>Run</strong> to execute the code.</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (anonymous-function-main)"?>
+<pre><code data-dartpad="true" data-embed="true" data-theme="light" title="Runnable Dart sample" data-run="false">void main() {
+  const list = ['apples', 'bananas', 'oranges'];
+
+  var uppercaseList =
+      list.map((item) {
+        return item.toUpperCase();
+      }).toList();
+  // Convert to list after mapping
+
+  for (var item in uppercaseList) {
+    print('$item: ${item.length}');
+  }
+}
+</code></pre><p>If the function contains only a single expression or return statement,
+you can shorten it using arrow notation.
+Paste the following line into DartPad and click <strong>Run</strong>
+to verify that it is functionally equivalent.</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (anon-func)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> uppercaseList = list.</span><span style="color:#6200EE">map</span><span style="color:#222222">((item) => item.</span><span style="color:#6200EE">toUpperCase</span><span style="color:#222222">()).</span><span style="color:#6200EE">toList</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">uppercaseList.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">((item) => </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'</span><span style="color:#11796D">$</span><span style="color:#222222">item</span><span style="color:#11796D">: </span><span style="color:#11796D">${</span><span style="color:#222222">item</span><span style="color:#11796D">.</span><span style="color:#222222">length</span><span style="color:#11796D">}</span><span style="color:#11796D">'</span><span style="color:#222222">));</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="lexical-scope">Lexical scope</h2>
+<a class="heading-link" href="#lexical-scope" aria-label="Link to 'Lexical scope' section">#</a></div>
+<p>Dart determines the scope of variables based on the layout of its code.
+A programming language with this feature is termed a lexically scoped language.
+You can &quot;follow the curly braces outwards&quot; to see if a variable is in scope.</p>
+<p><strong>Example:</strong> A series of nested functions with variables at each scope level:</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (nested-functions)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">bool</span><span style="color:#222222"> topLevel = </span><span style="color:#11796D">true</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> insideMain = </span><span style="color:#11796D">true</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> myFunction</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    var</span><span style="color:#222222"> insideFunction = </span><span style="color:#11796D">true</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">    void</span><span style="color:#6200EE"> nestedFunction</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">      var</span><span style="color:#222222"> insideNestedFunction = </span><span style="color:#11796D">true</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">      assert</span><span style="color:#222222">(topLevel);</span></span>
+<span class="line"><span style="color:#D43324">      assert</span><span style="color:#222222">(insideMain);</span></span>
+<span class="line"><span style="color:#D43324">      assert</span><span style="color:#222222">(insideFunction);</span></span>
+<span class="line"><span style="color:#D43324">      assert</span><span style="color:#222222">(insideNestedFunction);</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The <code>nestedFunction()</code> method can use variables from every level,
+all the way up to the top level.</p>
+<div class="header-wrapper">
+<h2 id="lexical-closures">Lexical closures</h2>
+<a class="heading-link" href="#lexical-closures" aria-label="Link to 'Lexical closures' section">#</a></div>
+<p>A function object that can access variables in its lexical scope
+when the function sits outside that scope is called a <em>closure</em>.</p>
+<p>Functions can close over variables defined in surrounding scopes. In the
+following example, <code>makeAdder()</code> captures the variable <code>addBy</code>. Wherever the
+returned function goes, it remembers <code>addBy</code>.</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (function-closure)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">/// Returns a function that adds </span><span style="color:#222222">[addBy]</span><span style="color:#6E6E70"> to the</span></span>
+<span class="line"><span style="color:#6E6E70">/// function's argument.</span></span>
+<span class="line"><span style="color:#0468D7">Function</span><span style="color:#6200EE"> makeAdder</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> addBy) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> (</span><span style="color:#0468D7">int</span><span style="color:#222222"> i) => addBy + i;</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#6E6E70">  // Create a function that adds 2.</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> add2 = </span><span style="color:#6200EE">makeAdder</span><span style="color:#222222">(</span><span style="color:#11796D">2</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Create a function that adds 4.</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> add4 = </span><span style="color:#6200EE">makeAdder</span><span style="color:#222222">(</span><span style="color:#11796D">4</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(</span><span style="color:#6200EE">add2</span><span style="color:#222222">(</span><span style="color:#11796D">3</span><span style="color:#222222">) == </span><span style="color:#11796D">5</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(</span><span style="color:#6200EE">add4</span><span style="color:#222222">(</span><span style="color:#11796D">3</span><span style="color:#222222">) == </span><span style="color:#11796D">7</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="tear-offs">Tear-offs</h2>
+<a class="heading-link" href="#tear-offs" aria-label="Link to 'Tear-offs' section">#</a></div>
+<p>When you refer to a function, method, or named constructor without parentheses,
+Dart creates a <em>tear-off</em>. This is a closure that takes the same
+parameters as the function and invokes the underlying function when you call it.
+If your code needs a closure that invokes a named function with the same
+parameters as the closure accepts, don't wrap the call in a lambda.
+Use a tear-off.</p>
+<?code-excerpt "misc/lib/language_tour/tear_offs.dart (variables)" ?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> charCodes = [</span><span style="color:#11796D">68</span><span style="color:#222222">, </span><span style="color:#11796D">97</span><span style="color:#222222">, </span><span style="color:#11796D">114</span><span style="color:#222222">, </span><span style="color:#11796D">116</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> buffer = </span><span style="color:#0468D7">StringBuffer</span><span style="color:#222222">();</span></span></code></pre></div></div><?code-excerpt "misc/lib/language_tour/tear_offs.dart (good-example)" ?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-good"><span class="code-block-tag">good</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Function tear-off</span></span>
+<span class="line"><span style="color:#222222">charCodes.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(print);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Method tear-off</span></span>
+<span class="line"><span style="color:#222222">charCodes.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(buffer.write);</span></span></code></pre></div></div><?code-excerpt "misc/lib/language_tour/tear_offs.dart (bad-example)" ?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Function lambda</span></span>
+<span class="line"><span style="color:#222222">charCodes.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">((code) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(code);</span></span>
+<span class="line"><span style="color:#222222">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Method lambda</span></span>
+<span class="line"><span style="color:#222222">charCodes.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">((code) {</span></span>
+<span class="line"><span style="color:#222222">  buffer.</span><span style="color:#6200EE">write</span><span style="color:#222222">(code);</span></span>
+<span class="line"><span style="color:#222222">});</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="testing-functions-for-equality">Testing functions for equality</h2>
+<a class="heading-link" href="#testing-functions-for-equality" aria-label="Link to 'Testing functions for equality' section">#</a></div>
+<p>Here's an example of testing top-level functions, static methods, and
+instance methods for equality:</p>
+<?code-excerpt "misc/lib/language_tour/function_equality.dart"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> foo</span><span style="color:#222222">() {} </span><span style="color:#6E6E70">// A top-level function</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  static</span><span style="color:#D43324"> void</span><span style="color:#6200EE"> bar</span><span style="color:#222222">() {} </span><span style="color:#6E6E70">// A static method</span></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> baz</span><span style="color:#222222">() {} </span><span style="color:#6E6E70">// An instance method</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#0468D7">  Function</span><span style="color:#222222"> x;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Comparing top-level functions.</span></span>
+<span class="line"><span style="color:#222222">  x = foo;</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(foo == x);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Comparing static methods.</span></span>
+<span class="line"><span style="color:#222222">  x = </span><span style="color:#0468D7">A</span><span style="color:#222222">.bar;</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(</span><span style="color:#0468D7">A</span><span style="color:#222222">.bar == x);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Comparing instance methods.</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> v = </span><span style="color:#0468D7">A</span><span style="color:#222222">(); </span><span style="color:#6E6E70">// Instance #1 of A</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> w = </span><span style="color:#0468D7">A</span><span style="color:#222222">(); </span><span style="color:#6E6E70">// Instance #2 of A</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> y = w;</span></span>
+<span class="line"><span style="color:#222222">  x = w.baz;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // These closures refer to the same instance (#2),</span></span>
+<span class="line"><span style="color:#6E6E70">  // so they're equal.</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(y.baz == x);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // These closures refer to different instances,</span></span>
+<span class="line"><span style="color:#6E6E70">  // so they're unequal.</span></span>
+<span class="line"><span style="color:#D43324">  assert</span><span style="color:#222222">(v.baz != w.baz);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="return-values">Return values</h2>
+<a class="heading-link" href="#return-values" aria-label="Link to 'Return values' section">#</a></div>
+<p>All functions return a value. If no return value is specified, the
+statement <code>return null;</code> is implicitly appended to the function body.</p>
+<?code-excerpt "misc/test/language_tour/functions_test.dart (implicit-return-null)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">foo</span><span style="color:#222222">() {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">assert</span><span style="color:#222222">(</span><span style="color:#6200EE">foo</span><span style="color:#222222">() == </span><span style="color:#11796D">null</span><span style="color:#222222">);</span></span></code></pre></div></div><p>To return multiple values in a function, aggregate the values in a <a href="/language/records#multiple-returns">record</a>.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">int</span><span style="color:#222222">) </span><span style="color:#6200EE">foo</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> (</span><span style="color:#11796D">'something'</span><span style="color:#222222">, </span><span style="color:#11796D">42</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="generators">Generators</h2>
+<a class="heading-link" href="#generators" aria-label="Link to 'Generators' section">#</a></div>
+<p>When you need to lazily produce a sequence of values,
+consider using a <em>generator function</em>.
+Dart has built-in support for two kinds of generator functions:</p>
+<ul>
+<li><strong>Synchronous</strong> generator: Returns an <a href="https://api.dart.dev/dart-core/Iterable-class.html"><code>Iterable</code></a> object.</li>
+<li><strong>Asynchronous</strong> generator: Returns a <a href="https://api.dart.dev/dart-async/Stream-class.html"><code>Stream</code></a> object.</li>
+</ul>
+<p>To implement a <strong>synchronous</strong> generator function,
+mark the function body as <code>sync*</code>,
+and use <code>yield</code> statements to deliver values:</p>
+<?code-excerpt "misc/test/language_tour/async_test.dart (sync-generator)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Iterable</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">naturalsTo</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> n) </span><span style="color:#D43324">sync</span><span style="color:#222222">* {</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> k = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">  while</span><span style="color:#222222"> (k &#x3C; n) </span><span style="color:#D43324">yield</span><span style="color:#222222"> k++;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>To implement an <strong>asynchronous</strong> generator function,
+mark the function body as <code>async*</code>,
+and use <code>yield</code> statements to deliver values:</p>
+<?code-excerpt "misc/test/language_tour/async_test.dart (async-generator)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">asynchronousNaturalsTo</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> n) </span><span style="color:#D43324">async</span><span style="color:#222222">* {</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> k = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">  while</span><span style="color:#222222"> (k &#x3C; n) </span><span style="color:#D43324">yield</span><span style="color:#222222"> k++;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>If your generator is recursive,
+you can improve its performance by using <code>yield*</code>:</p>
+<?code-excerpt "misc/test/language_tour/async_test.dart (recursive-generator)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Iterable</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">naturalsDownFrom</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> n) </span><span style="color:#D43324">sync</span><span style="color:#222222">* {</span></span>
+<span class="line"><span style="color:#D43324">  if</span><span style="color:#222222"> (n > </span><span style="color:#11796D">0</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#D43324">    yield</span><span style="color:#222222"> n;</span></span>
+<span class="line"><span style="color:#D43324">    yield</span><span style="color:#222222">* </span><span style="color:#6200EE">naturalsDownFrom</span><span style="color:#222222">(n - </span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="external">External functions</h2>
+<a class="heading-link" href="#external" aria-label="Link to 'External functions' section">#</a></div>
+<p>An external function is a function whose body is implemented separately from its
+declaration. Include the <code>external</code> keyword before a function declaration, like so:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">external</span><span style="color:#D43324"> void</span><span style="color:#6200EE"> someFunc</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> i);</span></span></code></pre></div></div><p>An external function's implementation can come from another Dart library,
+or, more commonly, from another language. In interop contexts, <code>external</code>
+introduces type information for foreign functions or values,
+making them usable in Dart. Implementation and usage is
+heavily platform specific, so check out the interop docs on, for example,
+<a href="/interop/c-interop">C</a> or <a href="/interop/js-interop">JavaScript</a> to learn more.</p>
+<p>External functions can be top-level functions, <a href="/language/methods#instance-methods">instance methods</a>,
+<a href="/language/methods#getters-and-setters">getters or setters</a>, or <a href="/language/constructors#redirecting-constructors">non-redirecting constructors</a>.
+An <a href="/language/classes#instance-variables">instance variable</a> can be <code>external</code> too,
+which is equivalent to an external getter and (if the variable
+is not <code>final</code>) an external setter.</p>
+
+            
+<nav id="prev-next">
+  <ul>
+    <li class="previous">
+      
+        <a href="/language/pattern-types">&lang;&nbsp;&nbsp;Pattern types</a>
+      
+    </li>
+    <li class="next">
+      
+        <a href="/language/loops">Loops&nbsp;&nbsp;&rang;</a>
+      
+    </li>
+  </ul>
+</nav>
+
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/language/functions.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/language/functions/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/language/functions.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1933 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="A stream is a sequence of results; learn how to create your own.">
+  <title>Creating streams in Dart | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Creating streams in Dart">
+  <meta name="twitter:description" content="A stream is a sequence of results; learn how to create your own.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Creating streams in Dart">
+  <meta property="og:description" content="A stream is a sequence of results; learn how to create your own.">
+  <meta property="og:url" content="/libraries/async/creating-streams/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="true" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link active collapsible"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="true" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#transforming-an-existing-stream">Transforming an existing stream</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#creating-a-stream-from-scratch">Creating a stream from scratch</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#using-a-streamcontroller">Using a StreamController</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#waiting-for-a-subscription">Waiting for a subscription</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#honoring-the-pause-state">Honoring the pause state</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#final-hints">Final hints</a>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Creating streams in Dart</h1>
+              </div>
+            
+
+
+  
+<div id="site-toc--inline" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#transforming-an-existing-stream">Transforming an existing stream</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#creating-a-stream-from-scratch">Creating a stream from scratch</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#using-a-streamcontroller">Using a StreamController</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#waiting-for-a-subscription">Waiting for a subscription</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#honoring-the-pause-state">Honoring the pause state</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#final-hints">Final hints</a>
+      </li>
+    </ul>
+  </div>
+<style>
+.comment {color:red;}
+</style>
+<p><em>Written by Lasse Nielsen <br>
+April 2013 (updated May 2021)</em></p>
+<p>The dart:async library contains two types
+that are important for many Dart APIs:
+<a href="https://api.dart.dev/dart-async/Stream-class.html">Stream</a> and
+<a href="https://api.dart.dev/dart-async/Future-class.html">Future.</a>
+Where a Future represents the result of a single computation,
+a stream is a <em>sequence</em> of results.
+You listen on a stream to get notified of the results
+(both data and errors)
+and of the stream shutting down.
+You can also pause while listening or stop listening to the stream
+before it is complete.</p>
+<p>But this article is not about <em>using</em> streams.
+It's about creating your own streams.
+You can create streams in a few ways:</p>
+<ul>
+<li>Transforming existing streams.</li>
+<li>Creating a stream from scratch by using an <code>async*</code> function.</li>
+<li>Creating a stream by using a <code>StreamController</code>.</li>
+</ul>
+<p>This article shows the code for each approach
+and gives tips to help you implement your stream correctly.</p>
+<p>For help on using streams, see
+<a href="/libraries/async/using-streams">Asynchronous Programming: Streams</a>.</p>
+<div class="header-wrapper">
+<h2 id="transforming-an-existing-stream">Transforming an existing stream</h2>
+<a class="heading-link" href="#transforming-an-existing-stream" aria-label="Link to 'Transforming an existing stream' section">#</a></div>
+<p>The common case for creating streams is that you already have a stream,
+and you want to create a new stream based on the original stream's events.
+For example you might have a stream of bytes that
+you want to convert to a stream of strings by UTF-8 decoding the input.
+The most general approach is to create a new stream that
+waits for events on the original stream and then
+outputs new events. Example:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/line_stream_generator.dart (split-into-lines)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">/// Splits a stream of consecutive strings into lines.</span></span>
+<span class="line"><span style="color:#6E6E70">///</span></span>
+<span class="line"><span style="color:#6E6E70">/// The input string is provided in smaller chunks through</span></span>
+<span class="line"><span style="color:#6E6E70">/// the </span><span style="color:#222222">`source`</span><span style="color:#6E6E70"> stream.</span></span>
+<span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> </span><span style="color:#6200EE">lines</span><span style="color:#222222">(</span><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> source) </span><span style="color:#D43324">async</span><span style="color:#222222">* {</span></span>
+<span class="line"><span style="color:#6E6E70">  // Stores any partial line from the previous chunk.</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> partial = </span><span style="color:#11796D">''</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#6E6E70">  // Wait until a new chunk is available, then process it.</span></span>
+<span class="line"><span style="color:#D43324">  await</span><span style="color:#D43324"> for</span><span style="color:#222222"> (</span><span style="color:#D43324">final</span><span style="color:#222222"> chunk </span><span style="color:#D43324">in</span><span style="color:#222222"> source) {</span></span>
+<span class="line"><span style="color:#D43324">    var</span><span style="color:#222222"> lines = chunk.</span><span style="color:#6200EE">split</span><span style="color:#222222">(</span><span style="color:#11796D">'</span><span style="color:#222222">\n</span><span style="color:#11796D">'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">    lines[</span><span style="color:#11796D">0</span><span style="color:#222222">] = partial + lines[</span><span style="color:#11796D">0</span><span style="color:#222222">]; </span><span style="color:#6E6E70">// Prepend partial line.</span></span>
+<span class="line"><span style="color:#222222">    partial = lines.</span><span style="color:#6200EE">removeLast</span><span style="color:#222222">(); </span><span style="color:#6E6E70">// Remove new partial line.</span></span>
+<span class="line"><span style="color:#D43324">    for</span><span style="color:#222222"> (</span><span style="color:#D43324">final</span><span style="color:#222222"> line </span><span style="color:#D43324">in</span><span style="color:#222222"> lines) {</span></span>
+<span class="line"><span style="color:#D43324">      yield</span><span style="color:#222222"> line; </span><span style="color:#6E6E70">// Add lines to output stream.</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#6E6E70">  // Add final partial line to output stream, if any.</span></span>
+<span class="line"><span style="color:#D43324">  if</span><span style="color:#222222"> (partial.isNotEmpty) </span><span style="color:#D43324">yield</span><span style="color:#222222"> partial;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>For many common transformations,
+you can use <code>Stream</code>-supplied transforming methods
+such as <code>map()</code>, <code>where()</code>, <code>expand()</code>, and <code>take()</code>.</p>
+<p>For example, assume you have a stream, <code>counterStream</code>,
+that emits an increasing counter every second.
+Here's how it might be implemented:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (basic-usage)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> counterStream = </span><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>.</span><span style="color:#6200EE">periodic</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#D43324">  const</span><span style="color:#0468D7"> Duration</span><span style="color:#222222">(seconds: </span><span style="color:#11796D">1</span><span style="color:#222222">),</span></span>
+<span class="line"><span style="color:#222222">  (x) => x,</span></span>
+<span class="line"><span style="color:#222222">).</span><span style="color:#6200EE">take</span><span style="color:#222222">(</span><span style="color:#11796D">15</span><span style="color:#222222">);</span></span></code></pre></div></div><p>To quickly see the events, you can use code like this:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (basic-for-each)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">counterStream.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(print); </span><span style="color:#6E6E70">// Print an integer every second, 15 times.</span></span></code></pre></div></div><p>To transform the stream events, you can invoke a transforming method
+such as <code>map()</code> on the stream before listening to it.
+The method returns a new stream.</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (use-map)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Double the integer in each event.</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> doubleCounterStream = counterStream.</span><span style="color:#6200EE">map</span><span style="color:#222222">((</span><span style="color:#0468D7">int</span><span style="color:#222222"> x) => x * </span><span style="color:#11796D">2</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">doubleCounterStream.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(print);</span></span></code></pre></div></div><p>Instead of <code>map()</code>, you could use any other transforming method,
+such as the following:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (use-where)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">.</span><span style="color:#6200EE">where</span><span style="color:#222222">((</span><span style="color:#0468D7">int</span><span style="color:#222222"> x) => x.isEven) </span><span style="color:#6E6E70">// Retain only even integer events.</span></span>
+<span class="line"><span style="color:#222222">.</span><span style="color:#6200EE">expand</span><span style="color:#222222">((</span><span style="color:#D43324">var</span><span style="color:#222222"> x) => [x, x]) </span><span style="color:#6E6E70">// Duplicate each event.</span></span>
+<span class="line"><span style="color:#222222">.</span><span style="color:#6200EE">take</span><span style="color:#222222">(</span><span style="color:#11796D">5</span><span style="color:#222222">) </span><span style="color:#6E6E70">// Stop after the first five events.</span></span></code></pre></div></div><p>Often, a transforming method is all you need.
+However, if you need even more control over the transformation,
+you can specify a
+<a href="https://api.dart.dev/dart-async/StreamTransformer-class.html">StreamTransformer</a>
+with <code>Stream</code>'s <code>transform()</code> method.
+The platform libraries provide stream transformers for many common tasks.
+For example, the following code uses the <code>utf8.decoder</code> and <code>LineSplitter</code>
+transformers provided by the dart:convert library.</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (use-transform)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> content = </span><span style="color:#0468D7">File</span><span style="color:#222222">(</span><span style="color:#11796D">'someFile.txt'</span><span style="color:#222222">).</span><span style="color:#6200EE">openRead</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> lines =</span></span>
+<span class="line"><span style="color:#D43324">    await</span><span style="color:#222222"> content</span></span>
+<span class="line"><span style="color:#222222">        .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(utf8.decoder)</span></span>
+<span class="line"><span style="color:#222222">        .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> LineSplitter</span><span style="color:#222222">())</span></span>
+<span class="line"><span style="color:#222222">        .</span><span style="color:#6200EE">toList</span><span style="color:#222222">();</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="creating-a-stream-from-scratch">Creating a stream from scratch</h2>
+<a class="heading-link" href="#creating-a-stream-from-scratch" aria-label="Link to 'Creating a stream from scratch' section">#</a></div>
+<p>One way to create a new stream is with
+an asynchronous generator (<code>async*</code>) function.
+The stream is created when the function is called,
+and the function's body starts running when the stream is listened to.
+When the function returns, the stream closes.
+Until the function returns, it can emit events on the stream by
+using <code>yield</code> or <code>yield*</code> statements.</p>
+<p>Here's a primitive example that emits numbers at regular intervals:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (async-generator)" replace="/timedCounterGenerator/timedCounter/g"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">timedCounter</span><span style="color:#222222">(</span><span style="color:#0468D7">Duration</span><span style="color:#222222"> interval, [</span><span style="color:#0468D7">int</span><span style="color:#222222">? maxCount]) </span><span style="color:#D43324">async</span><span style="color:#222222">* {</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">  while</span><span style="color:#222222"> (</span><span style="color:#11796D">true</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#D43324">    await</span><span style="color:#0468D7"> Future</span><span style="color:#222222">.</span><span style="color:#6200EE">delayed</span><span style="color:#222222">(interval);</span></span>
+<span class="line"><span style="color:#D43324">    yield</span><span style="color:#222222"> i++;</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (i == maxCount) </span><span style="color:#D43324">break</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>This function returns a <code>Stream</code>.
+When that stream is listened to, the body starts running.
+It repeatedly delays for the requested interval and then yields the next number.
+If the <code>maxCount</code> parameter is omitted, there is no stop condition on the loop,
+so the stream outputs increasingly larger numbers forever -
+or until the listener cancels its subscription.</p>
+<p>When the listener cancels
+(by invoking <code>cancel()</code> on the <code>StreamSubscription</code>
+object returned by the <code>listen()</code> method),
+then the next time the body reaches a <code>yield</code> statement,
+the <code>yield</code> instead acts as a <code>return</code> statement.
+Any enclosing <code>finally</code> block is executed,
+and the function exits.
+If the function attempts to yield a value before exiting,
+that fails and acts as a return.</p>
+<p>When the function finally exits, the future returned by
+the <code>cancel()</code> method completes.
+If the function exits with an error, the future completes with that error;
+otherwise, it completes with <code>null</code>.</p>
+<p>Another, more useful example is a function that converts
+a sequence of futures to a stream:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (stream-from-futures)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">T</span><span style="color:#222222">> </span><span style="color:#6200EE">streamFromFutures</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">T</span><span style="color:#222222">>(</span><span style="color:#0468D7">Iterable</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Future</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">T</span><span style="color:#222222">>> futures) </span><span style="color:#D43324">async</span><span style="color:#222222">* {</span></span>
+<span class="line"><span style="color:#D43324">  for</span><span style="color:#222222"> (</span><span style="color:#D43324">final</span><span style="color:#222222"> future </span><span style="color:#D43324">in</span><span style="color:#222222"> futures) {</span></span>
+<span class="line"><span style="color:#D43324">    var</span><span style="color:#222222"> result = </span><span style="color:#D43324">await</span><span style="color:#222222"> future;</span></span>
+<span class="line"><span style="color:#D43324">    yield</span><span style="color:#222222"> result;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>This function asks the <code>futures</code> iterable for a new future,
+waits for that future, emits the resulting value, and then loops.
+If a future completes with an error, then the stream completes with that error.</p>
+<p>It's rare to have an <code>async*</code> function building a stream from nothing.
+It needs to get its data from somewhere,
+and most often that somewhere is another stream.
+In some cases, like the sequence of futures above,
+the data comes from other asynchronous event sources.
+In many cases, however, an <code>async*</code> function is too simplistic to
+easily handle multiple data sources.
+That's where the <code>StreamController</code> class comes in.</p>
+<div class="header-wrapper">
+<h2 id="using-a-streamcontroller">Using a StreamController</h2>
+<a class="heading-link" href="#using-a-streamcontroller" aria-label="Link to 'Using a StreamController' section">#</a></div>
+<p>If the events of your stream comes from different parts of your program,
+and not just from a stream or futures that can traversed by an <code>async</code> function,
+then use a
+<a href="https://api.dart.dev/dart-async/StreamController-class.html">StreamController</a>
+to create and populate the stream.</p>
+<p>A <code>StreamController</code> gives you a new stream
+and a way to add events to the stream at any point, and from anywhere.
+The stream has all the logic necessary to handle listeners and pausing.
+You return the stream and keep the controller to yourself.</p>
+<p>The following example
+(from <a href="https://github.com/dart-lang/site-www/blob/main/examples/misc/lib/articles/creating-streams/stream_controller_bad.dart">stream_controller_bad.dart</a>)
+shows a basic, though flawed, usage of <code>StreamController</code>
+to implement the <code>timedCounter()</code> function from the previous examples.
+This code creates a stream to return,
+and then feeds data into it based on timer events,
+which are neither futures nor stream events.</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller_bad.dart (flawed-stream)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// NOTE: This implementation is FLAWED!</span></span>
+<span class="line"><span style="color:#6E6E70">// It starts before it has subscribers, and it doesn't implement pause.</span></span>
+<span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">timedCounter</span><span style="color:#222222">(</span><span style="color:#0468D7">Duration</span><span style="color:#222222"> interval, [</span><span style="color:#0468D7">int</span><span style="color:#222222">? maxCount]) {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> controller = </span><span style="color:#0468D7">StreamController</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>();</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> counter = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> tick</span><span style="color:#222222">(</span><span style="color:#0468D7">Timer</span><span style="color:#222222"> timer) {</span></span>
+<span class="line"><span style="color:#222222">    counter++;</span></span>
+<span class="line"><span style="color:#222222">    controller.</span><span style="color:#6200EE">add</span><span style="color:#222222">(counter); </span><span style="color:#6E6E70">// Ask stream to send counter values as event.</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (maxCount != </span><span style="color:#11796D">null</span><span style="color:#222222"> &#x26;&#x26; counter >= maxCount) {</span></span>
+<span class="line"><span style="color:#222222">      timer.</span><span style="color:#6200EE">cancel</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">      controller.</span><span style="color:#6200EE">close</span><span style="color:#222222">(); </span><span style="color:#6E6E70">// Ask stream to shut down and tell listeners.</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  Timer</span><span style="color:#222222">.</span><span style="color:#6200EE">periodic</span><span style="color:#222222">(interval, tick); </span><span style="color:#6E6E70">// BAD: Starts before it has subscribers.</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> controller.stream;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>As before, you can use the stream returned by <code>timedCounter()</code> like this:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller_bad.dart (using-stream)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> counterStream = </span><span style="color:#6200EE">timedCounter</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> Duration</span><span style="color:#222222">(seconds: </span><span style="color:#11796D">1</span><span style="color:#222222">), </span><span style="color:#11796D">15</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">counterStream.</span><span style="color:#6200EE">listen</span><span style="color:#222222">(print); </span><span style="color:#6E6E70">// Print an integer every second, 15 times.</span></span></code></pre></div></div><p>This implementation of <code>timedCounter()</code> has
+a couple of problems:</p>
+<ul>
+<li>It starts producing events before it has subscribers.</li>
+<li>It keeps producing events even if the subscriber requests a pause.</li>
+</ul>
+<p>As the next sections show,
+you can fix both of these problems by specifying
+callbacks such as <code>onListen</code> and <code>onPause</code>
+when creating the <code>StreamController</code>.</p>
+<div class="header-wrapper">
+<h3 id="waiting-for-a-subscription">Waiting for a subscription</h3>
+<a class="heading-link" href="#waiting-for-a-subscription" aria-label="Link to 'Waiting for a subscription' section">#</a></div>
+<p>As a rule, streams should wait for subscribers before starting their work.
+An <code>async*</code> function does this automatically,
+but when using a <code>StreamController</code>,
+you are in full control and can add events even when you shouldn't.
+When a stream has no subscriber,
+its <code>StreamController</code> buffers events,
+which can lead to a memory leak
+if the stream never gets a subscriber.</p>
+<p>Try changing the code that uses the stream to the following:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller_bad.dart (pre-subscribe-problem)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> listenAfterDelay</span><span style="color:#222222">() </span><span style="color:#D43324">async</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> counterStream = </span><span style="color:#6200EE">timedCounter</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> Duration</span><span style="color:#222222">(seconds: </span><span style="color:#11796D">1</span><span style="color:#222222">), </span><span style="color:#11796D">15</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">  await</span><span style="color:#0468D7"> Future</span><span style="color:#222222">.</span><span style="color:#6200EE">delayed</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> Duration</span><span style="color:#222222">(seconds: </span><span style="color:#11796D">5</span><span style="color:#222222">));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // After 5 seconds, add a listener.</span></span>
+<span class="line"><span style="color:#D43324">  await</span><span style="color:#D43324"> for</span><span style="color:#222222"> (</span><span style="color:#D43324">final</span><span style="color:#222222"> n </span><span style="color:#D43324">in</span><span style="color:#222222"> counterStream) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(n); </span><span style="color:#6E6E70">// Print an integer every second, 15 times.</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>When this code runs,
+nothing is printed for the first 5 seconds,
+although the stream is doing work.
+Then the listener is added,
+and the first 5 or so events are printed all at once,
+since they were buffered by the <code>StreamController</code>.</p>
+<p>To be notified of subscriptions, specify an
+<code>onListen</code> argument when you create the <code>StreamController</code>.
+The <code>onListen</code> callback is called
+when the stream gets its first subscriber.
+If you specify an <code>onCancel</code> callback,
+it's called when the controller loses its last subscriber.
+In the preceding example,
+<code>Timer.periodic()</code>
+should move to an <code>onListen</code> handler,
+as shown in the next section.</p>
+<div class="header-wrapper">
+<h3 id="honoring-the-pause-state">Honoring the pause state</h3>
+<a class="heading-link" href="#honoring-the-pause-state" aria-label="Link to 'Honoring the pause state' section">#</a></div>
+<p>Avoid producing events when the listener has requested a pause.
+An <code>async*</code> function automatically pauses at a <code>yield</code> statement
+while the stream subscription is paused.
+A <code>StreamController</code>, on the other hand, buffers events during the pause.
+If the code providing the events doesn't respect the pause,
+the size of the buffer can grow indefinitely.
+Also, if the listener stops listening soon after pausing,
+then the work spent creating the buffer is wasted.</p>
+<p>To see what happens without pause support,
+try changing the code that uses the stream to the following:</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller_bad.dart (pause-problem)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> listenWithPause</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> counterStream = </span><span style="color:#6200EE">timedCounter</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> Duration</span><span style="color:#222222">(seconds: </span><span style="color:#11796D">1</span><span style="color:#222222">), </span><span style="color:#11796D">15</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">  late</span><span style="color:#0468D7"> StreamSubscription</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> subscription;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  subscription = counterStream.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((</span><span style="color:#0468D7">int</span><span style="color:#222222"> counter) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(counter); </span><span style="color:#6E6E70">// Print an integer every second.</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (counter == </span><span style="color:#11796D">5</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#6E6E70">      // After 5 ticks, pause for five seconds, then resume.</span></span>
+<span class="line"><span style="color:#222222">      subscription.</span><span style="color:#6200EE">pause</span><span style="color:#222222">(</span><span style="color:#0468D7">Future</span><span style="color:#222222">.</span><span style="color:#6200EE">delayed</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> Duration</span><span style="color:#222222">(seconds: </span><span style="color:#11796D">5</span><span style="color:#222222">)));</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>When the five seconds of pause are up,
+the events fired during that time are all received at once.
+That happens because the stream's source doesn't honor pauses
+and keeps adding events to the stream.
+So the stream buffers the events,
+and it then empties its buffer when the stream becomes unpaused.</p>
+<p>The following version of <code>timedCounter()</code>
+(from <a href="https://github.com/dart-lang/site-www/blob/main/examples/misc/lib/articles/creating-streams/stream_controller.dart">stream_controller.dart</a>)
+implements pause by using the
+<code>onListen</code>, <code>onPause</code>, <code>onResume</code>, and <code>onCancel</code> callbacks
+on the <code>StreamController</code>.</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (better-stream)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Stream</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">timedCounter</span><span style="color:#222222">(</span><span style="color:#0468D7">Duration</span><span style="color:#222222"> interval, [</span><span style="color:#0468D7">int</span><span style="color:#222222">? maxCount]) {</span></span>
+<span class="line"><span style="color:#D43324">  late</span><span style="color:#0468D7"> StreamController</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> controller;</span></span>
+<span class="line"><span style="color:#0468D7">  Timer</span><span style="color:#222222">? timer;</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> counter = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> tick</span><span style="color:#222222">(_) {</span></span>
+<span class="line"><span style="color:#222222">    counter++;</span></span>
+<span class="line"><span style="color:#222222">    controller.</span><span style="color:#6200EE">add</span><span style="color:#222222">(counter); </span><span style="color:#6E6E70">// Ask stream to send counter values as event.</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (counter == maxCount) {</span></span>
+<span class="line"><span style="color:#222222">      timer?.</span><span style="color:#6200EE">cancel</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">      controller.</span><span style="color:#6200EE">close</span><span style="color:#222222">(); </span><span style="color:#6E6E70">// Ask stream to shut down and tell listeners.</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> startTimer</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#222222">    timer = </span><span style="color:#0468D7">Timer</span><span style="color:#222222">.</span><span style="color:#6200EE">periodic</span><span style="color:#222222">(interval, tick);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> stopTimer</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#222222">    timer?.</span><span style="color:#6200EE">cancel</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">    timer = </span><span style="color:#11796D">null</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  controller = </span><span style="color:#0468D7">StreamController</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>(</span></span>
+<span class="line"><span style="color:#222222">    onListen: startTimer,</span></span>
+<span class="line"><span style="color:#222222">    onPause: stopTimer,</span></span>
+<span class="line"><span style="color:#222222">    onResume: startTimer,</span></span>
+<span class="line"><span style="color:#222222">    onCancel: stopTimer,</span></span>
+<span class="line"><span style="color:#222222">  );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> controller.stream;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Run this code with the <code>listenWithPause()</code> function above.
+You'll see that it stops counting while paused,
+and it resumes nicely afterwards.</p>
+<p>You must use all of the listeners—<code>onListen</code>,
+<code>onCancel</code>, <code>onPause</code>, and <code>onResume</code>—to be
+notified of changes in pause state.
+The reason is that if the
+subscription and pause states both change at the same time,
+only the <code>onListen</code> or <code>onCancel</code> callback is called.</p>
+<div class="header-wrapper">
+<h2 id="final-hints">Final hints</h2>
+<a class="heading-link" href="#final-hints" aria-label="Link to 'Final hints' section">#</a></div>
+<p>When creating a stream without using an async* function,
+keep these tips in mind:</p>
+<ul>
+<li>
+<p>Be careful when using a synchronous controller—for example,
+one created using <code>StreamController(sync: true)</code>.
+When you send an event on an unpaused synchronous controller
+(for example, using the <code>add()</code>, <code>addError()</code>, or <code>close()</code> methods defined by
+<a href="https://api.dart.dev/dart-async/EventSink-class.html">EventSink</a>),
+the event is sent immediately to all listeners on the stream.
+<code>Stream</code> listeners must never be called until
+the code that added the listener has fully returned,
+and using a synchronous controller at the wrong time can
+break this promise and cause good code to fail.
+Avoid using synchronous controllers.</p>
+</li>
+<li>
+<p>If you use <code>StreamController</code>,
+the <code>onListen</code> callback is called before
+the <code>listen</code> call returns the <code>StreamSubscription</code>.
+Don't let the <code>onListen</code> callback depend
+on the subscription already existing.
+For example, in the following code,
+an <code>onListen</code> event fires
+(and <code>handler</code> is called)
+before the <code>subscription</code> variable
+has a valid value.</p>
+<?code-excerpt "misc/lib/articles/creating-streams/stream_controller.dart (stream-listen-hint)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">subscription = stream.</span><span style="color:#6200EE">listen</span><span style="color:#222222">(handler);</span></span></code></pre></div></div></li>
+<li>
+<p>The <code>onListen</code>, <code>onPause</code>, <code>onResume</code>, and <code>onCancel</code>
+callbacks defined by <code>StreamController</code> are
+called by the stream when the stream's listener state changes,
+but never during the firing of an event
+or during the call of another state change handler.
+In those cases, the state change callback is delayed until
+the previous callback is complete.</p>
+</li>
+<li>
+<p>Don't try to implement the <code>Stream</code> interface yourself.
+It's easy to get the interaction between events, callbacks,
+and adding and removing listeners subtly wrong.
+Always use an existing stream, possibly from a <code>StreamController</code>,
+to implement the <code>listen</code> call of a new stream.</p>
+</li>
+<li>
+<p>Although it's possible to create classes that extend <code>Stream</code> with
+more functionality by extending the <code>Stream</code> class and
+implementing the <code>listen</code> method and the extra functionality on top,
+that is generally not recommended because
+it introduces a new type that users have to consider.
+Instead of a class that <em>is</em> a <code>Stream</code> (and more),
+you can often make a class that <em>has</em> a <code>Stream</code> (and more).</p>
+</li>
+</ul>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2021-05-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/libraries/async/creating-streams.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/libraries/async/creating-streams/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/libraries/async/creating-streams.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

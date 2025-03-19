@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include 'head.html' %}
+  <body class="{{layout}} hide_toc">
+    {% render 'cookie-notice.html' %}
+    {% render 'gtags.html' %}
+    {% include 'page-header.html' %}
+    {% include 'navigation-side.html' %}
+    <main id="page-content" class="focused">
+      <div class="content">
+        {{content}}
+      </div>
+    </main>
+    {% render 'page-footer.html' %}
+  </body>
+</html>

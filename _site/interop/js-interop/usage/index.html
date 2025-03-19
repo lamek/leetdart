@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="How to declare and use JS interop members.">
+  <title>Usage | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Usage">
+  <meta name="twitter:description" content="How to declare and use JS interop members.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Usage">
+  <meta property="og:description" content="How to declare and use JS interop members.">
+  <meta property="og:url" content="/interop/js-interop/usage/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="true" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link active collapsible"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="true" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#interop-types">Interop types</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#interop-members">Interop members</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#top-level-interop-members">Top-level interop members</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#interop-type-members">Interop type members</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#extension-members-on-interop-types">Extension members on interop types</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#parameters">Parameters</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#js">@JS()</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#export">Export Dart functions and objects to JS</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#dart-js_interop-and-dart-js_interop_unsafe">dart:js_<wbr>interop and dart:js_<wbr>interop_<wbr>unsafe</a>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Usage</h1>
+              </div>
+            
+
+
+  
+<div id="site-toc--inline" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#interop-types">Interop types</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#interop-members">Interop members</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#top-level-interop-members">Top-level interop members</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#interop-type-members">Interop type members</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#extension-members-on-interop-types">Extension members on interop types</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#parameters">Parameters</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#js">@JS()</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#export">Export Dart functions and objects to JS</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#dart-js_interop-and-dart-js_interop_unsafe">dart:js_interop and dart:js_interop_unsafe</a>
+      </li>
+    </ul>
+  </div>
+<p>JS interop provides the mechanisms to interact with JavaScript APIs from Dart.
+It allows you to invoke these APIs and interact with the values that
+you get from them using an explicit, idiomatic syntax.</p>
+<p>Typically, you access a JavaScript API by making it available
+somewhere within the <a href="https://developer.mozilla.org/docs/Glossary/Global_scope">global JS scope</a>.
+To call and receive JS values from this API,
+you use <a href="#interop-members"><code>external</code> interop members</a>.
+To construct and provide types for JS values, you use and declare
+<a href="#interop-types">interop types</a>, which also contain interop members.
+To pass Dart values like a <code>List</code> or <code>Function</code> to interop members or
+convert from JS values to Dart values, you use <a href="/interop/js-interop/js-types#conversions">conversion functions</a> unless
+the interop member <a href="/interop/js-interop/js-types#requirements-on-external-declarations-and-function-tojs">contains a primitive type</a>.</p>
+<div class="header-wrapper">
+<h2 id="interop-types">Interop types</h2>
+<a class="heading-link" href="#interop-types" aria-label="Link to 'Interop types' section">#</a></div>
+<p>When interacting with a JS value, you need to provide a Dart type for it.
+You can do this by either using or declaring an interop type.
+Interop types are either a <a href="/interop/js-interop/js-types">&quot;JS type&quot;</a> provided by Dart or
+an <a href="/language/extension-types">extension type</a> wrapping an interop type.</p>
+<p>Interop types allow you to provide an interface for a JS value and
+let you declare interop APIs for its members.
+They're also used in the signature of other interop APIs.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> Window</span><span style="color:#222222">(</span><span style="color:#0468D7">JSObject</span><span style="color:#222222"> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSObject</span><span style="color:#222222"> {}</span></span></code></pre></div></div><p><code>Window</code> is an interop type for an arbitrary <code>JSObject</code>.
+There's no <a href="/language/extension-types#type-considerations">runtime guarantee</a> that <code>Window</code> is actually a JS <a href="https://developer.mozilla.org/docs/Web/API/Window"><code>Window</code></a>.
+There also is no conflict with any other interop interface that
+is defined for the same value.
+If you want to check that <code>Window</code> is actually a JS <code>Window</code>,
+you can <a href="/interop/js-interop/js-types#compatibility-type-checks-and-casts">check the type of the JS value through interop</a>.</p>
+<p>You can also declare your own interop type for the JS types that
+Dart provides by wrapping them:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> Array</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSArray</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">?> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSArray</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">?> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> Array</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>In most cases, you'll likely declare an interop type using
+<code>JSObject</code> as the <a href="/language/extension-types#declaration">representation type</a>, because you're likely
+interacting with JS objects which don't have an interop type provided by Dart.</p>
+<p>Interop types should also generally <a href="/language/extension-types#implements">implement</a> their representation type so
+that they can be used where the representation type is expected,
+like in many APIs provided by <a href="https://pub.dev/packages/web"><code>package:web</code></a>.</p>
+<div class="header-wrapper">
+<h2 id="interop-members">Interop members</h2>
+<a class="heading-link" href="#interop-members" aria-label="Link to 'Interop members' section">#</a></div>
+<p><a href="/language/functions#external"><code>external</code></a> interop members provide an idiomatic syntax for JS members.
+They allow you to write a Dart type signature for its
+arguments and return value.
+The types that can be written in the signature of
+these members have <a href="/interop/js-interop/js-types#requirements-on-external-declarations-and-function-tojs">restrictions</a>.
+The JS API the interop member corresponds to is determined by a combination of
+where it's declared, its name, what kind of Dart member it is, and any
+<a href="#js">renames</a>.</p>
+<div class="header-wrapper">
+<h3 id="top-level-interop-members">Top-level interop members</h3>
+<a class="heading-link" href="#top-level-interop-members" aria-label="Link to 'Top-level interop members' section">#</a></div>
+<p>Given the following JS members:</p>
+<div class="code-block-wrapper language-js"><div class="code-block-body"><span class="code-block-language" title="Language js">js</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">globalThis.name = </span><span style="color:#11796D">'global'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">globalThis.</span><span style="color:#6200EE">isNameEmpty</span><span style="color:#222222"> = </span><span style="color:#D43324">function</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> globalThis.name.length == </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>You can write interop members for them like so:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#0468D7"> String</span><span style="color:#D43324"> get</span><span style="color:#222222"> name;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#D43324"> set</span><span style="color:#6200EE"> name</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> value);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#0468D7"> bool</span><span style="color:#6200EE"> isNameEmpty</span><span style="color:#222222">();</span></span></code></pre></div></div><p>Here, there exists a property <code>name</code> and a function <code>isNameEmpty</code> that
+are exposed in the global scope.
+To access them, you use top-level interop members.
+To get and set <code>name</code>, declare and use
+an interop getter and setter with the same name.
+To use <code>isNameEmpty</code>, declare and call an interop function with the same name.
+You can declare top-level interop getters, setters, methods, and fields.
+Interop fields are equivalent to getter and setter pairs.</p>
+<p>Top-level interop members must be declared with a <a href="#js"><code>@JS()</code></a> annotation to
+distinguish them from other <code>external</code> top-level members,
+like those that can be written using <code>dart:ffi</code>.</p>
+<div class="header-wrapper">
+<h3 id="interop-type-members">Interop type members</h3>
+<a class="heading-link" href="#interop-type-members" aria-label="Link to 'Interop type members' section">#</a></div>
+<p>Given a JS interface like the following:</p>
+<div class="code-block-wrapper language-js"><div class="code-block-body"><span class="code-block-language" title="Language js">js</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Time</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  constructor</span><span style="color:#222222">(hours, minutes) {</span></span>
+<span class="line"><span style="color:#D43324">    this</span><span style="color:#222222">._hours = Math.</span><span style="color:#6200EE">abs</span><span style="color:#222222">(hours) % </span><span style="color:#11796D">24</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">    this</span><span style="color:#222222">._minutes = </span><span style="color:#D43324">arguments</span><span style="color:#222222">.length == </span><span style="color:#11796D">1</span><span style="color:#222222"> ? </span><span style="color:#11796D">0</span><span style="color:#222222"> : Math.</span><span style="color:#6200EE">abs</span><span style="color:#222222">(minutes) % </span><span style="color:#11796D">60</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  static</span><span style="color:#222222"> dinnerTime = new </span><span style="color:#6200EE">Time</span><span style="color:#222222">(</span><span style="color:#11796D">18</span><span style="color:#222222">, </span><span style="color:#11796D">0</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  static</span><span style="color:#6200EE"> getTimeDifference</span><span style="color:#222222">(t1, t2) {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#222222"> new </span><span style="color:#6200EE">Time</span><span style="color:#222222">(t1.hours - t2.hours, t1.minutes - t2.minutes);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  get</span><span style="color:#6200EE"> hours</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> this</span><span style="color:#222222">._hours;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  set</span><span style="color:#6200EE"> hours</span><span style="color:#222222">(value) {</span></span>
+<span class="line"><span style="color:#D43324">    this</span><span style="color:#222222">._hours = Math.</span><span style="color:#6200EE">abs</span><span style="color:#222222">(value) % </span><span style="color:#11796D">24</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  get</span><span style="color:#6200EE"> minutes</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> this</span><span style="color:#222222">._minutes;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  set</span><span style="color:#6200EE"> minutes</span><span style="color:#222222">(value) {</span></span>
+<span class="line"><span style="color:#D43324">    this</span><span style="color:#222222">._minutes = Math.</span><span style="color:#6200EE">abs</span><span style="color:#222222">(value) % </span><span style="color:#11796D">60</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">  isDinnerTime</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> this</span><span style="color:#222222">.hours == Time.dinnerTime.hours &#x26;&#x26; </span><span style="color:#D43324">this</span><span style="color:#222222">.minutes == Time.dinnerTime.minutes;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"><span style="color:#6E6E70">// Need to expose the type to the global scope.</span></span>
+<span class="line"><span style="color:#222222">globalThis.Time = Time;</span></span></code></pre></div></div><p>You can write an interop interface for it like so:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> Time</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSObject</span><span style="color:#222222"> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSObject</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> Time</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> hours, </span><span style="color:#0468D7">int</span><span style="color:#222222"> minutes);</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#D43324"> factory</span><span style="color:#0468D7"> Time</span><span style="color:#222222">.</span><span style="color:#6200EE">onlyHours</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> hours);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#D43324"> static</span><span style="color:#0468D7"> Time</span><span style="color:#222222"> dinnerTime;</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#D43324"> static</span><span style="color:#0468D7"> Time</span><span style="color:#6200EE"> getTimeDifference</span><span style="color:#222222">(</span><span style="color:#0468D7">Time</span><span style="color:#222222"> t1, </span><span style="color:#0468D7">Time</span><span style="color:#222222"> t2);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#222222"> hours;</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#222222"> minutes;</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> bool</span><span style="color:#6200EE"> isDinnerTime</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  bool</span><span style="color:#6200EE"> isMidnight</span><span style="color:#222222">() => hours == </span><span style="color:#11796D">0</span><span style="color:#222222"> &#x26;&#x26; minutes == </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Within an interop type, you can declare several different types of
+<code>external</code> interop members:</p>
+<ul>
+<li>
+<p><strong>Constructors</strong>. When called, constructors with only positional parameters
+create a new JS object whose constructor is defined by the name of the
+extension type using <code>new</code>.
+For example, calling <code>Time(0, 0)</code> in Dart generates a JS invocation that
+looks like <code>new Time(0, 0)</code>. Similarly, calling
+<code>Time.onlyHours(0)</code> generates a JS invocation that looks like <code>new Time(0)</code>.
+Note that the JS invocations of the two constructors follow the
+same semantics, regardless of whether they're
+given a Dart name or if they're a factory.</p>
+<ul>
+<li>
+<p><strong>Object literal constructors</strong>. It's sometimes useful to
+create a JS <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Object_initializer">object literal</a> that simply contains a
+number of properties and their values.
+In order to do this, declare a constructor with only named
+parameters, where the names of the parameters match the property names:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> Options</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSObject</span><span style="color:#222222"> o) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSObject</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> Options</span><span style="color:#222222">({</span><span style="color:#0468D7">int</span><span style="color:#222222"> a, </span><span style="color:#0468D7">int</span><span style="color:#222222"> b});</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#D43324"> get</span><span style="color:#222222"> a;</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#D43324"> get</span><span style="color:#222222"> b;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>A call to <code>Options(a: 0, b: 1)</code> results in
+creating the JS object <code>{a: 0, b: 1}</code>.
+The object is defined by the invocation arguments, so
+calling <code>Options(a: 0)</code> results in <code>{a: 0}</code>.
+You can get or set the properties of the object through
+<code>external</code> instance members.</p>
+<aside class="alert alert-warning">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">warning</span>
+<span>Warning</span></div>
+<div class="alert-content">
+<p>Before Dart 3.3.1, object literal constructors required a
+<a href="#js"><code>@JS</code></a> annotation on the library to compile.
+To learn more, check out <a href="https://github.com/dart-lang/sdk/issues/54801"><code>dart-lang/sdk#54801</code></a>.</p>
+</div></aside>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>static</code> members</strong>. Like constructors, static members use
+the name of the extension type to generate the JS code. For example,
+calling <code>Time.getTimeDifference(t1, t2)</code> generates a JS invocation that
+looks like <code>Time.getTimeDifference(t1, t2)</code>.
+Similarly, calling <code>Time.dinnerTime</code> results in a JS invocation that
+looks like <code>Time.dinnerTime</code>. Like top-levels,
+you can declare <code>static</code> methods, getters, setters, and fields.</p>
+</li>
+<li>
+<p><strong>Instance members</strong>. Like with other Dart types, instance members require
+an instance to be used. These members get, set, or invoke properties on
+the instance. For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> time = </span><span style="color:#0468D7">Time</span><span style="color:#222222">(</span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">0</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(time.</span><span style="color:#6200EE">isDinnerTime</span><span style="color:#222222">()); </span><span style="color:#6E6E70">// false</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> dinnerTime = </span><span style="color:#0468D7">Time</span><span style="color:#222222">.dinnerTime;</span></span>
+<span class="line"><span style="color:#222222">  time.hours = dinnerTime.hours;</span></span>
+<span class="line"><span style="color:#222222">  time.minutes = dinnerTime.minutes;</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(time.</span><span style="color:#6200EE">isDinnerTime</span><span style="color:#222222">()); </span><span style="color:#6E6E70">// true</span></span></code></pre></div></div><p>The call to <code>dinnerTime.hours</code> gets the value of
+the <code>hours</code> property of <code>dinnerTime</code>.
+Similarly, the call to <code>time.minutes=</code> sets the value of
+the <code>minutes</code> property of time.
+The call to <code>time.isDinnerTime()</code> calls the function in
+the <code>isDinnerTime</code> property of <code>time</code> and returns the value.
+Like top-levels and <code>static</code> members, you can declare
+instance methods, getters, setters, and fields.</p>
+</li>
+<li>
+<p><strong>Operators</strong>. There are only two <code>external</code> interop operators
+allowed in interop types: <code>[]</code> and <code>[]=</code>.
+These are instance members that
+match the semantics of JS' <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Property_accessors#bracket_notation">property accessors</a>.
+For example, you can declare them like:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> Array</span><span style="color:#222222">(</span><span style="color:#0468D7">JSArray</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">JSNumber</span><span style="color:#222222">> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSArray</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">JSNumber</span><span style="color:#222222">> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> JSNumber</span><span style="color:#D43324"> operator</span><span style="color:#222222"> [](</span><span style="color:#0468D7">int</span><span style="color:#222222"> index);</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#D43324"> void</span><span style="color:#D43324"> operator</span><span style="color:#222222"> []=(</span><span style="color:#0468D7">int</span><span style="color:#222222"> index, </span><span style="color:#0468D7">JSNumber</span><span style="color:#222222"> value);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Calling <code>array[i]</code> gets the value in the <code>i</code>th slot of <code>array</code>, and
+<code>array[i] = i.toJS</code> sets the value in that slot to <code>i.toJS</code>.
+Other JS operators are exposed by <a href="https://api.dart.dev/dart-js_interop/JSAnyOperatorExtension.html">utility functions</a> in <code>dart:js_interop</code>.</p>
+</li>
+</ul>
+<p>Lastly, like any other extension type, you're allowed to declare any
+<a href="/language/extension-types#members">non-<code>external</code> members</a> in the interop type.
+A boolean getter <code>isMidnight</code> that uses the interop values is one such example.</p>
+<div class="header-wrapper">
+<h3 id="extension-members-on-interop-types">Extension members on interop types</h3>
+<a class="heading-link" href="#extension-members-on-interop-types" aria-label="Link to 'Extension members on interop types' section">#</a></div>
+<p>You can also write <code>external</code> members in <a href="/language/extension-methods">extensions</a> of interop types.
+For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension</span><span style="color:#D43324"> on</span><span style="color:#0468D7"> Array</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#6200EE"> push</span><span style="color:#222222">(</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">? any);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The semantics of calling <code>push</code> are identical to what it would have been if
+it was in the definition of <code>Array</code> instead.
+Extensions can have <code>external</code> instance members and operators, but
+can't have <code>external</code> <code>static</code> members or constructors.
+Like with interop types, you can
+write any non-<code>external</code> members in the extension.
+These extensions are useful for when an interop type doesn't
+expose the <code>external</code> member you need, and you don't want to
+create a new interop type.</p>
+<div class="header-wrapper">
+<h3 id="parameters">Parameters</h3>
+<a class="heading-link" href="#parameters" aria-label="Link to 'Parameters' section">#</a></div>
+<p><code>external</code> interop methods can only contain positional and optional arguments.
+This is because JS members only take positional arguments.
+The one exception is object literal constructors,
+where they can contain only named arguments.</p>
+<p>Unlike with non-<code>external</code> methods, optional arguments don't get
+replaced with their default value, but are instead omitted.
+For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">external</span><span style="color:#0468D7"> int</span><span style="color:#6200EE"> push</span><span style="color:#222222">(</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">? any, [</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">? any2]);</span></span></code></pre></div></div><p>Calling <code>array.push(0.toJS)</code> in Dart results in
+a JS invocation of <code>array.push(0.toJS)</code> and <em>not</em> <code>array.push(0.toJS, null)</code>.
+This allows users to not have to write multiple interop members for
+the same JS API to avoid passing in <code>null</code>s.
+If you declare a parameter with an explicit default value, you
+get a warning that the value will be ignored.</p>
+<div class="header-wrapper">
+<h2 id="js"><code>@JS()</code></h2>
+<a class="heading-link" href="#js" aria-label="Link to '@JS()' section">#</a></div>
+<p>It's sometimes useful to refer to a JS property with
+a different name than the one written.
+For example, if you want to write two <code>external</code> APIs that
+point to the same JS property, you'd need to
+write a different name for at least one of them.
+Similarly, if you want to define multiple interop types that
+refer to the same JS interface, you need to rename at least one of them.
+Another example is if the JS name can't be written in Dart, such as <code>$a</code>.</p>
+<p>To do this, you can use the <a href="https://api.dart.dev/dart-js_interop/JS-class.html"><code>@JS()</code></a> annotation with
+a constant string value.
+For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> Array</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSArray</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">?> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSArray</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">JSAny</span><span style="color:#222222">?> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#6200EE"> push</span><span style="color:#222222">(</span><span style="color:#0468D7">JSNumber</span><span style="color:#222222"> number);</span></span>
+<span class="line"><span style="color:#D43324">  @JS</span><span style="color:#222222">(</span><span style="color:#11796D">'push'</span><span style="color:#222222">)</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> int</span><span style="color:#6200EE"> pushString</span><span style="color:#222222">(</span><span style="color:#0468D7">JSString</span><span style="color:#222222"> string);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Calling either <code>push</code> or <code>pushString</code> results in JS code that uses <code>push</code>.</p>
+<p>You can also rename interop types:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">(</span><span style="color:#11796D">'Date'</span><span style="color:#222222">)</span></span>
+<span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> JSDate</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSObject</span><span style="color:#222222"> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSObject</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> JSDate</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#D43324"> static</span><span style="color:#0468D7"> int</span><span style="color:#6200EE"> now</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Calling <code>JSDate()</code> results in a JS invocation of <code>new Date()</code>.
+Similarly, calling <code>JSDate.now()</code> results in a JS invocation of <code>Date.now()</code>.</p>
+<p>Furthermore, you can namespace an entire library,
+adding a prefix to all interop top-level members, interop types,
+and <code>static</code> interop members within those types.
+This is useful if you want to avoid adding
+too many members to the global JS scope.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">(</span><span style="color:#11796D">'library1'</span><span style="color:#222222">)</span></span>
+<span class="line"><span style="color:#D43324">library</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:js_interop'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#D43324"> void</span><span style="color:#6200EE"> method</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> JSType</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSObject</span><span style="color:#222222"> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSObject</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> JSType</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#D43324"> static</span><span style="color:#0468D7"> int</span><span style="color:#D43324"> get</span><span style="color:#222222"> staticMember;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Calling <code>method()</code> results in a JS invocation of <code>library1.method()</code>,
+calling <code>JSType()</code> results in a JS invocation of <code>new library1.JSType()</code>,
+and calling <code>JSType.staticMember</code> results in
+a JS invocation of <code>library1.JSType.staticMember</code>.</p>
+<p>Unlike interop members and interop types, Dart only ever adds a library name in
+the JS invocation if you provide a non-empty value in
+the <code>@JS()</code> annotation on the library.
+It doesn't use the Dart name of the library as the default.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">library</span><span style="color:#222222"> interop_library;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:js_interop'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#D43324"> void</span><span style="color:#6200EE"> method</span><span style="color:#222222">();</span></span></code></pre></div></div><p>Calling <code>method()</code> results in a JS invocation of <code>method()</code> and not
+<code>interop_library.method()</code>.</p>
+<p>You can also write multiple namespaces delimited by a <code>.</code> for
+libraries, top-level members, and interop types:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">(</span><span style="color:#11796D">'library1.library2'</span><span style="color:#222222">)</span></span>
+<span class="line"><span style="color:#D43324">library</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:js_interop'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">(</span><span style="color:#11796D">'library3.method'</span><span style="color:#222222">)</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#D43324"> void</span><span style="color:#6200EE"> method</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">(</span><span style="color:#11796D">'library3.JSType'</span><span style="color:#222222">)</span></span>
+<span class="line"><span style="color:#D43324">extension type</span><span style="color:#0468D7"> JSType</span><span style="color:#222222">._(</span><span style="color:#0468D7">JSObject</span><span style="color:#222222"> _) </span><span style="color:#D43324">implements</span><span style="color:#0468D7"> JSObject</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  external</span><span style="color:#0468D7"> JSType</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Calling <code>method()</code> results in
+a JS invocation of <code>library1.library2.library3.method()</code>,
+calling <code>JSType()</code> results in
+a JS invocation of <code>new library1.library2.library3.JSType()</code>, and so forth.</p>
+<p>However, you can't use <code>@JS()</code> annotations with <code>.</code> in
+the value on interop type members or extension members of interop types.</p>
+<p>If there's no value provided to <code>@JS()</code> or the value is empty,
+no renaming occurs.</p>
+<p><code>@JS()</code> also tells the compiler that a member or type is
+intended to be treated as a JS interop member or type.
+It is required (with or without a value) for all top-level members to
+distinguish them from other <code>external</code> top-level members, but
+can often be elided on and within interop types and on extension members as
+the compiler can tell it is a JS interop type from
+the representation type and on-type.</p>
+<p><a id="exporting-dart-functions-and-objects-to-js" aria-hidden="true"></a></p>
+<div class="header-wrapper">
+<h2 id="export">Export Dart functions and objects to JS</h2>
+<a class="heading-link" href="#export" aria-label="Link to 'Export Dart functions and objects to JS' section">#</a></div>
+<p>The preceding sections show how to call JS members from Dart.
+It's also useful to <em>export</em> Dart code so that it can be used in JS.
+To export a Dart function to JS, first convert it using <a href="https://api.dart.dev/dart-js_interop/FunctionToJSExportedDartFunction/toJS.html"><code>Function.toJS</code></a>,
+which wraps the Dart function with a JS function.
+Then, pass the wrapped function to JS through an interop member.
+At that point, it's ready to be called by other JS code.</p>
+<p>For example, this code converts a Dart function and uses interop to
+set it in a global property, which is then called in JS:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:js_interop'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">@JS</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#D43324">external</span><span style="color:#D43324"> set</span><span style="color:#6200EE"> exportedFunction</span><span style="color:#222222">(</span><span style="color:#0468D7">JSFunction</span><span style="color:#222222"> value);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> printString</span><span style="color:#222222">(</span><span style="color:#0468D7">JSString</span><span style="color:#222222"> string) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(string.toDart);</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#222222">  exportedFunction = printString.toJS;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="code-block-wrapper language-js"><div class="code-block-body"><span class="code-block-language" title="Language js">js</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">globalThis.</span><span style="color:#6200EE">exportedFunction</span><span style="color:#222222">(</span><span style="color:#11796D">'hello world'</span><span style="color:#222222">);</span></span></code></pre></div></div><p>Functions that are exported this way have type <a href="/interop/js-interop/js-types#requirements-on-external-declarations-and-function-tojs">restrictions</a> similar to
+those of interop members.</p>
+<p>Sometimes it's useful to export an entire Dart interface so that
+JS can interact with a Dart object.
+To do this, mark the Dart class as exportable using <a href="https://api.dart.dev/dart-js_interop/JSExport-class.html"><code>@JSExport</code></a> and
+wrap instances of that class using <a href="https://api.dart.dev/dart-js_interop/createJSInteropWrapper.html"><code>createJSInteropWrapper</code></a>.
+For a more detailed explanation of this technique, including how to
+mock JS values, check out <a href="/interop/js-interop/mock">How to mock JavaScript interop objects</a>.</p>
+<div class="header-wrapper">
+<h2 id="dart-js_interop-and-dart-js_interop_unsafe"><code>dart:js_interop</code> and <code>dart:js_interop_unsafe</code></h2>
+<a class="heading-link" href="#dart-js_interop-and-dart-js_interop_unsafe" aria-label="Link to 'dart:js_interop and dart:js_interop_unsafe' section">#</a></div>
+<p><a href="https://api.dart.dev/dart-js_interop/dart-js_interop-library.html"><code>dart:js_interop</code></a> contains all the necessary members you should need,
+including <code>@JS</code>, JS types, conversion functions, and various utility functions.
+Utility functions include:</p>
+<ul>
+<li><a href="https://api.dart.dev/dart-js_interop/globalContext.html"><code>globalContext</code></a>, which represents the global scope that
+the compilers use to find interop members and types.</li>
+<li><a href="https://api.dart.dev/dart-js_interop/JSAnyUtilityExtension.html">Helpers to inspect the type of JS values</a></li>
+<li>JS operators</li>
+<li><a href="https://api.dart.dev/dart-js_interop/JSAnyUtilityExtension/dartify.html"><code>dartify</code></a> and <a href="https://api.dart.dev/dart-js_interop/NullableObjectUtilExtension/jsify.html"><code>jsify</code></a>, which check the type of certain JS values and
+convert them to Dart values and vice versa.
+Prefer using the specific conversion when you know the type of the JS value,
+as the extra type-checking might be expensive.</li>
+<li><a href="https://api.dart.dev/dart-js_interop/importModule.html"><code>importModule</code></a>, which allows you to
+import modules dynamically as a <code>JSObject</code>.</li>
+<li><a href="https://api.dart.dev/dart-js_interop/JSAnyUtilityExtension/isA.html"><code>isA</code></a>, which allows you to check if a JS-interop value is
+an instance of the JS type specified by the type argument.</li>
+</ul>
+<p>More utilities might be added to this library in the future.</p>
+<p><a href="https://api.dart.dev/dart-js_interop_unsafe/dart-js_interop_unsafe-library.html"><code>dart:js_interop_unsafe</code></a> contains members that allow
+you to look up properties dynamically. For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">JSFunction</span><span style="color:#222222"> f = console[</span><span style="color:#11796D">'log'</span><span style="color:#222222">];</span></span></code></pre></div></div><p>Instead of declaring an interop member named <code>log</code>,
+a string can be used to access the property.
+<code>dart:js_interop_unsafe</code> also provides functions to
+dynamically check for, get, set, and call properties.</p>
+<aside class="alert alert-success">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">lightbulb</span>
+<span>Tip</span></div>
+<div class="alert-content">
+<p>Avoid using <code>dart:js_interop_unsafe</code> if possible.
+It makes security compliance more difficult to guarantee and
+might lead to violations, which is why it can be &quot;unsafe&quot;.</p>
+</div></aside>
+
+            
+<nav id="prev-next">
+  <ul>
+    <li class="previous">
+      
+        <a href="/interop/js-interop/">&lang;&nbsp;&nbsp;JS interop</a>
+      
+    </li>
+    <li class="next">
+      
+        <a href="/interop/js-interop/js-types">JS types&nbsp;&nbsp;&rang;</a>
+      
+    </li>
+  </ul>
+</nav>
+
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/interop/js-interop/usage.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/interop/js-interop/usage/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/interop/js-interop/usage.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+name: iterables_examples
+description: dart.dev example code.
+
+resolution: workspace
+environment:
+  sdk: ^3.7.0
+
+dev_dependencies:
+  examples_util: {path: ../util}
+  test: ^1.25.8

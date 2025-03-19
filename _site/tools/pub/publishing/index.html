@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Learn how to publish a Dart package to pub.dev.">
+  <title>Publishing packages | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Publishing packages">
+  <meta name="twitter:description" content="Learn how to publish a Dart package to pub.dev.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Publishing packages">
+  <meta property="og:description" content="Learn how to publish a Dart package to pub.dev.">
+  <meta property="og:url" content="/tools/pub/publishing/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="true" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#remember-publishing-is-forever">Remember: Publishing is forever</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#prepare-your-package-for-publication">Prepare your package for publication</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#populate-your-pub-dev-web-page">Populate your pub.dev web page</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#verified-publisher">Advantages of using a verified publisher</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#create-verified-publisher">Create a verified publisher</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#publish-your-package">Publish your package</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#what-files-are-published">What files are published?</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#test-publishing-your-package">Test publishing your package</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#publish-to-pub-dev">Publish to pub.dev</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#detect-supported-platforms">Detect supported platforms</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#automate-publishing">Automate publishing</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#publishing-prereleases">Publish prerelease versions</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#publish-preview-versions">Publish preview versions</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#manage-publishing-permissions">Manage publishing permissions</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#locate-the-package-publisher">Locate the package publisher</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#uploaders">Manage package uploaders</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#transferring-a-package-to-a-verified-publisher">Transfer a package to a verified publisher</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#manage-your-package">Manage your package</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#retract">Retract a package version</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#discontinue">Discontinue a package</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Publishing packages</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#remember-publishing-is-forever">Remember: Publishing is forever</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#prepare-your-package-for-publication">Prepare your package for publication</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#populate-your-pub-dev-web-page">Populate your pub.dev web page</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#verified-publisher">Advantages of using a verified publisher</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#create-verified-publisher">Create a verified publisher</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#publish-your-package">Publish your package</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#what-files-are-published">What files are published?</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#test-publishing-your-package">Test publishing your package</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#publish-to-pub-dev">Publish to pub.dev</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#detect-supported-platforms">Detect supported platforms</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#automate-publishing">Automate publishing</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#publishing-prereleases">Publish prerelease versions</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#publish-preview-versions">Publish preview versions</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#manage-publishing-permissions">Manage publishing permissions</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#locate-the-package-publisher">Locate the package publisher</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#uploaders">Manage package uploaders</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#transferring-a-package-to-a-verified-publisher">Transfer a package to a verified publisher</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#manage-your-package">Manage your package</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#retract">Retract a package version</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#discontinue">Discontinue a package</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<p><a href="/tools/pub/packages">The pub package manager</a> isn't just for using other people's packages.
+It also allows you to share your packages with the world. If you have a useful
+project and you want others to be able to use it, use the <code>dart pub publish</code>
+command.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>To publish to a location other than pub.dev,
+or to prevent publication anywhere, use the <code>publish_to</code> field,
+as defined in the <a href="/tools/pub/pubspec">pubspec</a>.</p>
+</div></aside>
+<p>Watch the following video for an overview of building and publishing packages.</p>
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/8V_TLiWszK0" title="How to build a package in Dart" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen loading="lazy"></iframe><br>
+        <p><a href="https://www.youtube.com/watch/8V_TLiWszK0" target="_blank" rel="noopener" title="Open 'How to build a package in Dart' video in new tab">How to build a package in Dart</a></p>
+<div class="header-wrapper">
+<h2 id="remember-publishing-is-forever">Remember: Publishing is forever</h2>
+<a class="heading-link" href="#remember-publishing-is-forever" aria-label="Link to 'Remember: Publishing is forever' section">#</a></div>
+<p>Keep in mind that a published package lasts forever.
+As soon as you publish your package, users can depend on it.
+Once they start depending on it, removing the package would break theirs.
+To avoid that, the <a href="https://pub.dev/policy">pub.dev policy</a>
+disallows unpublishing packages except for very few cases.</p>
+<p>You can always upload new versions of your package,
+but old ones remain available for users that can't upgrade yet.</p>
+<p>For published packages that have lost relevance or lack maintenance,
+<a href="#discontinue">mark them as discontinued</a>.</p>
+<div class="header-wrapper">
+<h2 id="prepare-your-package-for-publication">Prepare your package for publication</h2>
+<a class="heading-link" href="#prepare-your-package-for-publication" aria-label="Link to 'Prepare your package for publication' section">#</a></div>
+<p>When publishing a package, follow the conventions found in the
+<a href="/tools/pub/pubspec">pubspec format</a> and <a href="/tools/pub/package-layout">package layout</a> structure.
+To simplify using your package, Dart requires these conventions.
+These conventions contain some exceptions noted on the linked guides.
+When invoked, <code>pub</code> points out what changes you can make so your package
+works better within the Dart ecosystem.</p>
+<p>Beyond these conventions, you must follow these requirements:</p>
+<ul>
+<li>
+<p>Include a <code>LICENSE</code> file in your package.
+We recommend the <a href="https://opensource.org/licenses/BSD-3-Clause">BSD 3-clause license</a>,
+which the Dart and Flutter teams typically use.
+However, you can use any license appropriate for your package.</p>
+</li>
+<li>
+<p>Verify that you have the legal right to redistribute anything that
+you upload as part of your package.</p>
+</li>
+<li>
+<p>Keep package size to less than 100 MB after gzip compression.
+If it's too large, consider splitting it into multiple packages,
+using a <code>.pubignore</code> file to remove unnecessary content,
+or cutting down on the number of included resources or examples.</p>
+</li>
+<li>
+<p>Have your package depend only on hosted dependencies
+from the default pub package server and SDK dependencies
+(<code>sdk: flutter</code>).
+These restrictions ensure that dependencies of your packages
+can be found and accessed in the future.</p>
+</li>
+<li>
+<p>Own a <a href="https://support.google.com/accounts/answer/27441">Google Account</a>. Pub uses a Google account to manage package
+upload permissions. Your Google Account can be associated with
+a Gmail address or any other email address.</p>
+</li>
+</ul>
+<div class="header-wrapper">
+<h3 id="populate-your-pub-dev-web-page">Populate your pub.dev web page</h3>
+<a class="heading-link" href="#populate-your-pub-dev-web-page" aria-label="Link to 'Populate your pub.dev web page' section">#</a></div>
+<p>Pub uses the contents of a few files to create a page for your
+package at <code>pub.dev/packages/&lt;your_package&gt;</code>.
+The following files affect the contents of your package's web page.</p>
+<dl>
+<dt><strong><code>README.md</code></strong></dt>
+<dd>This file contains the main content featured in
+your package's web page.
+The file's contents should be marked up using <a href="https://pub.dev/packages/markdown">Markdown</a>.
+To learn how to write a great README, see
+<a href="/tools/pub/writing-package-pages">Writing package pages</a>.</dd>
+<dt><strong><code>CHANGELOG.md</code></strong></dt>
+<dd>If found, this file populates its own tab on your package's web page.
+Developers can read your changes right from pub.dev.
+The file's contents should be marked up using <a href="https://pub.dev/packages/markdown">Markdown</a>.</dd>
+<dt><strong><code>pubspec.yaml</code></strong></dt>
+<dd>This file populates details about your package
+on the right side of your package's web page.
+The file's contents should follow YAML conventions.
+These details include description, homepage, and the like.</dd>
+</dl>
+<div class="header-wrapper">
+<h3 id="verified-publisher">Advantages of using a verified publisher</h3>
+<a class="heading-link" href="#verified-publisher" aria-label="Link to 'Advantages of using a verified publisher' section">#</a></div>
+<p>You can publish packages using either a verified publisher (recommended)
+or an independent Google Account.
+Using a verified publisher has the following advantages:</p>
+<ul>
+<li>The consumers of your package know that the publisher domain has been verified.</li>
+<li>You can avoid having pub.dev display your personal email address.
+Instead, pub.dev displays the publisher domain and contact address.</li>
+<li>The pub.dev site displays a verified publisher badge
+<img src="/assets/img/verified-publisher.svg" class="text-icon" alt="pub.dev verified publisher logo">
+next to your package name on search pages and individual package pages.</li>
+</ul>
+<div class="header-wrapper">
+<h3 id="create-verified-publisher">Create a verified publisher</h3>
+<a class="heading-link" href="#create-verified-publisher" aria-label="Link to 'Create a verified publisher' section">#</a></div>
+<p>To create a <a href="https://pub.dev/create-publisher">verified publisher</a>, follow these steps:</p>
+<ol>
+<li>
+<p>Go to <a href="https://pub.dev">pub.dev</a>.</p>
+</li>
+<li>
+<p>Log in to pub.dev using a Google Account.</p>
+</li>
+<li>
+<p>From the user menu in the top-right corner, select <strong>Create Publisher</strong>.</p>
+</li>
+<li>
+<p>Enter the domain name that you want to associate with your publisher
+(for example, <code>dart.dev</code>).</p>
+</li>
+<li>
+<p>Click <strong>Create Publisher</strong>.</p>
+</li>
+<li>
+<p>In the confirmation dialog, select <strong>OK</strong>.</p>
+</li>
+<li>
+<p>If prompted, complete the verification flow.
+This opens the <a href="https://search.google.com/search-console/about">Google Search Console</a>.</p>
+<ul>
+<li>When adding DNS records,
+a few hours might pass before the Search Console reflects the changes.</li>
+<li>When the verification flow is complete, return to step 4.</li>
+</ul>
+</li>
+</ol>
+<aside class="alert alert-success">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">lightbulb</span>
+<span>Tip</span></div>
+<div class="alert-content">
+<p>We strongly recommend you invite other members of your
+organization to be members of the verified publisher.
+This helps ensure that your organization retains access to
+the publisher when you are not available.</p>
+</div></aside>
+<div class="header-wrapper">
+<h2 id="publish-your-package">Publish your package</h2>
+<a class="heading-link" href="#publish-your-package" aria-label="Link to 'Publish your package' section">#</a></div>
+<p>Use the <a href="/tools/pub/cmd/pub-lish"><code>dart pub publish</code></a> command to publish your package
+for the first time or to update it to a new version.</p>
+<div class="header-wrapper">
+<h3 id="what-files-are-published">What files are published?</h3>
+<a class="heading-link" href="#what-files-are-published" aria-label="Link to 'What files are published?' section">#</a></div>
+<p>The published package includes <strong>all files</strong> under the package root directory,
+with the following exceptions:</p>
+<ul>
+<li>Any <em>hidden</em> files or directories.
+These have names that begin with dot (<code>.</code>).</li>
+<li>Files and directories listed to be ignored in a
+<code>.pubignore</code> or <code>.gitignore</code> file</li>
+</ul>
+<p>To use different ignore rules for <code>git</code> and <code>dart pub publish</code>,
+create a <code>.pubignore</code> file to overrule the
+<code>.gitignore</code> file in a given directory.
+If a directory contains both a <code>.pubignore</code> file and a <code>.gitignore</code> file,
+then  <code>dart pub publish</code> <em>ignores</em> that directory's <code>.gitignore</code> file.
+The <code>.pubignore</code> files follow the same format as the
+<a href="https://git-scm.com/docs/gitignore#_pattern_format"><code>.gitignore</code> file</a>.</p>
+<p>To avoid publishing unwanted files, follow these practices:</p>
+<ul>
+<li>Delete any files that you don't want to include or add them
+to a <code>.pubignore</code>  or <code>.gitignore</code> file.</li>
+<li>When uploading your package,
+examine the list of files that
+<code>dart pub publish --dry-run</code> shows it will publish.
+Cancel the upload if any undesired files appear in that list.</li>
+</ul>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>Most packages don't need a  <code>.pubignore</code> file.
+To learn more about useful scenarios for this,
+consult this <a href="https://stackoverflow.com/a/69767697">StackOverflow answer</a>.</p>
+</div></aside>
+<div class="header-wrapper">
+<h3 id="test-publishing-your-package">Test publishing your package</h3>
+<a class="heading-link" href="#test-publishing-your-package" aria-label="Link to 'Test publishing your package' section">#</a></div>
+<p>To test how <code>dart pub publish</code> will work, you can perform a dry run:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart pub publish --dry-run</span></span></code></pre></div></div><p>With this command, <code>dart pub</code> performs the following tasks:</p>
+<ol>
+<li>
+<p>Verifies that your package follows the <a href="/tools/pub/pubspec">pubspec format</a> and
+<a href="/tools/pub/package-layout">package layout conventions</a>.</p>
+</li>
+<li>
+<p>Shows all of the files it intends to publish.</p>
+</li>
+</ol>
+<p>The following example shows test publishing a package named <code>transmogrify</code>:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>Publishing transmogrify 1.0.0</span></span>
+<span class="line"><span>    .gitignore</span></span>
+<span class="line"><span>    CHANGELOG.md</span></span>
+<span class="line"><span>    README.md</span></span>
+<span class="line"><span>    lib</span></span>
+<span class="line"><span>        transmogrify.dart</span></span>
+<span class="line"><span>        src</span></span>
+<span class="line"><span>            transmogrifier.dart</span></span>
+<span class="line"><span>            transmogrification.dart</span></span>
+<span class="line"><span>    pubspec.yaml</span></span>
+<span class="line"><span>    test</span></span>
+<span class="line"><span>        transmogrify_test.dart</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Package has 0 warnings.</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="publish-to-pub-dev">Publish to pub.dev</h3>
+<a class="heading-link" href="#publish-to-pub-dev" aria-label="Link to 'Publish to pub.dev' section">#</a></div>
+<p>To publish your package when it's ready, remove the <code>--dry-run</code> argument:</p>
+<div class="code-block-wrapper language-console"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">$ dart pub publish</span></span></code></pre></div></div><p>With this command, <code>dart pub</code> performs the following tasks:</p>
+<ol>
+<li>
+<p>Verifies that your package follows the <a href="/tools/pub/pubspec">pubspec format</a> and
+<a href="/tools/pub/package-layout">package layout conventions</a>.</p>
+</li>
+<li>
+<p>Validates that <code>git status</code> is clean. Warns if
+files that are tracked in git have uncommitted changes.</p>
+</li>
+<li>
+<p>Shows all of the files it intends to publish.</p>
+</li>
+<li>
+<p>Uploads your package to <a href="https://pub.dev">pub.dev</a>.</p>
+</li>
+</ol>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>The pub command doesn't support direct publishing a new package to a
+verified publisher. As a temporary workaround, publish new packages to a Google Account,
+and then <a href="#transferring-a-package-to-a-verified-publisher">transfer the package to a publisher</a>.</p>
+<p>Once a package has been transferred to a publisher,
+you can update the package using <code>dart pub publish</code>.</p>
+</div></aside>
+<p>After your package succeeds in uploading to pub.dev, any pub user can
+download it or depend on it in their projects.</p>
+<p>For example, if you just published version 1.0.0 of your <code>transmogrify</code> package,
+then another Dart developer can add it as a dependency in their <code>pubspec.yaml</code>:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">dependencies</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  transmogrify</span><span style="color:#222222">: </span><span style="color:#11796D">^1.0.0</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="detect-supported-platforms">Detect supported platforms</h3>
+<a class="heading-link" href="#detect-supported-platforms" aria-label="Link to 'Detect supported platforms' section">#</a></div>
+<p>The <a href="https://pub.dev">pub.dev site</a> detects which platforms a package supports,
+displaying these platforms on the package page.
+Users of pub.dev can filter searches by platform.</p>
+<p>To change the generated list of supported platforms,
+<a href="/tools/pub/pubspec#platforms">specify supported platforms</a> in the <code>pubspec.yaml</code> file.</p>
+<div class="header-wrapper">
+<h3 id="automate-publishing">Automate publishing</h3>
+<a class="heading-link" href="#automate-publishing" aria-label="Link to 'Automate publishing' section">#</a></div>
+<p>Once you have published the first version of a package,
+you can configure automated publishing
+through GitHub Actions or Google Cloud service accounts.
+To learn more about automated publishing, consult
+<a href="/tools/pub/automated-publishing">Automated publishing of packages to pub.dev</a>.</p>
+<div class="header-wrapper">
+<h3 id="publishing-prereleases">Publish prerelease versions</h3>
+<a class="heading-link" href="#publishing-prereleases" aria-label="Link to 'Publish prerelease versions' section">#</a></div>
+<p>As you work on a package, consider publishing it as a prerelease.
+Prereleases can be useful when:</p>
+<ul>
+<li>You're actively developing the next major version of the package.</li>
+<li>You want beta testers for the next release candidate of the package.</li>
+<li>The package depends on an unstable version of the Dart or Flutter SDK.</li>
+</ul>
+<p>As described in <a href="https://semver.org/spec/v2.0.0-rc.1.html">semantic versioning</a>,
+to make a prerelease of a version, append a suffix to the version.
+For example, to make a prerelease of version <code>2.0.0</code>,
+you might use the version <code>2.0.0-dev.1</code>.
+Later, when you release version <code>2.0.0</code>, it takes precedence over all
+<code>2.0.0-XXX</code> prereleases.</p>
+<p>As pub prefers stable releases when available, users of a prerelease package
+might need to change their dependency constraints.
+For example, if a user wants to test prereleases of version <code>2.1.0</code>, then
+instead of <code>^2.0.0</code> or <code>^2.1.0</code> they might specify <code>^2.1.0-dev.1</code>.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>While <code>pub</code> prefers stable releases the same way it prefers newer versions,
+the version solver does not attempt all solutions and may pick a prerelease,
+even when a resolution that doesn't use prereleases exists.
+Though this rarely happens in practice.</p>
+</div></aside>
+<p>When you publish a prerelease to pub.dev,
+the package page displays links to both the prerelease and the stable release.
+The prerelease doesn't affect the analysis score, show up in search results,
+or replace the package <code>README.md</code> and documentation.</p>
+<div class="header-wrapper">
+<h3 id="publish-preview-versions">Publish preview versions</h3>
+<a class="heading-link" href="#publish-preview-versions" aria-label="Link to 'Publish preview versions' section">#</a></div>
+<p>Previews can be useful when <em>all</em> of the following are true:</p>
+<ul>
+<li>The next stable version of the package is complete.</li>
+<li>That package version depends on an API or feature in the Dart SDK that
+hasn't yet been released in a stable version of the Dart SDK.</li>
+<li>You know that the API or feature that the package depends on is
+API-stable and won't change before it reaches the stable SDK.</li>
+</ul>
+<p>As an example, consider a new version of <code>package:args</code> that has
+a finished version <code>2.0.0</code>.
+It depends on a feature in Dart <code>3.0.0-417.1.beta</code>.
+However, the stable version of Dart SDK <code>3.0.0</code> hasn't been released.
+The <code>pubspec.yaml</code> file might look like this:</p>
+<div class="code-block-wrapper language-yaml"><div class="code-block-header">pubspec.yaml</div><div class="code-block-body"><span class="code-block-language" title="Language yaml">yaml</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">name</span><span style="color:#222222">: </span><span style="color:#11796D">args</span></span>
+<span class="line"><span style="color:#0468D7">version</span><span style="color:#222222">: </span><span style="color:#11796D">2.0.0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">environment</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#0468D7">  sdk</span><span style="color:#222222">: </span><span style="color:#11796D">'^3.0.0-417.1.beta'</span></span></code></pre></div></div><p>When you publish this package to pub.dev, it's tagged as a preview version.
+The following screenshot illustrates this.
+It lists the stable version as <code>1.6.0</code> and the preview version as <code>2.0.0</code>.</p>
+<p><img src="/assets/img/tools/pub/preview-version.png" alt="Illustration of a preview version"><br></p>
+<p>When Dart releases the stable version of <code>3.0.0</code>,
+pub.dev updates the package listing to display
+<code>2.0.0</code> as the latest (stable) version of the package.</p>
+<p>If all of the conditions at the beginning of this section are true,
+ignore the following warning from <code>dart pub publish</code>:</p>
+<p><em>&quot;Packages with an SDK constraint on a pre-release of the Dart SDK should
+themselves be published as a pre-release version. If this package needs Dart
+version 3.0.0-0, consider publishing the package as a pre-release
+instead.&quot;</em></p>
+<div class="header-wrapper">
+<h2 id="manage-publishing-permissions">Manage publishing permissions</h2>
+<a class="heading-link" href="#manage-publishing-permissions" aria-label="Link to 'Manage publishing permissions' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="locate-the-package-publisher">Locate the package publisher</h3>
+<a class="heading-link" href="#locate-the-package-publisher" aria-label="Link to 'Locate the package publisher' section">#</a></div>
+<p>If a package has a verified publisher,
+the pub.dev page for that package displays the publisher domain.</p>
+<p>For packages published without a publisher,
+pub.dev doesn't disclose the publisher for privacy reasons.
+The <strong>Publisher</strong> field displays &quot;unverified uploader&quot;.</p>
+<div class="header-wrapper">
+<h3 id="uploaders">Manage package uploaders</h3>
+<a class="heading-link" href="#uploaders" aria-label="Link to 'Manage package uploaders' section">#</a></div>
+<p>Whoever publishes the first version of a package becomes
+the first and <em>only</em> person authorized to upload additional
+versions of that package.</p>
+<p>To allow or disallow other people to upload versions, either:</p>
+<ul>
+<li>Manage authorized uploaders on the admin page for the package:
+<code>https://pub.dev/packages/&lt;package&gt;/admin</code>.</li>
+<li>Transfer the package to a <a href="/tools/pub/verified-publishers">verified publisher</a>;
+all members of a publisher are authorized to upload.</li>
+</ul>
+<aside class="alert alert-success">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">lightbulb</span>
+<span>Tip</span></div>
+<div class="alert-content">
+<p>Invite other members of your team to become uploaders of the package.
+This ensures that your team can access to the package when you aren't available.</p>
+</div></aside>
+<div class="header-wrapper">
+<h3 id="transferring-a-package-to-a-verified-publisher">Transfer a package to a verified publisher</h3>
+<a class="heading-link" href="#transferring-a-package-to-a-verified-publisher" aria-label="Link to 'Transfer a package to a verified publisher' section">#</a></div>
+<p>To transfer a package to a verified publisher,
+you must be an <a href="#uploaders">uploader</a> for the package
+and an admin for the verified publisher.</p>
+<aside class="alert alert-important">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">feedback</span>
+<span>Important</span></div>
+<div class="alert-content">
+<p><em>You can't reverse this process.</em> Once you transfer a package to a publisher,
+you can't transfer it back to an individual account.</p>
+</div></aside>
+<p>To transfer a package to a verified publisher:</p>
+<ol>
+<li>
+<p>Log in to <a href="https://pub.dev">pub.dev</a> with a Google Account that's listed as
+an uploader of the package.</p>
+</li>
+<li>
+<p>Go to the package details page (for example,
+<code>https://pub.dev/packages/http</code>).</p>
+</li>
+<li>
+<p>Select the <strong>Admin</strong> tab.</p>
+</li>
+<li>
+<p>Enter the name of the publisher, and click <strong>Transfer to Publisher</strong>.</p>
+</li>
+</ol>
+<div class="header-wrapper">
+<h2 id="manage-your-package">Manage your package</h2>
+<a class="heading-link" href="#manage-your-package" aria-label="Link to 'Manage your package' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="retract">Retract a package version</h3>
+<a class="heading-link" href="#retract" aria-label="Link to 'Retract a package version' section">#</a></div>
+<p>To prevent new package consumers from adopting a published version
+of your package within a seven-day window,
+you can retract that package version within seven days of publication.
+The retracted version can be restored again within seven days of retraction.</p>
+<p><em>Retraction isn't deletion.</em>
+A retracted package version appears in the version listing
+of the package on pub.dev in the <strong>Retracted versions</strong> section.
+The detailed view of that package version displays a <strong>RETRACTED</strong> badge.</p>
+<p>Before retracting a package, consider publishing a new version instead.
+Retracting a package can have a negative impact on package users.</p>
+<p>If you publish a new version with either
+a <em>missing dependency constraint</em>
+or a <em>lax dependency constraint</em>,
+then retracting the package version might be the only solution.
+Publishing a newer version of your package won't stop the version
+solver from picking the old version.
+That version might be the only version pub can choose.
+Retracting a package version with incorrect dependency constraints
+forces users to either upgrade other dependencies or get a dependency conflict.</p>
+<p>However, if your package contains a minor bug,
+you might not need to retract the version.
+Publish a newer version with the bug fixed and a
+description of the fixed bug in <code>CHANGELOG.md</code>.
+This helps users to understand what happened.
+Publishing a newer version is less disruptive to package users.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">merge_type</span>
+<span>Version note</span></div>
+<div class="alert-content">
+<p>Package retraction was introduced in Dart 2.15.
+In pre-2.15 SDKs, the pub version solver ignores the retracted status.</p>
+</div></aside>
+<div class="header-wrapper">
+<h4 id="how-to-use-a-retracted-version-of-a-package">How to use a retracted version of a package</h4>
+<a class="heading-link" href="#how-to-use-a-retracted-version-of-a-package" aria-label="Link to 'How to use a retracted version of a package' section">#</a></div>
+<p>If a package depends on a package version that later is retracted,
+it can still use that version as long as that version is in
+the dependent package's <code>pubspec.lock</code> file.
+To depend on a specific version that's already retracted,
+the dependent package must pin the version in the
+<code>dependency_overrides</code> section of the <code>pubspec.yaml</code> file.</p>
+<div class="header-wrapper">
+<h4 id="how-to-migrate-away-from-a-retracted-package-version">How to migrate away from a retracted package version</h4>
+<a class="heading-link" href="#how-to-migrate-away-from-a-retracted-package-version" aria-label="Link to 'How to migrate away from a retracted package version' section">#</a></div>
+<p>When a package depends on a retracted package version,
+you have choices in how you migrate away from this version depending
+on other available versions.</p>
+<div class="header-wrapper">
+<h4 id="upgrade-to-a-newer-version">Upgrade to a newer version</h4>
+<a class="heading-link" href="#upgrade-to-a-newer-version" aria-label="Link to 'Upgrade to a newer version' section">#</a></div>
+<p>In most cases a newer version has been published to
+replace the retracted version.
+In this case run <code>dart pub upgrade &lt;package&gt;</code>.</p>
+<div class="header-wrapper">
+<h4 id="downgrade-to-the-newest-non-retracted-version">Downgrade to the newest non-retracted version</h4>
+<a class="heading-link" href="#downgrade-to-the-newest-non-retracted-version" aria-label="Link to 'Downgrade to the newest non-retracted version' section">#</a></div>
+<p>If no newer version is available, consider downgrading
+to the newest non-retracted version.
+You can do this in one of two ways.</p>
+<ol>
+<li>
+<p>Use <a href="/tools/pub/cmd">pub tool</a> commands:</p>
+<ol>
+<li>
+<p>Run <code>dart pub downgrade &lt;package&gt;</code> to
+get the lowest version  of the specified package that
+matches the constraints in the <code>pubspec.yaml</code> file.</p>
+</li>
+<li>
+<p>Run <code>dart pub upgrade &lt;package&gt;</code> to get the
+newest compatible and non-retracted version available.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Edit the <code>pubspec.lock</code> file in your preferred IDE:</p>
+<ol>
+<li>
+<p>Delete the entire package entry for the package
+with the retracted version.</p>
+</li>
+<li>
+<p>Run <code>dart pub get</code> to get the
+newest compatible and non-retracted version available.</p>
+</li>
+</ol>
+</li>
+</ol>
+<p>Though you could delete the <code>pubspec.lock</code> file and run <code>dart pub get</code>,
+this is not recommended.
+It might result in version changes for other dependencies.</p>
+<div class="header-wrapper">
+<h4 id="upgrade-or-downgrade-to-a-version-outside-the-specified-version-constraint">Upgrade or downgrade to a version outside the specified version constraint</h4>
+<a class="heading-link" href="#upgrade-or-downgrade-to-a-version-outside-the-specified-version-constraint" aria-label="Link to 'Upgrade or downgrade to a version outside the specified version constraint' section">#</a></div>
+<p>If there is no alternative version available that satisfies the
+current version constraint, edit the version constraint
+in the <code>pubspec.yaml</code> file and run <code>dart pub upgrade</code>.</p>
+<div class="header-wrapper">
+<h4 id="how-to-retract-or-restore-a-package-version">How to retract or restore a package version</h4>
+<a class="heading-link" href="#how-to-retract-or-restore-a-package-version" aria-label="Link to 'How to retract or restore a package version' section">#</a></div>
+<p>To retract or restore a package version,
+first sign in to pub.dev using a Google Account
+that's either an uploader or a <a href="/tools/pub/verified-publishers">verified publisher</a> admin for the package.
+Then go to the package's <strong>Admin</strong> tab,
+where you can retract or restore recent package versions.</p>
+<div class="header-wrapper">
+<h3 id="discontinue">Discontinue a package</h3>
+<a class="heading-link" href="#discontinue" aria-label="Link to 'Discontinue a package' section">#</a></div>
+<p>Although packages remain published, you can signal to
+developers that a package receives no active maintenance.
+This requires you to mark the package as <strong>discontinued</strong>.</p>
+<p>Once you discontinue a package, the package will:</p>
+<ul>
+<li>Remain published on pub.dev.</li>
+<li>Remain viewable on pub.dev.</li>
+<li>Display a clear <strong>DISCONTINUED</strong> badge.</li>
+<li>Not appear in pub.dev search results.</li>
+</ul>
+<p>To mark a package as discontinued:</p>
+<ol>
+<li>
+<p>Sign in to pub.dev using a Google Account with uploader or
+<a href="/tools/pub/verified-publishers">verified publisher</a> permissions for the package.</p>
+</li>
+<li>
+<p>Navigate to the package's <strong>Admin</strong> tab.</p>
+</li>
+<li>
+<p>To discontinue a package, select <strong>Mark &quot;discontinued&quot;</strong>.</p>
+</li>
+</ol>
+<p>You can also recommend a replacement package.</p>
+<ol>
+<li>
+<p>In the field under <strong>Suggested replacement</strong>,
+type the name of another package.</p>
+</li>
+<li>
+<p>Click <strong>Update &quot;Suggested Replacement&quot;</strong>.</p>
+</li>
+</ol>
+<p>If you change your mind, you can remove the discontinued mark at any time.</p>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/tools/pub/publishing.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/tools/pub/publishing/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/tools/pub/publishing.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

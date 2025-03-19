@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Everything about using constructors in Dart.">
+  <title>Constructors | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Constructors">
+  <meta name="twitter:description" content="Everything about using constructors in Dart.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Constructors">
+  <meta property="og:description" content="Everything about using constructors in Dart.">
+  <meta property="og:url" content="/language/constructors/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script defer src="/assets/js/inject_dartpad.js"></script>
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="true" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link active collapsible"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="true" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#types-of-constructors">Types of constructors</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#generative-constructors">Generative constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#default-constructors">Default constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#named-constructors">Named constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#constant-constructors">Constant constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#redirecting-constructors">Redirecting constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#factory-constructors">Factory constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#redirecting-factory-constructors">Redirecting factory constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#constructor-tear-offs">Constructor tear-offs</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#instance-variable-initialization">Instance Variable Initialization</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#initialize-instance-variables-in-the-declaration">Initialize instance variables in the declaration</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#use-initializing-formal-parameters">Use initializing formal parameters</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#use-an-initializer-list">Use an initializer list</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#constructor-inheritance">Constructor inheritance</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#non-default-superclass-constructors">Non-default superclass constructors</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#super-parameters">Super parameters</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Constructors</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#types-of-constructors">Types of constructors</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#generative-constructors">Generative constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#default-constructors">Default constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#named-constructors">Named constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#constant-constructors">Constant constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#redirecting-constructors">Redirecting constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#factory-constructors">Factory constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#redirecting-factory-constructors">Redirecting factory constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#constructor-tear-offs">Constructor tear-offs</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#instance-variable-initialization">Instance Variable Initialization</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#initialize-instance-variables-in-the-declaration">Initialize instance variables in the declaration</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#use-initializing-formal-parameters">Use initializing formal parameters</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#use-an-initializer-list">Use an initializer list</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#constructor-inheritance">Constructor inheritance</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#non-default-superclass-constructors">Non-default superclass constructors</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#super-parameters">Super parameters</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<p>Constructors are special functions that create instances of classes.</p>
+<p>Dart implements many types of constructors.
+Except for default constructors,
+these functions use the same name as their class.</p>
+<ul>
+<li><a href="#generative-constructors">Generative constructors</a>: Creates new instances and
+initializes instance variables.</li>
+<li><a href="#default-constructors">Default constructors</a>: Used to create a new instance when a
+constructor hasn't been specified. It doesn't take arguments and
+isn't named.</li>
+<li><a href="#named-constructors">Named constructors</a>: Clarifies the purpose of
+a constructor or allows the creation of multiple constructors for
+the same class.</li>
+<li><a href="#constant-constructors">Constant constructors</a>: Creates instances as compile-type
+constants.</li>
+<li><a href="#factory-constructors">Factory constructors</a>: Either creates a new instance of a
+subtype or returns an existing instance from cache.</li>
+<li><a href="#redirecting-constructors">Redirecting constructor</a>: Forwards calls to another
+constructor in the same class.</li>
+</ul>
+<?code-excerpt path-base="misc/lib/language_tour/classes"?>
+<?code-excerpt replace="/ *\/\/\s+ignore_for_file:[^\n]+\n//g; /(^|\n) *\/\/\s+ignore:[^\n]+\n/$1/g; /(\n[^\n]+) *\/\/\s+ignore:[^\n]+\n/$1\n/g; / *\/\/\s+ignore:[^\n]+//g; /([A-Z]\w*)\d\b/$1/g"?>
+<div class="header-wrapper">
+<h2 id="types-of-constructors">Types of constructors</h2>
+<a class="heading-link" href="#types-of-constructors" aria-label="Link to 'Types of constructors' section">#</a></div>
+<div class="header-wrapper">
+<h3 id="generative-constructors">Generative constructors</h3>
+<a class="heading-link" href="#generative-constructors" aria-label="Link to 'Generative constructors' section">#</a></div>
+<p>To instantiate a class, use a generative constructor.</p>
+<?code-excerpt "point_alt.dart (idiomatic-constructor)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Point</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#6E6E70">  // Instance variables to hold the coordinates of the point.</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> x;</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Generative constructor with initializing formal parameters:</span></span>
+<span class="line"><span style="color:#0468D7">  Point</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="default-constructors">Default constructors</h3>
+<a class="heading-link" href="#default-constructors" aria-label="Link to 'Default constructors' section">#</a></div>
+<p>If you don't declare a constructor, Dart uses the default constructor.
+The default constructor is a generative constructor without arguments or name.</p>
+<div class="header-wrapper">
+<h3 id="named-constructors">Named constructors</h3>
+<a class="heading-link" href="#named-constructors" aria-label="Link to 'Named constructors' section">#</a></div>
+<p>Use a named constructor to implement multiple constructors for a class
+or to provide extra clarity:</p>
+<?code-excerpt "point.dart (named-constructor)" replace="/Point\.\S*/[!$&!]/g" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> double</span><span style="color:#222222"> xOrigin = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> double</span><span style="color:#222222"> yOrigin = </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Point</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> x;</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Sets the x and y instance variables</span></span>
+<span class="line"><span style="color:#6E6E70">  // before the constructor body runs.</span></span>
+<span class="line"><span style="color:#0468D7">  Point</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Named constructor</span></span>
+<span class="line"><span style="color:#0468D7">  </span><mark class="highlight"><span style="color:#0468D7">Point</span><span style="color:#222222">.</span><span style="color:#6200EE">origin</span><span style="color:#222222">()</span></mark><span style="color:#222222"> : x = xOrigin, y = yOrigin;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>A subclass doesn't inherit a superclass's named constructor.
+To create a subclass with a named constructor defined in the superclass,
+implement that constructor in the subclass.</p>
+<div class="header-wrapper">
+<h3 id="constant-constructors">Constant constructors</h3>
+<a class="heading-link" href="#constant-constructors" aria-label="Link to 'Constant constructors' section">#</a></div>
+<p>If your class produces unchanging objects, make these
+objects compile-time constants.
+To make objects compile-time constants, define a <code>const</code> constructor
+with all instance variables set as <code>final</code>.</p>
+<?code-excerpt "immutable_point.dart"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> ImmutablePoint</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  static</span><span style="color:#D43324"> const</span><span style="color:#0468D7"> ImmutablePoint</span><span style="color:#222222"> origin = </span><span style="color:#0468D7">ImmutablePoint</span><span style="color:#222222">(</span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">0</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> x, y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  const</span><span style="color:#0468D7"> ImmutablePoint</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Constant constructors don't always create constants.
+They might be invoked in a non-<code>const</code> context.
+To learn more, consult the section on <a href="/language/classes#using-constructors">using constructors</a>.</p>
+<div class="header-wrapper">
+<h3 id="redirecting-constructors">Redirecting constructors</h3>
+<a class="heading-link" href="#redirecting-constructors" aria-label="Link to 'Redirecting constructors' section">#</a></div>
+<p>A constructor might redirect to another constructor in the same class.
+A redirecting constructor has an empty body.
+The constructor uses <code>this</code> instead of the class name after a colon (:).</p>
+<?code-excerpt "point_redirecting.dart"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Point</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> x, y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // The main constructor for this class.</span></span>
+<span class="line"><span style="color:#0468D7">  Point</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Delegates to the main constructor.</span></span>
+<span class="line"><span style="color:#0468D7">  Point</span><span style="color:#222222">.</span><span style="color:#6200EE">alongXAxis</span><span style="color:#222222">(</span><span style="color:#0468D7">double</span><span style="color:#222222"> x) : </span><span style="color:#D43324">this</span><span style="color:#222222">(x, </span><span style="color:#11796D">0</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="factory-constructors">Factory constructors</h3>
+<a class="heading-link" href="#factory-constructors" aria-label="Link to 'Factory constructors' section">#</a></div>
+<p>When encountering one of following two cases of implementing a constructor,
+use the <code>factory</code> keyword:</p>
+<ul>
+<li>
+<p>The constructor doesn't always create a new instance of its class.
+Although a factory constructor cannot return <code>null</code>,
+it might return:</p>
+<ul>
+<li>an existing instance from a cache instead of creating a new one</li>
+<li>a new instance of a subtype</li>
+</ul>
+</li>
+<li>
+<p>You need to perform non-trivial work prior to constructing an instance.
+This could include checking arguments or doing any other processing
+that cannot be handled in the initializer list.</p>
+</li>
+</ul>
+<aside class="alert alert-success">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">lightbulb</span>
+<span>Tip</span></div>
+<div class="alert-content">
+<p>You can also handle late initialization of a final variable
+with <a href="/effective-dart/design#avoid-public-late-final-fields-without-initializers"><code>late final</code></a> (carefully!).</p>
+</div></aside>
+<p>The following example includes two factory constructors.</p>
+<ul>
+<li><code>Logger</code> factory constructor returns objects from a cache.</li>
+<li><code>Logger.fromJson</code> factory constructor initializes a final variable
+from a JSON object.</li>
+</ul>
+<?code-excerpt "logger.dart (constructors)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Logger</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> String</span><span style="color:#222222"> name;</span></span>
+<span class="line"><span style="color:#0468D7">  bool</span><span style="color:#222222"> mute = </span><span style="color:#11796D">false</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // _cache is library-private, thanks to</span></span>
+<span class="line"><span style="color:#6E6E70">  // the _ in front of its name.</span></span>
+<span class="line"><span style="color:#D43324">  static</span><span style="color:#D43324"> final</span><span style="color:#0468D7"> Map</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">Logger</span><span style="color:#222222">> _cache = &#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">Logger</span><span style="color:#222222">>{};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  factory</span><span style="color:#0468D7"> Logger</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> name) {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#222222"> _cache.</span><span style="color:#6200EE">putIfAbsent</span><span style="color:#222222">(name, () => </span><span style="color:#0468D7">Logger</span><span style="color:#222222">.</span><span style="color:#6200EE">_internal</span><span style="color:#222222">(name));</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  factory</span><span style="color:#0468D7"> Logger</span><span style="color:#222222">.</span><span style="color:#6200EE">fromJson</span><span style="color:#222222">(</span><span style="color:#0468D7">Map</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">Object</span><span style="color:#222222">> json) {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#0468D7"> Logger</span><span style="color:#222222">(json[</span><span style="color:#11796D">'name'</span><span style="color:#222222">].</span><span style="color:#6200EE">toString</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  Logger</span><span style="color:#222222">.</span><span style="color:#6200EE">_internal</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.name);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> log</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> msg) {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (!mute) </span><span style="color:#6200EE">print</span><span style="color:#222222">(msg);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><aside class="alert alert-warning">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">warning</span>
+<span>Warning</span></div>
+<div class="alert-content">
+<p>Factory constructors can't access <code>this</code>.</p>
+</div></aside>
+<p>Use a factory constructor as any other constructor:</p>
+<?code-excerpt "logger.dart (logger)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> logger = </span><span style="color:#0468D7">Logger</span><span style="color:#222222">(</span><span style="color:#11796D">'UI'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">logger.</span><span style="color:#6200EE">log</span><span style="color:#222222">(</span><span style="color:#11796D">'Button clicked'</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> logMap = {</span><span style="color:#11796D">'name'</span><span style="color:#222222">: </span><span style="color:#11796D">'UI'</span><span style="color:#222222">};</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> loggerJson = </span><span style="color:#0468D7">Logger</span><span style="color:#222222">.</span><span style="color:#6200EE">fromJson</span><span style="color:#222222">(logMap);</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="redirecting-factory-constructors">Redirecting factory constructors</h3>
+<a class="heading-link" href="#redirecting-factory-constructors" aria-label="Link to 'Redirecting factory constructors' section">#</a></div>
+<p>A redirecting factory constructor specifies a call to a constructor of another
+class to use whenever someone makes a call to the redirecting constructor.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">factory</span><span style="color:#0468D7"> Listenable</span><span style="color:#222222">.</span><span style="color:#6200EE">merge</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Listenable</span><span style="color:#222222">> listenables) = </span><span style="color:#0468D7">_MergingListenable</span></span></code></pre></div></div><p>It might appear that ordinary factory constructors
+could create and return instances of other classes.
+This would make redirecting factories unnecessary.
+Redirecting factories have several advantages:</p>
+<ul>
+<li>An abstract class might provide a constant constructor
+that uses the constant constructor of another class.</li>
+<li>A redirecting factory constructor avoids the need for forwarders
+to repeat the formal parameters and their default values.</li>
+</ul>
+<div class="header-wrapper">
+<h3 id="constructor-tear-offs">Constructor tear-offs</h3>
+<a class="heading-link" href="#constructor-tear-offs" aria-label="Link to 'Constructor tear-offs' section">#</a></div>
+<p>Dart allows you to supply a constructor as a parameter without calling it.
+Called a <em>tear-off</em> (as you <em>tear off</em> the parentheses)
+serves as a closure that invokes the constructor with the same parameters.</p>
+<p>If the tear-off is a constructor with the same signature and return type
+as the method accepts, you can use the tear-off as a parameter or variable.</p>
+<p>Tear-offs differ from lambdas or anonymous functions.
+Lambdas serve as a wrapper for the constructor whereas a tear-off
+is the constructor.</p>
+<p><strong>Use Tear-Offs</strong></p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-good"><span class="code-block-tag">good</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Use a tear-off for a named constructor: </span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> strings = charCodes.</span><span style="color:#6200EE">map</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222">.fromCharCode);  </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Use a tear-off for an unnamed constructor: </span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> buffers = charCodes.</span><span style="color:#6200EE">map</span><span style="color:#222222">(</span><span style="color:#0468D7">StringBuffer</span><span style="color:#222222">.</span><span style="color:#D43324">new</span><span style="color:#222222">);</span></span></code></pre></div></div><p><strong>Not Lambdas</strong></p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Instead of a lambda for a named constructor:</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> strings = charCodes.</span><span style="color:#6200EE">map</span><span style="color:#222222">((code) => </span><span style="color:#0468D7">String</span><span style="color:#222222">.</span><span style="color:#6200EE">fromCharCode</span><span style="color:#222222">(code));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Instead of a lambda for an unnamed constructor:</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> buffers = charCodes.</span><span style="color:#6200EE">map</span><span style="color:#222222">((code) => </span><span style="color:#0468D7">StringBuffer</span><span style="color:#222222">(code));</span></span></code></pre></div></div><p>For more discussion, watch this Decoding Flutter video on tear-offs.</p>
+<iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/OmCaloD7sis" title="Dart Tear-offs | Decoding Flutter" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen loading="lazy"></iframe><br>
+        <p><a href="https://www.youtube.com/watch/OmCaloD7sis" target="_blank" rel="noopener" title="Open 'Dart Tear-offs | Decoding Flutter' video in new tab">Dart Tear-offs | Decoding Flutter</a></p>
+<div class="header-wrapper">
+<h2 id="instance-variable-initialization">Instance Variable Initialization</h2>
+<a class="heading-link" href="#instance-variable-initialization" aria-label="Link to 'Instance Variable Initialization' section">#</a></div>
+<p>Dart can initialize variables in three ways.</p>
+<div class="header-wrapper">
+<h3 id="initialize-instance-variables-in-the-declaration">Initialize instance variables in the declaration</h3>
+<a class="heading-link" href="#initialize-instance-variables-in-the-declaration" aria-label="Link to 'Initialize instance variables in the declaration' section">#</a></div>
+<p>Initialize the instance variables when you declare the variables.</p>
+<?code-excerpt "point_alt.dart (initialize-declaration)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> PointA</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> x = </span><span style="color:#11796D">1.0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> y = </span><span style="color:#11796D">2.0</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // The implicit default constructor sets these variables to (1.0,2.0)</span></span>
+<span class="line"><span style="color:#6E6E70">  // PointA();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  @override</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#6200EE"> toString</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#11796D"> 'PointA(</span><span style="color:#11796D">$</span><span style="color:#222222">x</span><span style="color:#11796D">,</span><span style="color:#11796D">$</span><span style="color:#222222">y</span><span style="color:#11796D">)'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="use-initializing-formal-parameters">Use initializing formal parameters</h3>
+<a class="heading-link" href="#use-initializing-formal-parameters" aria-label="Link to 'Use initializing formal parameters' section">#</a></div>
+<p>To simplify the common pattern of assigning a constructor argument
+to an instance variable, Dart has <em>initializing formal parameters</em>.</p>
+<p>In the constructor declaration, include <code>this.&lt;propertyName&gt;</code>
+and omit the body. The <code>this</code> keyword refers to the current instance.</p>
+<p>When the name conflict exists, use <code>this</code>.
+Otherwise, Dart style omits the <code>this</code>.
+An exception exists for the generative constructor where
+you must prefix the initializing formal parameter name with <code>this</code>.</p>
+<p>As noted earlier in this guide, certain constructors
+and certain parts of constructors can't access <code>this</code>. These include:</p>
+<ul>
+<li>Factory constructors</li>
+<li>The right-hand side of an initializer list</li>
+<li>Arguments to a superclass constructor</li>
+</ul>
+<p>Initializing formal parameters also allow you to initialize
+non-nullable or <code>final</code> instance variables.
+Both of these types of variables require initialization or a default value.</p>
+<?code-excerpt "point_alt.dart (initialize-formal)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> PointB</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> x;</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Sets the x and y instance variables</span></span>
+<span class="line"><span style="color:#6E6E70">  // before the constructor body runs.</span></span>
+<span class="line"><span style="color:#0468D7">  PointB</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Initializing formal parameters can also be optional.</span></span>
+<span class="line"><span style="color:#0468D7">  PointB</span><span style="color:#222222">.</span><span style="color:#6200EE">optional</span><span style="color:#222222">([</span><span style="color:#D43324">this</span><span style="color:#222222">.x = </span><span style="color:#11796D">0.0</span><span style="color:#222222">, </span><span style="color:#D43324">this</span><span style="color:#222222">.y = </span><span style="color:#11796D">0.0</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Private fields can't be used as named initializing formals.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> PointB</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#6E6E70">// ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  PointB</span><span style="color:#222222">.</span><span style="color:#6200EE">namedPrivate</span><span style="color:#222222">({</span><span style="color:#D43324">required</span><span style="color:#0468D7"> double</span><span style="color:#222222"> x, </span><span style="color:#D43324">required</span><span style="color:#0468D7"> double</span><span style="color:#222222"> y})</span></span>
+<span class="line"><span style="color:#222222">      : _x = x,</span></span>
+<span class="line"><span style="color:#222222">        _y = y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// ...</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>This also works with named variables.</p>
+<?code-excerpt "point_alt.dart (initialize-named)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> PointC</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> x; </span><span style="color:#6E6E70">// must be set in constructor</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222"> y; </span><span style="color:#6E6E70">// must be set in constructor</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Generative constructor with initializing formal parameters</span></span>
+<span class="line"><span style="color:#6E6E70">  // with default values</span></span>
+<span class="line"><span style="color:#0468D7">  PointC</span><span style="color:#222222">.</span><span style="color:#6200EE">named</span><span style="color:#222222">({</span><span style="color:#D43324">this</span><span style="color:#222222">.x = </span><span style="color:#11796D">1.0</span><span style="color:#222222">, </span><span style="color:#D43324">this</span><span style="color:#222222">.y = </span><span style="color:#11796D">1.0</span><span style="color:#222222">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  @override</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#6200EE"> toString</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#11796D"> 'PointC.named(</span><span style="color:#11796D">$</span><span style="color:#222222">x</span><span style="color:#11796D">,</span><span style="color:#11796D">$</span><span style="color:#222222">y</span><span style="color:#11796D">)'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Constructor using named variables.</span></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#222222"> pointC = </span><span style="color:#0468D7">PointC</span><span style="color:#222222">.</span><span style="color:#6200EE">named</span><span style="color:#222222">(x: </span><span style="color:#11796D">2.0</span><span style="color:#222222">, y: </span><span style="color:#11796D">2.0</span><span style="color:#222222">);</span></span></code></pre></div></div><p>All variables introduced from initializing formal parameters are both
+final and only in scope of the initialized variables.</p>
+<p>To perform logic that you can't express in the initializer list,
+create a <a href="#factory-constructors">factory constructor</a>
+or <a href="/language/classes#static-methods">static method</a> with that logic.
+You can then pass the computed values to a normal constructor.</p>
+<p>The constructor parameters could be set as nullable and not be initialized.</p>
+<?code-excerpt "point_alt.dart (initialize-null)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> PointD</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222">? x; </span><span style="color:#6E6E70">// null if not set in constructor</span></span>
+<span class="line"><span style="color:#0468D7">  double</span><span style="color:#222222">? y; </span><span style="color:#6E6E70">// null if not set in constructor</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Generative constructor with initializing formal parameters</span></span>
+<span class="line"><span style="color:#0468D7">  PointD</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  @override</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#6200EE"> toString</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#11796D"> 'PointD(</span><span style="color:#11796D">$</span><span style="color:#222222">x</span><span style="color:#11796D">,</span><span style="color:#11796D">$</span><span style="color:#222222">y</span><span style="color:#11796D">)'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="use-an-initializer-list">Use an initializer list</h3>
+<a class="heading-link" href="#use-an-initializer-list" aria-label="Link to 'Use an initializer list' section">#</a></div>
+<p>Before the constructor body runs, you can initialize instance variables.
+Separate initializers with commas.</p>
+<?code-excerpt "point_alt.dart (initializer-list)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Initializer list sets instance variables before</span></span>
+<span class="line"><span style="color:#6E6E70">// the constructor body runs.</span></span>
+<span class="line"><span style="color:#0468D7">Point</span><span style="color:#222222">.</span><span style="color:#6200EE">fromJson</span><span style="color:#222222">(</span><span style="color:#0468D7">Map</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">double</span><span style="color:#222222">> json) : x = json[</span><span style="color:#11796D">'x'</span><span style="color:#222222">]!, y = json[</span><span style="color:#11796D">'y'</span><span style="color:#222222">]! {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'In Point.fromJson(): (</span><span style="color:#11796D">$</span><span style="color:#222222">x</span><span style="color:#11796D">, </span><span style="color:#11796D">$</span><span style="color:#222222">y</span><span style="color:#11796D">)'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><aside class="alert alert-warning">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">warning</span>
+<span>Warning</span></div>
+<div class="alert-content">
+<p>The right-hand side of an initializer list can't access <code>this</code>.</p>
+</div></aside>
+<p>To validate inputs during development,
+use <code>assert</code> in the initializer list.</p>
+<?code-excerpt "point_alt.dart (initializer-list-with-assert)" replace="/assert\(.*?\)/[!$&!]/g"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">Point</span><span style="color:#222222">.</span><span style="color:#6200EE">withAssert</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y) : </span><mark class="highlight"><span style="color:#D43324">assert</span><span style="color:#222222">(x >= </span><span style="color:#11796D">0</span><span style="color:#222222">)</span></mark><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'In Point.withAssert(): (</span><span style="color:#11796D">$</span><span style="color:#222222">x</span><span style="color:#11796D">, </span><span style="color:#11796D">$</span><span style="color:#222222">y</span><span style="color:#11796D">)'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Initializer lists help set up <code>final</code> fields.</p>
+<p>The following example initializes three <code>final</code> fields in an initializer list.
+To execute the code, click <strong>Run</strong>.</p>
+<?code-excerpt "point_with_distance_field.dart"?>
+<pre><code data-dartpad="true" data-embed="true" data-theme="light" title="Runnable Dart sample" data-run="false">import 'dart:math';
+
+class Point {
+  final double x;
+  final double y;
+  final double distanceFromOrigin;
+
+  Point(double x, double y)
+    : x = x,
+      y = y,
+      distanceFromOrigin = sqrt(x * x + y * y);
+}
+
+void main() {
+  var p = Point(2, 3);
+  print(p.distanceFromOrigin);
+}
+</code></pre><div class="header-wrapper">
+<h2 id="constructor-inheritance">Constructor inheritance</h2>
+<a class="heading-link" href="#constructor-inheritance" aria-label="Link to 'Constructor inheritance' section">#</a></div>
+<p><em>Subclasses</em>, or child classes, don't inherit <em>constructors</em>
+from their <em>superclass</em>, or immediate parent class.
+If a class doesn't declare a constructor, it can only use the
+<a href="#default-constructors">default constructor</a>.</p>
+<p>A class can inherit the <em>parameters</em> of a superclass.
+These are called <a href="#super-parameters">super parameters</a></p>
+<p>Constructors work in a somewhat similar way to
+how you call a chain of static methods.
+Each subclass can call its superclass's constructor to initialize an instance,
+like a subclass can call a superclass's static method.
+This process doesn't &quot;inherit&quot; constructor bodies or signatures.</p>
+<div class="header-wrapper">
+<h3 id="non-default-superclass-constructors">Non-default superclass constructors</h3>
+<a class="heading-link" href="#non-default-superclass-constructors" aria-label="Link to 'Non-default superclass constructors' section">#</a></div>
+<p>Dart executes constructors in the following order:</p>
+<ol>
+<li><a href="#use-an-initializer-list">initializer list</a></li>
+<li>superclass's unnamed, no-arg constructor</li>
+<li>main class's no-arg constructor</li>
+</ol>
+<p>If the superclass lacks an unnamed, no-argument constructor,
+call one of the constructors in the superclass.
+Before the constructor body (if any),
+specify the superclass constructor after a colon (<code>:</code>).</p>
+<p>In the following example,
+the <code>Employee</code> class constructor calls the named constructor
+for its superclass, <code>Person</code>. To execute the following code, click <strong>Run</strong>.</p>
+<?code-excerpt "employee.dart (super)" plaster="none"?>
+<pre><code data-dartpad="true" data-embed="true" data-theme="light" title="Runnable Dart sample" data-run="false">class Person {
+  String? firstName;
+
+  Person.fromJson(Map data) {
+    print('in Person');
+  }
+}
+
+class Employee extends Person {
+  // Person does not have a default constructor;
+  // you must call super.fromJson().
+  Employee.fromJson(Map data) : super.fromJson(data) {
+    print('in Employee');
+  }
+}
+
+void main() {
+  var employee = Employee.fromJson({});
+  print(employee);
+  // Prints:
+  // in Person
+  // in Employee
+  // Instance of 'Employee'
+}
+</code></pre><p>As Dart evaluates the arguments to the superclass constructor <em>before</em>
+invoking the constructor, an argument can be an expression like a
+function call.</p>
+<?code-excerpt "employee.dart (method-then-constructor)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Employee</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> Person</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  Employee</span><span style="color:#222222">() : </span><span style="color:#D43324">super</span><span style="color:#222222">.</span><span style="color:#6200EE">fromJson</span><span style="color:#222222">(</span><span style="color:#6200EE">fetchDefaultData</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#6E6E70">  // ···</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><aside class="alert alert-warning">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">warning</span>
+<span>Warning</span></div>
+<div class="alert-content">
+<p>Arguments to the superclass constructor can't access <code>this</code>.
+For example, arguments can call <em>static</em> methods
+but not <em>instance</em> methods.</p>
+</div></aside>
+<div class="header-wrapper">
+<h3 id="super-parameters">Super parameters</h3>
+<a class="heading-link" href="#super-parameters" aria-label="Link to 'Super parameters' section">#</a></div>
+<p>To avoid passing each parameter into the super invocation of a constructor,
+use super-initializer parameters to forward parameters
+to the specified or default superclass constructor.
+You can't use this feature with
+<a href="#redirecting-constructors">redirecting constructors</a>.
+Super-initializer parameters have syntax and semantics like
+<a href="#use-initializing-formal-parameters">initializing formal parameters</a>.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">merge_type</span>
+<span>Version note</span></div>
+<div class="alert-content">
+<p>Using super-initializer parameters
+requires a <a href="/resources/language/evolution#language-versioning">language version</a> of at least 2.17.
+If you're using an earlier language version,
+you must manually pass in all super constructor parameters.</p>
+</div></aside>
+<p>If the super-constructor invocation includes positional arguments,
+super-initializer parameters can't be positional.</p>
+<?code-excerpt "super_initializer_positional_parameters.dart (positional)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Vector2d</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> x;</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> y;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  Vector2d</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.x, </span><span style="color:#D43324">this</span><span style="color:#222222">.y);</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Vector3d</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> Vector2d</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> z;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Forward the x and y parameters to the default super constructor like:</span></span>
+<span class="line"><span style="color:#6E6E70">  // Vector3d(final double x, final double y, this.z) : super(x, y);</span></span>
+<span class="line"><span style="color:#0468D7">  Vector3d</span><span style="color:#222222">(</span><span style="color:#D43324">super</span><span style="color:#222222">.x, </span><span style="color:#D43324">super</span><span style="color:#222222">.y, </span><span style="color:#D43324">this</span><span style="color:#222222">.z);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>To further illustrate, consider the following example.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">  // If you invoke the super constructor (`super(0)`) with any</span></span>
+<span class="line"><span style="color:#6E6E70">  // positional arguments, using a super parameter (`super.x`)</span></span>
+<span class="line"><span style="color:#6E6E70">  // results in an error.</span></span>
+<span class="line"><span style="color:#0468D7">  Vector3d</span><span style="color:#222222">.</span><span style="color:#6200EE">xAxisError</span><span style="color:#222222">(</span><span style="color:#D43324">super</span><span style="color:#222222">.x): z = </span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#D43324">super</span><span style="color:#222222">(</span><span style="color:#11796D">0</span><span style="color:#222222">); </span><span style="color:#6E6E70">// BAD</span></span></code></pre></div></div><p>This named constructor tries to set the <code>x</code> value twice:
+once in the super constructor and once as a
+positional super parameter.
+As both address the <code>x</code> positional parameter, this results in an error.</p>
+<p>When the super constructor has named arguments, you can split them
+between named super parameters (<code>super.y</code> in the next example)
+and named arguments to the super constructor invocation
+(<code>super.named(x: 0)</code>).</p>
+<?code-excerpt "super_initializer_named_parameters.dart (named)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Vector2d</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#6E6E70">  // ...</span></span>
+<span class="line"><span style="color:#0468D7">  Vector2d</span><span style="color:#222222">.</span><span style="color:#6200EE">named</span><span style="color:#222222">({</span><span style="color:#D43324">required</span><span style="color:#D43324"> this</span><span style="color:#222222">.x, </span><span style="color:#D43324">required</span><span style="color:#D43324"> this</span><span style="color:#222222">.y});</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Vector3d</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> Vector2d</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> double</span><span style="color:#222222"> z;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Forward the y parameter to the named super constructor like:</span></span>
+<span class="line"><span style="color:#6E6E70">  // Vector3d.yzPlane({required double y, required this.z})</span></span>
+<span class="line"><span style="color:#6E6E70">  //       : super.named(x: 0, y: y);</span></span>
+<span class="line"><span style="color:#0468D7">  Vector3d</span><span style="color:#222222">.</span><span style="color:#6200EE">yzPlane</span><span style="color:#222222">({</span><span style="color:#D43324">required</span><span style="color:#D43324"> super</span><span style="color:#222222">.y, </span><span style="color:#D43324">required</span><span style="color:#D43324"> this</span><span style="color:#222222">.z}) : </span><span style="color:#D43324">super</span><span style="color:#222222">.</span><span style="color:#6200EE">named</span><span style="color:#222222">(x: </span><span style="color:#11796D">0</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div>
+            
+<nav id="prev-next">
+  <ul>
+    <li class="previous">
+      
+        <a href="/language/classes">&lang;&nbsp;&nbsp;Classes</a>
+      
+    </li>
+    <li class="next">
+      
+        <a href="/language/methods">Methods&nbsp;&nbsp;&rang;</a>
+      
+    </li>
+  </ul>
+</nav>
+
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/language/constructors.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/language/constructors/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/language/constructors.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

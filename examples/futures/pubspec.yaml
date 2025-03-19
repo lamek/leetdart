@@ -1,0 +1,14 @@
+name: futures_examples
+description: dart.dev futures and error handling examples.
+version: 0.0.1
+publish_to: none
+
+resolution: workspace
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  examples_util: {path: ../util}
+
+dev_dependencies:
+  test: ^1.25.8

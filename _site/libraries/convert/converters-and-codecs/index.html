@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Learn how to write efficient conversions.">
+  <title>Converters and codecs | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Converters and codecs">
+  <meta name="twitter:description" content="Learn how to write efficient conversions.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Converters and codecs">
+  <meta property="og:description" content="Learn how to write efficient conversions.">
+  <meta property="og:url" content="/libraries/convert/converters-and-codecs/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html obsolete">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  <div class="alert alert-warning">
+    <h4 class="text-center">
+      Some of the content of this page might be out of date.
+    </h4>
+  </div>
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="true" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link active" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#big-picture">Big picture</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#codec">Codec</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#converter">Converter</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#chunked-conversion">Chunked conversion</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#chunkedconversionsink">ChunkedConversionSink</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#example">Example</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#specialized-chunkedconversionsinks">Specialized ChunkedConversionSinks</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Converters and codecs</h1>
+              </div>
+            
+
+
+  
+<div id="site-toc--inline" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#big-picture">Big picture</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#codec">Codec</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#converter">Converter</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#chunked-conversion">Chunked conversion</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#chunkedconversionsink">ChunkedConversionSink</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#example">Example</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#specialized-chunkedconversionsinks">Specialized ChunkedConversionSinks</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+<p><em>Written by Florian Loitsch <br>
+February 2014 (updated March 2015)</em></p>
+<p>Converting data between different representations is a common task in computer
+engineering. Dart is no exception and comes with
+<a href="https://api.dart.dev/dart-convert/dart-convert-library.html">dart:convert</a>, a
+core library that provides a set of converters
+and useful tools to build new converters.
+Examples of converters provided by the library include those
+for commonly used encodings such as JSON and UTF-8.
+In this document, we show how Dart's
+converters work and how you can create your own efficient converters
+that fit into the Dart world.</p>
+<div class="header-wrapper">
+<h2 id="big-picture">Big picture</h2>
+<a class="heading-link" href="#big-picture" aria-label="Link to 'Big picture' section">#</a></div>
+<p>Dart's conversion architecture is
+based on <em>converters</em>, which translate from one representation to another.
+When conversions are reversible, two converters are grouped together into a
+<em>codec</em> (coder-decoder). The term codec is frequently used for audio and
+video processing but also applies to string encodings such as UTF-8 or JSON.</p>
+<p>By convention, all converters in Dart use the abstractions provided in the
+dart:convert library. This provides a consistent API for developers and ensures
+that converters can work together.
+For instance, converters (or codecs) can be fused together if their
+type matches, and the resulting converter can then be used as a single unit.
+Furthermore, these fused converters frequently work more efficiently than if
+they had been used separately.</p>
+<div class="header-wrapper">
+<h2 id="codec">Codec</h2>
+<a class="heading-link" href="#codec" aria-label="Link to 'Codec' section">#</a></div>
+<p>A codec is a combination of two converters where one encodes
+and the other one decodes:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">abstract</span><span style="color:#D43324"> class</span><span style="color:#0468D7"> Codec</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">S</span><span style="color:#222222">, </span><span style="color:#0468D7">T</span><span style="color:#222222">> {</span></span>
+<span class="line"><span style="color:#D43324">  const</span><span style="color:#0468D7"> Codec</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  T</span><span style="color:#6200EE"> encode</span><span style="color:#222222">(</span><span style="color:#0468D7">S</span><span style="color:#222222"> input) => encoder.</span><span style="color:#6200EE">convert</span><span style="color:#222222">(input);</span></span>
+<span class="line"><span style="color:#0468D7">  S</span><span style="color:#6200EE"> decode</span><span style="color:#222222">(</span><span style="color:#0468D7">T</span><span style="color:#222222"> encoded) => decoder.</span><span style="color:#6200EE">convert</span><span style="color:#222222">(encoded);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  Converter</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">S</span><span style="color:#222222">, </span><span style="color:#0468D7">T</span><span style="color:#222222">> </span><span style="color:#D43324">get</span><span style="color:#222222"> encoder;</span></span>
+<span class="line"><span style="color:#0468D7">  Converter</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">T</span><span style="color:#222222">, </span><span style="color:#0468D7">S</span><span style="color:#222222">> </span><span style="color:#D43324">get</span><span style="color:#222222"> decoder;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  Codec</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">S</span><span style="color:#222222">, </span><span style="color:#0468D7">dynamic</span><span style="color:#222222">> </span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#0468D7">Codec</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">T</span><span style="color:#222222">, </span><span style="color:#0468D7">dynamic</span><span style="color:#222222">> other) { .. }</span></span>
+<span class="line"><span style="color:#0468D7">  Codec</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">T</span><span style="color:#222222">, </span><span style="color:#0468D7">S</span><span style="color:#222222">> </span><span style="color:#D43324">get</span><span style="color:#222222"> inverted => ...;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>As can be seen, codecs provide convenience methods such as <code>encode()</code> and
+<code>decode()</code> that are expressed in terms of the encoder and decoder. The <code>fuse()</code>
+method and <code>inverted</code> getter allow you to fuse converters and
+change the direction of a codec, respectively.
+The base implementation of
+<a href="https://api.dart.dev/dart-convert/Codec-class.html">Codec</a>
+for these two members
+provides a solid default implementation
+and implementers usually don't need to worry about them.</p>
+<p>The <code>encode()</code> and <code>decode()</code>
+methods, too, may be left untouched, but they can be extended for additional
+arguments. For example, the
+<a href="https://api.dart.dev/dart-convert/JsonCodec-class.html">JsonCodec</a>
+adds named arguments to <code>encode()</code> and <code>decode()</code>
+to make these methods more useful:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">dynamic</span><span style="color:#6200EE"> decode</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> source, {</span><span style="color:#6200EE">reviver</span><span style="color:#222222">(</span><span style="color:#D43324">var</span><span style="color:#222222"> key, </span><span style="color:#D43324">var</span><span style="color:#222222"> value)}) { … }</span></span>
+<span class="line"><span style="color:#0468D7">String</span><span style="color:#6200EE"> encode</span><span style="color:#222222">(</span><span style="color:#0468D7">Object</span><span style="color:#222222"> value, {</span><span style="color:#6200EE">toEncodable</span><span style="color:#222222">(</span><span style="color:#D43324">var</span><span style="color:#222222"> object)}) { … }</span></span></code></pre></div></div><p>The codec can be instantiated with arguments that are used as default
+values, unless they are overridden by the named arguments during the
+<code>encode()</code>/<code>decode()</code> call.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> JsonCodec</span><span style="color:#222222">({</span><span style="color:#6200EE">reviver</span><span style="color:#222222">(</span><span style="color:#D43324">var</span><span style="color:#222222"> key, </span><span style="color:#D43324">var</span><span style="color:#222222"> value), </span><span style="color:#6200EE">toEncodable</span><span style="color:#222222">(</span><span style="color:#D43324">var</span><span style="color:#222222"> object)})</span></span>
+<span class="line"><span style="color:#222222">  ...</span></span></code></pre></div></div><p>As a general rule: if a codec can be configured, it should add named arguments
+to the <code>encode()</code>/<code>decode()</code> methods and allow their defaults to be
+set in constructors.
+When possible, codec constructors should be <code>const</code> constructors.</p>
+<div class="header-wrapper">
+<h2 id="converter">Converter</h2>
+<a class="heading-link" href="#converter" aria-label="Link to 'Converter' section">#</a></div>
+<p>Converters, and in particular their <code>convert()</code> methods, are
+where the real conversions happen:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">T</span><span style="color:#6200EE"> convert</span><span style="color:#222222">(</span><span style="color:#0468D7">S</span><span style="color:#222222"> input);  </span><span style="color:#6E6E70">// where T is the target and S the source type.</span></span></code></pre></div></div><p>A minimal converter implementation only needs to extend the
+<a href="https://api.dart.dev/dart-convert/Converter-class.html">Converter</a> class and
+implement the <code>convert()</code> method. Similar to the Codec class, converters can be
+made configurable by extending the constructors and adding named arguments to
+the <code>convert()</code> method.</p>
+<p>Such a minimal converter works in synchronous settings, but
+does not work when used with chunks (either synchronously or asynchronously). In
+particular, such a simple converter doesn't work as a transformer (one of the
+nicer features of Converters). A fully implemented converter implements the
+<a href="https://api.dart.dev/dart-async/StreamTransformer-class.html">StreamTransformer</a>
+interface and can thus be given to the <code>Stream.transform()</code> method.</p>
+<p>Probably the most common use case is the decoding of UTF-8 with
+<a href="https://api.dart.dev/dart-convert/Utf8Codec-class.html">utf8.decoder</a>:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">File</span><span style="color:#222222">.</span><span style="color:#6200EE">openRead</span><span style="color:#222222">().</span><span style="color:#6200EE">transform</span><span style="color:#222222">(utf8.decoder).</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="chunked-conversion">Chunked conversion</h2>
+<a class="heading-link" href="#chunked-conversion" aria-label="Link to 'Chunked conversion' section">#</a></div>
+<p>The concept of chunked conversions can be confusing, but at its core, it is
+relatively simple. When a chunked conversion (including a stream
+transformation) is started, the converter's
+<a href="https://api.dart.dev/dart-convert/Converter/startChunkedConversion.html">startChunkedConversion</a>
+method is invoked with an output-
+sink as argument. The method then returns an input sink into which the caller
+puts data.</p>
+<p><img src="/assets/img/articles/converters-and-codecs/chunked-conversion.png" alt="Chunked conversion"></p>
+<p><strong>Note</strong>: An asterisk (<code>*</code>) in the diagram represents optional multiple calls.</p>
+<p>In the diagram, the first step consists of creating an <code>outputSink</code> that should
+be filled with the converted data. Then, the user invokes the
+<code>startChunkedConversion()</code> method of the converter with the output sink.
+The result is an input sink with methods <code>add()</code> and <code>close()</code>.</p>
+<p>At a later point, the code that started the chunked conversion invokes,
+possibly multiple times, the <code>add()</code> method with
+some data. The data is converted by the input sink. If the converted data is
+ready the input sink sends it to the output sink, possibly with multiple
+<code>add()</code> calls. Eventually the user finishes the conversion by invoking
+<code>close()</code>. At this point any remaining converted data is sent from the input
+sink to the output sink and the output sink is closed.</p>
+<p>Depending on the converter the input sink may need to buffer parts of the
+incoming data. For example, a line-splitter that receives <code>ab\ncd</code> as the first
+chunk can safely invoke its output sink with <code>ab</code>, but needs to wait for the
+next data (or the <code>close()</code> call) before it can handle <code>cd</code>. If the next data is
+<code>e\nf</code>, the input sink must concatenate <code>cd</code> and <code>e</code> and invoke the output sink
+with the string <code>cde</code>, while buffering <code>f</code> for the next data event (or the
+<code>close()</code> call).</p>
+<p>The complexity of the input sink (in combination with the converter) varies.
+Some chunked conversions are trivially mapped to the non-chunked versions (like
+a String→String converter that removes the character <code>a</code>), while others are
+more complicated. A safe, although inefficient (and usually unrecommended)
+way to implement the chunked conversion is to buffer and concatenate all the
+incoming data and to do the conversion in one go. This is, how the JSON decoder
+is currently (January 2014) implemented.</p>
+<p>Interestingly, the type of chunked conversion cannot be extrapolated from its
+synchronous conversion. For example, the
+<a href="https://api.dart.dev/dart-convert/HtmlEscape-class.html">HtmlEscape</a>
+converter synchronously
+converts Strings to Strings, and asynchronously converts chunks of Strings to
+chunks of Strings (String→String). The
+<a href="https://api.dart.dev/dart-convert/LineSplitter-class.html">LineSplitter</a>
+converter synchronously
+converts Strings to List<String> (the individual lines). Despite the difference
+in the synchronous signature, the chunked version of the LineSplitter converter
+has the same signature as
+HtmlEscape: String→String. In this case each individual output chunk
+represents one line.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:convert'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:async'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() </span><span style="color:#D43324">async</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#6E6E70">  // HtmlEscape synchronously converts Strings to Strings.</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> HtmlEscape</span><span style="color:#222222">().</span><span style="color:#6200EE">convert</span><span style="color:#222222">(</span><span style="color:#11796D">"foo"</span><span style="color:#222222">)); </span><span style="color:#6E6E70">// "foo".</span></span>
+<span class="line"><span style="color:#6E6E70">  // When used in a chunked way it converts from Strings</span></span>
+<span class="line"><span style="color:#6E6E70">  // to Strings.</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> stream = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Stream</span><span style="color:#222222">.</span><span style="color:#6200EE">fromIterable</span><span style="color:#222222">([</span><span style="color:#11796D">"f"</span><span style="color:#222222">, </span><span style="color:#11796D">"o"</span><span style="color:#222222">, </span><span style="color:#11796D">"o"</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#D43324">await</span><span style="color:#222222"> (stream.</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> HtmlEscape</span><span style="color:#222222">())</span></span>
+<span class="line"><span style="color:#222222">                     .</span><span style="color:#6200EE">toList</span><span style="color:#222222">()));    </span><span style="color:#6E6E70">// ["f", "o", "o"].</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // LineSplitter synchronously converts Strings to Lists of String.</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> LineSplitter</span><span style="color:#222222">().</span><span style="color:#6200EE">convert</span><span style="color:#222222">(</span><span style="color:#11796D">"foo</span><span style="color:#222222">\n</span><span style="color:#11796D">bar"</span><span style="color:#222222">)); </span><span style="color:#6E6E70">// ["foo", "bar"]</span></span>
+<span class="line"><span style="color:#6E6E70">  // However, asynchronously it converts from Strings to Strings (and</span></span>
+<span class="line"><span style="color:#6E6E70">  // not Lists of Strings).</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> stream2 = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Stream</span><span style="color:#222222">.</span><span style="color:#6200EE">fromIterable</span><span style="color:#222222">([</span><span style="color:#11796D">"fo"</span><span style="color:#222222">, </span><span style="color:#11796D">"o</span><span style="color:#222222">\n</span><span style="color:#11796D">b"</span><span style="color:#222222">, </span><span style="color:#11796D">"ar"</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">"</span><span style="color:#11796D">${</span><span style="color:#222222">await</span><span style="color:#11796D"> (</span><span style="color:#222222">stream2</span><span style="color:#11796D">.</span><span style="color:#6200EE">transform</span><span style="color:#11796D">(</span><span style="color:#222222">const</span><span style="color:#0468D7"> LineSplitter</span><span style="color:#11796D">())</span></span>
+<span class="line"><span style="color:#11796D">                          .</span><span style="color:#6200EE">toList</span><span style="color:#11796D">())}</span><span style="color:#11796D">"</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>In general, the type of the chunked conversion is determined by the most
+useful case when used as a StreamTransformer.</p>
+<div class="header-wrapper">
+<h3 id="chunkedconversionsink">ChunkedConversionSink</h3>
+<a class="heading-link" href="#chunkedconversionsink" aria-label="Link to 'ChunkedConversionSink' section">#</a></div>
+<p><a href="https://api.dart.dev/dart-convert/ChunkedConversionSink-class.html">ChunkedConversionSinks</a>
+are used to add new data to a
+converter or as output from converters. The basic ChunkedConversionSink comes
+with two methods: <code>add()</code> and <code>close()</code>. These have the same functionality as in
+all other sinks of the system such as
+<a href="https://api.dart.dev/dart-core/StringSink-class.html">StringSinks</a>
+or
+<a href="https://api.dart.dev/dart-async/StreamSink-class.html">StreamSinks</a>.</p>
+<p>The ChunkedConversionSinks semantics are similar to that of
+<a href="https://api.dart.dev/dart-io/IOSink-class.html">IOSinks</a>:
+data added to the
+sink must not be modified unless it can be guaranteed that the data has been
+handled. For Strings this is not a problem (since they are immutable), but for
+lists of bytes it frequently means allocating a fresh copy of the list. This
+can be inefficient and the dart:convert library thus comes with subclasses of
+ChunkedConversionSink that support more efficient ways of passing data.</p>
+<p>For instance, the
+<a href="https://api.dart.dev/dart-convert/ByteConversionSink-class.html">ByteConversionSink</a>,
+has the additional method:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> addSlice</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> chunk, </span><span style="color:#0468D7">int</span><span style="color:#222222"> start, </span><span style="color:#0468D7">int</span><span style="color:#222222"> end, </span><span style="color:#0468D7">bool</span><span style="color:#222222"> isLast);</span></span></code></pre></div></div><p>Semantically, it
+accepts a list (which may not be held onto), the sub-range that the converter
+operates on, and a boolean <code>isLast</code>, which can be set instead of calling
+<code>close()</code>.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:convert'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> outSink = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">.</span><span style="color:#6200EE">withCallback</span><span style="color:#222222">((chunks) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(chunks.single); </span><span style="color:#6E6E70">// 𝅘𝅥𝅯</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> inSink = utf8.decoder.</span><span style="color:#6200EE">startChunkedConversion</span><span style="color:#222222">(outSink);</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> list = [</span><span style="color:#11796D">0xF0</span><span style="color:#222222">, </span><span style="color:#11796D">0x9D</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#222222">  inSink.</span><span style="color:#6200EE">addSlice</span><span style="color:#222222">(list, </span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">, </span><span style="color:#11796D">false</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#6E6E70">  // Since we used `addSlice` we are allowed to reuse the list.</span></span>
+<span class="line"><span style="color:#222222">  list[</span><span style="color:#11796D">0</span><span style="color:#222222">] = </span><span style="color:#11796D">0x85</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  list[</span><span style="color:#11796D">1</span><span style="color:#222222">] = </span><span style="color:#11796D">0xA1</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  inSink.</span><span style="color:#6200EE">addSlice</span><span style="color:#222222">(list, </span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">, </span><span style="color:#11796D">true</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>As a user of the chunked conversion sink (which is used both as input and output
+of converters), this simply provides more choice. The fact that the list is not
+held onto, means that you can use a cache and reuse that one for every call.
+Combining <code>add()</code> with <code>close()</code> may help the receiver in that it can avoid
+buffering data. Accepting sub-lists avoids expensive calls to <code>subList()</code>
+(to copy the data).</p>
+<p>The drawback of this interface is that it is more complicated to implement. To
+ease the pain for developers, every improved chunked conversion sink of
+dart:convert also comes with a base class that implements all methods except one
+(which is abstract). The implementor of the conversion sink can then decide
+whether to take advantage of the additional methods.</p>
+<p><strong>Note</strong>: <em>Chunked conversion sinks <em>must</em> extend the corresponding base class.
+This assures that adding functionality to the existing sink interfaces does
+not break the extended sinks.</em></p>
+<div class="header-wrapper">
+<h2 id="example">Example</h2>
+<a class="heading-link" href="#example" aria-label="Link to 'Example' section">#</a></div>
+<p>This section shows all the steps needed to create a simple encryption
+converter and how a custom ChunkedConversionSink can improve performance.</p>
+<p>Let's start with the simple synchronous converter,
+whose encryption routine simply rotates bytes by the given key:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:convert'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">/// A simple extension of Rot13 to bytes and a key.</span></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> RotConverter</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> Converter</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>, </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> _key;</span></span>
+<span class="line"><span style="color:#D43324">  const</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">._key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">convert</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data, { </span><span style="color:#0468D7">int</span><span style="color:#222222"> key }) {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (key == </span><span style="color:#11796D">null</span><span style="color:#222222">) key = </span><span style="color:#D43324">this</span><span style="color:#222222">._key;</span></span>
+<span class="line"><span style="color:#D43324">    var</span><span style="color:#222222"> result = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>(data.length);</span></span>
+<span class="line"><span style="color:#D43324">    for</span><span style="color:#222222"> (</span><span style="color:#0468D7">int</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">; i &#x3C; data.length; i++) {</span></span>
+<span class="line"><span style="color:#222222">      result[i] = (data[i] + key) % </span><span style="color:#11796D">256</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#222222"> result;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The corresponding Codec class is also simple:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> Rot</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> Codec</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>, </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> _key;</span></span>
+<span class="line"><span style="color:#D43324">  const</span><span style="color:#0468D7"> Rot</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">._key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">encode</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data, { </span><span style="color:#0468D7">int</span><span style="color:#222222"> key }) {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (key == </span><span style="color:#11796D">null</span><span style="color:#222222">) key = </span><span style="color:#D43324">this</span><span style="color:#222222">._key;</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key).</span><span style="color:#6200EE">convert</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">decode</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data, { </span><span style="color:#0468D7">int</span><span style="color:#222222"> key }) {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (key == </span><span style="color:#11796D">null</span><span style="color:#222222">) key = </span><span style="color:#D43324">this</span><span style="color:#222222">._key;</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(-key).</span><span style="color:#6200EE">convert</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">  RotConverter</span><span style="color:#D43324"> get</span><span style="color:#222222"> encoder => </span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(_key);</span></span>
+<span class="line"><span style="color:#0468D7">  RotConverter</span><span style="color:#D43324"> get</span><span style="color:#222222"> decoder => </span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(-_key);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>We can (and should) avoid some of the <code>new</code> allocations, but for simplicity we
+allocate a new instance of RotConverter every time one is needed.</p>
+<p>This is how we use the Rot codec:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> Rot</span><span style="color:#0468D7"> ROT128</span><span style="color:#222222"> = </span><span style="color:#D43324">const</span><span style="color:#0468D7"> Rot</span><span style="color:#222222">(</span><span style="color:#11796D">128</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">const</span><span style="color:#0468D7"> Rot</span><span style="color:#0468D7"> ROT1</span><span style="color:#222222"> = </span><span style="color:#D43324">const</span><span style="color:#0468D7"> Rot</span><span style="color:#222222">(</span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(</span><span style="color:#11796D">128</span><span style="color:#222222">).</span><span style="color:#6200EE">convert</span><span style="color:#222222">([</span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">128</span><span style="color:#222222">, </span><span style="color:#11796D">255</span><span style="color:#222222">, </span><span style="color:#11796D">1</span><span style="color:#222222">]));   </span><span style="color:#6E6E70">// [128, 0, 127, 129]</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(</span><span style="color:#11796D">128</span><span style="color:#222222">).</span><span style="color:#6200EE">convert</span><span style="color:#222222">([</span><span style="color:#11796D">128</span><span style="color:#222222">, </span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">127</span><span style="color:#222222">, </span><span style="color:#11796D">129</span><span style="color:#222222">])); </span><span style="color:#6E6E70">// [0, 128, 255, 1]</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(-</span><span style="color:#11796D">128</span><span style="color:#222222">).</span><span style="color:#6200EE">convert</span><span style="color:#222222">([</span><span style="color:#11796D">128</span><span style="color:#222222">, </span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">127</span><span style="color:#222222">, </span><span style="color:#11796D">129</span><span style="color:#222222">]));</span><span style="color:#6E6E70">// [0, 128, 255, 1]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#0468D7">ROT1</span><span style="color:#222222">.</span><span style="color:#6200EE">decode</span><span style="color:#222222">(</span><span style="color:#0468D7">ROT1</span><span style="color:#222222">.</span><span style="color:#6200EE">encode</span><span style="color:#222222">([</span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">128</span><span style="color:#222222">, </span><span style="color:#11796D">255</span><span style="color:#222222">, </span><span style="color:#11796D">1</span><span style="color:#222222">])));          </span><span style="color:#6E6E70">// [0, 128, 255, 1]</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#0468D7">ROT128</span><span style="color:#222222">.</span><span style="color:#6200EE">decode</span><span style="color:#222222">(</span><span style="color:#0468D7">ROT128</span><span style="color:#222222">.</span><span style="color:#6200EE">encode</span><span style="color:#222222">([</span><span style="color:#11796D">0</span><span style="color:#222222">, </span><span style="color:#11796D">128</span><span style="color:#222222">, </span><span style="color:#11796D">255</span><span style="color:#222222">, </span><span style="color:#11796D">1</span><span style="color:#222222">])));      </span><span style="color:#6E6E70">// [0, 128, 255, 1]</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>We are on the right track. The codec works, but it is still missing the chunked
+encoding part. Because each byte is encoded separately we can fall back to
+the synchronous conversion method:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#222222">  ...</span></span>
+<span class="line"><span style="color:#0468D7">  RotSink</span><span style="color:#6200EE"> startChunkedConversion</span><span style="color:#222222">(sink) {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> new</span><span style="color:#0468D7"> RotSink</span><span style="color:#222222">(_key, sink);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> RotSink</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> _converter;</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> _outSink;</span></span>
+<span class="line"><span style="color:#0468D7">  RotSink</span><span style="color:#222222">(key, </span><span style="color:#D43324">this</span><span style="color:#222222">._outSink) : _converter = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> add</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) {</span></span>
+<span class="line"><span style="color:#222222">    _outSink.</span><span style="color:#6200EE">add</span><span style="color:#222222">(_converter.</span><span style="color:#6200EE">convert</span><span style="color:#222222">(data));</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> close</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#222222">    _outSink.</span><span style="color:#6200EE">close</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Now, we can use the converter with chunked conversions or even for stream
+transformations:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:io'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> args) {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> inFile = args[</span><span style="color:#11796D">0</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> outFile = args[</span><span style="color:#11796D">1</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> key = </span><span style="color:#0468D7">int</span><span style="color:#222222">.</span><span style="color:#6200EE">parse</span><span style="color:#222222">(args[</span><span style="color:#11796D">2</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#D43324">  new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(inFile)</span></span>
+<span class="line"><span style="color:#222222">    .</span><span style="color:#6200EE">openRead</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">    .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key))</span></span>
+<span class="line"><span style="color:#222222">    .</span><span style="color:#6200EE">pipe</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(outFile).</span><span style="color:#6200EE">openWrite</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="specialized-chunkedconversionsinks">Specialized ChunkedConversionSinks</h3>
+<a class="heading-link" href="#specialized-chunkedconversionsinks" aria-label="Link to 'Specialized ChunkedConversionSinks' section">#</a></div>
+<p>For many purposes, the current version of Rot is sufficient. That is, the
+benefit of improvements would be outweighed by the cost of more complex code
+and test requirements. Let's assume, however,
+that the performance of the converter is critical
+(it's on the hot path and up on the profile).
+We furthermore assume that
+the cost of allocating a new list for every chunk is killing performance
+(a reasonable assumption).</p>
+<p>We start by making the allocation cost cheaper: by using a
+<a href="https://api.dart.dev/dart-typed_data/Uint8List-class.html">typed byte-list</a>
+we can reduce the size of the allocated list by a factor of 8 (on 64-bit
+machines). This one line change doesn't remove the allocation, but makes it much
+cheaper.</p>
+<p>We can also avoid the allocation altogether if we overwrite the input. In
+the following version of RotSink, we add a new method <code>addModifiable()</code> that
+does exactly that:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> RotSink</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> _key;</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> _outSink;</span></span>
+<span class="line"><span style="color:#0468D7">  RotSink</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">._key, </span><span style="color:#D43324">this</span><span style="color:#222222">._outSink);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> add</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) {</span></span>
+<span class="line"><span style="color:#6200EE">    addModifiable</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> Uint8List</span><span style="color:#222222">.</span><span style="color:#6200EE">fromList</span><span style="color:#222222">(data));</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> addModifiable</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) {</span></span>
+<span class="line"><span style="color:#D43324">    for</span><span style="color:#222222"> (</span><span style="color:#0468D7">int</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">; i &#x3C; data.length; i++) {</span></span>
+<span class="line"><span style="color:#222222">      data[i] = (data[i] + _key) % </span><span style="color:#11796D">256</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">    _outSink.</span><span style="color:#6200EE">add</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> close</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#222222">    _outSink.</span><span style="color:#6200EE">close</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>For simplicity we propose a new method that consumes a complete list. A more
+advanced method (for example <code>addModifiableSlice()</code>) would take range arguments
+(<code>from</code>, <code>to</code>) and an <code>isLast</code> boolean as arguments.</p>
+<p>This new method is not yet used by transformers, but we can already use it when
+invoking <code>startChunkedConversion()</code> explicitly.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> outSink = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">.</span><span style="color:#6200EE">withCallback</span><span style="color:#222222">((chunks) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(chunks); </span><span style="color:#6E6E70">// [[31, 32, 33], [24, 25, 26]]</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> inSink = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(</span><span style="color:#11796D">30</span><span style="color:#222222">).</span><span style="color:#6200EE">startChunkedConversion</span><span style="color:#222222">(outSink);</span></span>
+<span class="line"><span style="color:#222222">  inSink.</span><span style="color:#6200EE">addModifiable</span><span style="color:#222222">([</span><span style="color:#11796D">1</span><span style="color:#222222">, </span><span style="color:#11796D">2</span><span style="color:#222222">, </span><span style="color:#11796D">3</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#222222">  inSink.</span><span style="color:#6200EE">addModifiable</span><span style="color:#222222">([</span><span style="color:#11796D">250</span><span style="color:#222222">, </span><span style="color:#11796D">251</span><span style="color:#222222">, </span><span style="color:#11796D">252</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#222222">  inSink.</span><span style="color:#6200EE">close</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>In this small example, performance isn't visibly different,
+but internally the
+chunked conversion avoids allocating new lists for the individual chunks.
+For two small chunks, it doesn't make a difference, but
+if we implement this for the stream transformer,
+encrypting a bigger file can be noticeably faster.</p>
+<p>To do this,
+we can make use of the undocumented feature that IOStreams provide modifiable lists.
+We could now simply rewrite <code>add()</code> and
+point it directly to <code>addModifiable()</code>. In general, this is not safe,
+and
+such a converter would be the potential source of hard-to-track bugs. Instead,
+we write a converter that does the unmodifiable-to-modifiable conversion
+explicitly, and then fuse the two converters.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> ToModifiableConverter</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> Converter</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>, </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#0468D7">  List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> </span><span style="color:#6200EE">convert</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) => data;</span></span>
+<span class="line"><span style="color:#0468D7">  ToModifiableSink</span><span style="color:#6200EE"> startChunkedConversion</span><span style="color:#222222">(</span><span style="color:#0468D7">RotSink</span><span style="color:#222222"> sink) {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> new</span><span style="color:#0468D7"> ToModifiableSink</span><span style="color:#222222">(sink);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> ToModifiableSink</span></span>
+<span class="line"><span style="color:#D43324">    extends</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>, </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> RotSink</span><span style="color:#222222"> sink;</span></span>
+<span class="line"><span style="color:#0468D7">  ToModifiableSink</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.sink);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> add</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) { sink.</span><span style="color:#6200EE">addModifiable</span><span style="color:#222222">(data); }</span></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> close</span><span style="color:#222222">() { sink.</span><span style="color:#6200EE">close</span><span style="color:#222222">(); }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>ToModifiableSink just signals the next sink that the incoming chunk
+is modifiable. We can use this to make our pipeline more efficient:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> args) {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> inFile = args[</span><span style="color:#11796D">0</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> outFile = args[</span><span style="color:#11796D">1</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> key = </span><span style="color:#0468D7">int</span><span style="color:#222222">.</span><span style="color:#6200EE">parse</span><span style="color:#222222">(args[</span><span style="color:#11796D">2</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#D43324">  new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(inFile)</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">openRead</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#D43324">          new</span><span style="color:#0468D7"> ToModifiableConverter</span><span style="color:#222222">().</span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key)))</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">pipe</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(outFile).</span><span style="color:#6200EE">openWrite</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>On my machine, this small modification brought the encryption time of an 11MB
+file from 450ms down to 260ms. We achieved this speed up without losing
+compatibility with existing codecs (with regard to the <code>fuse()</code> method)
+and the converter still functions as a stream transformer.</p>
+<p>Reusing the input works nicely with other
+converters and not just with our Rot cipher. We should therefore make an
+interface that generalizes the concept. For simplicity, we named it
+<code>CipherSink</code>, although it has, of course, uses outside the encryption world.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">abstract</span><span style="color:#D43324"> class</span><span style="color:#0468D7"> CipherSink</span></span>
+<span class="line"><span style="color:#D43324">    extends</span><span style="color:#0468D7"> ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>, </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> {</span></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> addModifiable</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) { </span><span style="color:#6200EE">add</span><span style="color:#222222">(data); }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>We can then make our RotSink private and expose the CipherSink instead.
+Other developers can now reuse our work (CipherSink and ToModifiableConverter)
+and benefit from it.</p>
+<p>But we are not done yet.</p>
+<p>Although we won't make the cipher faster anymore,
+we can improve the output side of our Rot converter.
+Take, for instance, the fusion of two encryptions:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> main</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">> args) {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> inFile = args[</span><span style="color:#11796D">0</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> outFile = args[</span><span style="color:#11796D">1</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#222222"> key = </span><span style="color:#0468D7">int</span><span style="color:#222222">.</span><span style="color:#6200EE">parse</span><span style="color:#222222">(args[</span><span style="color:#11796D">2</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#6E6E70">  // Double-strength cipher running the Rot-cipher twice.</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> transformer = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ToModifiableConverter</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">       .</span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key))  </span><span style="color:#6E6E70">// &#x3C;= fused RotConverters.</span></span>
+<span class="line"><span style="color:#222222">       .</span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key));</span></span>
+<span class="line"><span style="color:#D43324">  new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(inFile)</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">openRead</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(transformer)</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">pipe</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(outFile).</span><span style="color:#6200EE">openWrite</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Since the first RotConverter invokes <code>outSink.add()</code>, the second RotConverter
+assumes that input cannot be modified and allocates a copy. We can work around
+this by sandwiching a ToModifiableConverter in between the two ciphers:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> transformer = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ToModifiableConverter</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">       .</span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key))</span></span>
+<span class="line"><span style="color:#222222">       .</span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> ToModifiableConverter</span><span style="color:#222222">())</span></span>
+<span class="line"><span style="color:#222222">       .</span><span style="color:#6200EE">fuse</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> RotConverter</span><span style="color:#222222">(key));</span></span></code></pre></div></div><p>This works, but is hackish. We want the RotConverters to work without
+intermediate converters. The first cipher should look at the outSink and
+determines if it is a CipherSink or not. We can do this either,
+whenever we want to add a new chunk,
+or at the beginning when we start a chunked
+conversion. We prefer the latter approach:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">  /// Works more efficiently if given a CipherSink as argument.</span></span>
+<span class="line"><span style="color:#0468D7">  CipherSink</span><span style="color:#6200EE"> startChunkedConversion</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#0468D7">      ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> sink) {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (sink is! </span><span style="color:#0468D7">CipherSink</span><span style="color:#222222">) sink = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> _CipherSinkAdapter</span><span style="color:#222222">(sink);</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#D43324"> new</span><span style="color:#0468D7"> _RotSink</span><span style="color:#222222">(_key, sink);</span></span>
+<span class="line"><span style="color:#222222">  }</span></span></code></pre></div></div><p>_CipherSinkAdapter is simply:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> _CipherSinkAdapter</span><span style="color:#D43324"> implements</span><span style="color:#0468D7"> CipherSink</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  ChunkedConversionSink</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>, </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>> sink;</span></span>
+<span class="line"><span style="color:#0468D7">  _CipherSinkAdapter</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">.sink);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> add</span><span style="color:#222222">(data) { sink.</span><span style="color:#6200EE">add</span><span style="color:#222222">(data); }</span></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> addModifiable</span><span style="color:#222222">(data) { sink.</span><span style="color:#6200EE">add</span><span style="color:#222222">(data); }</span></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> close</span><span style="color:#222222">() { sink.</span><span style="color:#6200EE">close</span><span style="color:#222222">(); }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>We now only need to change the _RotSink to take advantage of the fact that it
+always receives a CipherSink as an argument to its constructor:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> _RotSink</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> CipherSink</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> _key;</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#0468D7"> CipherSink</span><span style="color:#222222"> _outSink;  </span><span style="color:#6E6E70">// &#x3C;= always a CipherSink.</span></span>
+<span class="line"><span style="color:#0468D7">  _RotSink</span><span style="color:#222222">(</span><span style="color:#D43324">this</span><span style="color:#222222">._key, </span><span style="color:#D43324">this</span><span style="color:#222222">._outSink);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> add</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) {</span></span>
+<span class="line"><span style="color:#6200EE">    addModifiable</span><span style="color:#222222">(data.</span><span style="color:#6200EE">toList</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> addModifiable</span><span style="color:#222222">(</span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">> data) {</span></span>
+<span class="line"><span style="color:#D43324">    for</span><span style="color:#222222"> (</span><span style="color:#0468D7">int</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">; i &#x3C; data.length; i++) {</span></span>
+<span class="line"><span style="color:#222222">      data[i] = (data[i] + _key) % </span><span style="color:#11796D">256</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">    _outSink.</span><span style="color:#6200EE">addModifiable</span><span style="color:#222222">(data);  </span><span style="color:#6E6E70">// &#x3C;= safe to call addModifiable.</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> close</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#222222">    _outSink.</span><span style="color:#6200EE">close</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>With these changes our super secure, double cipher won't allocate any new lists
+and our work is done.</p>
+<p>Thanks to Lasse Reichstein Holst Nielsen, Anders Johnsen, and Matias Meno who
+were a great help in writing this article.</p>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2015-03-17.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/libraries/convert/converters-and-codecs.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/libraries/convert/converters-and-codecs/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/libraries/convert/converters-and-codecs.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

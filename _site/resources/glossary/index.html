@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="A glossary reference for terminology used across dart.dev.">
+  <title>Glossary | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Glossary">
+  <meta name="twitter:description" content="A glossary reference for terminology used across dart.dev.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Glossary">
+  <meta property="og:description" content="A glossary reference for terminology used across dart.dev.">
+  <meta property="og:url" content="/resources/glossary/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script defer src="/assets/js/glossary.js"></script>
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  <body class="default.html glossary-page">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="true" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Glossary</h1>
+              </div>
+            <p>The following are definitions of terms used across the Dart documentation.</p>
+<section id="filter-and-search" class="hidden">
+  <div class="search-row">
+    <div class="search-wrapper">
+      <span class="material-symbols leading-icon" aria-hidden="true">search</span>
+      <input type="search" placeholder="Search terms..." aria-label="Search terms by name...">
+    </div>
+  </div>
+</section>
+<section id="content-search-results">
+<div class="card-list">
+<div class="card outlined-card glossary-card expandable-card" id="assist"
+  data-partial-matches="assist" data-full-matches="quick assist">
+<div class="card-header">
+<h2 class="card-title">Assist</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#assist" title="Link to card" aria-label="Link to Assist card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="assist-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Assist card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>An automated, local code edit targeted at making common improvements to code.</p>
+</div>
+<div id="assist-content" class="expandable-content">
+<p>An assist is an automated, local code edit targeted at making common
+improvements to code.
+Examples of assists include converting <code>switch</code> statements to <code>switch</code>
+expressions, reversing the <code>then</code> and <code>else</code> blocks in an <code>if</code> statement,
+and inserting widgets into a widget structure.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="#refactor" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    dictionary
+  </span>
+<span>Refactor</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="constant-context"
+  data-partial-matches="constant context" data-full-matches="implicit const">
+<div class="card-header">
+<h2 class="card-title">Constant context</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#constant-context" title="Link to card" aria-label="Link to Constant context card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="constant-context-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Constant context card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A region of code where the const keyword is implied and
+everything within that region must be a constant.</p>
+</div>
+<div id="constant-context-content" class="expandable-content">
+<p>A <em>constant context</em> is a region of code in which it
+isn't necessary to include the <code>const</code> keyword because it's implied by
+the fact that everything in that region is required to be a constant.
+The following locations are constant contexts:</p>
+<ul>
+<li>
+<p>Everything inside a list, map or set literal that's prefixed by
+the <code>const</code> keyword. For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> l = </span><span style="color:#D43324">const</span><span style="color:#222222"> [</span><span style="color:#6E6E70">/*constant context*/</span><span style="color:#222222">];</span></span></code></pre></div></div></li>
+<li>
+<p>The arguments inside an invocation of a constant constructor.
+For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> p = </span><span style="color:#D43324">const</span><span style="color:#0468D7"> Point</span><span style="color:#222222">(</span><span style="color:#6E6E70">/*constant context*/</span><span style="color:#222222">);</span></span></code></pre></div></div></li>
+<li>
+<p>The initializer for a variable that's prefixed by the <code>const</code> keyword.
+For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">const</span><span style="color:#222222"> v = </span><span style="color:#6E6E70">/*constant context*/</span><span style="color:#222222">;</span></span></code></pre></div></div></li>
+<li>
+<p>Annotations.</p>
+</li>
+<li>
+<p>The expression in a <code>case</code> clause. For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> f</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> e) {</span></span>
+<span class="line"><span style="color:#D43324">  switch</span><span style="color:#222222"> (e) {</span></span>
+<span class="line"><span style="color:#D43324">    case</span><span style="color:#6E6E70"> /*constant context*/</span><span style="color:#222222">:</span></span>
+<span class="line"><span style="color:#D43324">      break</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div></li>
+</ul>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/variables#final-and-const" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Final and const variables</span>
+</a>
+</li>
+<li>
+<a href="/effective-dart/usage#dont-use-const-redundantly" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Don't use const redundantly</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="definite-assignment"
+  data-partial-matches="definite assignment" data-full-matches="">
+<div class="card-header">
+<h2 class="card-title">Definite assignment</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#definite-assignment" title="Link to card" aria-label="Link to Definite assignment card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="definite-assignment-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Definite assignment card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>The determination of whether a variable has definitely been
+assigned a value before it's used.</p>
+</div>
+<div id="definite-assignment-content" class="expandable-content">
+<p>Definite assignment analysis is the process of determining, for each
+local variable at each point in the code, which of the following is true:</p>
+<ul>
+<li>The variable has definitely been assigned a value
+(<em>definitely assigned</em>).</li>
+<li>The variable has definitely not been assigned a value
+(<em>definitely unassigned</em>).</li>
+<li>The variable might or might not have been assigned a value,
+depending on the execution path taken to arrive at that point.</li>
+</ul>
+<p>Definite assignment analysis helps find problems in code,
+such as places where a variable that might not have been
+assigned a value is being referenced, or
+places where a variable that can only be assigned a value one time is
+being assigned after it might already have been assigned a value.</p>
+<p>For example, in the following code the variable <code>s</code> is
+definitely unassigned when it's passed as an argument to <code>print</code>:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> f</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> s;</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(s);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>But in the following code, the variable <code>s</code> is definitely assigned:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> f</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> name) {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> s = </span><span style="color:#11796D">'Hello </span><span style="color:#11796D">$</span><span style="color:#222222">name</span><span style="color:#11796D">!'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(s);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Definite assignment analysis can even tell whether
+a variable is definitely assigned (or unassigned) when
+there are multiple possible execution paths.
+In the following code the <code>print</code> function is called if
+execution goes through either the true or the false branch of the
+<code>if</code> statement, but because <code>s</code> is assigned no matter which branch is taken,
+it's definitely assigned before it's passed to <code>print</code>:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> f</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> name, </span><span style="color:#0468D7">bool</span><span style="color:#222222"> casual) {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> s;</span></span>
+<span class="line"><span style="color:#D43324">  if</span><span style="color:#222222"> (casual) {</span></span>
+<span class="line"><span style="color:#222222">    s = </span><span style="color:#11796D">'Hi </span><span style="color:#11796D">$</span><span style="color:#222222">name</span><span style="color:#11796D">!'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  } </span><span style="color:#D43324">else</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#222222">    s = </span><span style="color:#11796D">'Hello </span><span style="color:#11796D">$</span><span style="color:#222222">name</span><span style="color:#11796D">!'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(s);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>In flow analysis, the end of the <code>if</code> statement is referred to
+as a <em>join</em>—a place where two or more execution paths merge back together.
+Where there's a join, the analysis says that
+a variable is definitely assigned if it's definitely assigned along
+all of the paths that are merging, and definitely unassigned if
+it's definitely unassigned along all of the paths.</p>
+<p>Sometimes a variable is assigned a value on one path but not on another,
+in which case the variable might or might not have been assigned a value.
+In the following example, the true branch of the <code>if</code> statement might or
+might not be executed, so the variable might or might be assigned a value:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> f</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> name, </span><span style="color:#0468D7">bool</span><span style="color:#222222"> casual) {</span></span>
+<span class="line"><span style="color:#0468D7">  String</span><span style="color:#222222"> s;</span></span>
+<span class="line"><span style="color:#D43324">  if</span><span style="color:#222222"> (casual) {</span></span>
+<span class="line"><span style="color:#222222">    s = </span><span style="color:#11796D">'Hi </span><span style="color:#11796D">$</span><span style="color:#222222">name</span><span style="color:#11796D">!'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(s);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The same is true if there is a false branch that
+doesn't assign a value to <code>s</code>.</p>
+<p>The analysis of loops is a little more complicated,
+but it follows the same basic reasoning.
+For example, the condition in a <code>while</code> loop is always executed,
+but the body might or might not be. So just like an <code>if</code> statement,
+there's a join at the end of the <code>while</code> statement between
+the path in which the condition is <code>true</code> and
+the path in which the condition is <code>false</code>.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="https://github.com/dart-lang/language/blob/main/resources/type-system/flow-analysis.md" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Definite assignment specification</span>
+</a>
+</li>
+<li>
+<a href="/null-safety/understanding-null-safety#definite-assignment-analysis" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Understanding definite assignment analysis</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="function"
+  data-partial-matches="function" data-full-matches="procedure">
+<div class="card-header">
+<h2 class="card-title">Function</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#function" title="Link to card" aria-label="Link to Function card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="function-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Function card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>An umbrella term to refer to top-level functions, local functions,
+static methods, and instance methods.</p>
+</div>
+<div id="function-content" class="expandable-content">
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/functions" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Functions overview</span>
+</a>
+</li>
+<li>
+<a href="/language/methods" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Instance methods</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="irrefutable-pattern"
+  data-partial-matches="irrefutable pattern" data-full-matches="irrefutable context">
+<div class="card-header">
+<h2 class="card-title">Irrefutable pattern</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#irrefutable-pattern" title="Link to card" aria-label="Link to Irrefutable pattern card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="irrefutable-pattern-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Irrefutable pattern card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A pattern that always matches.</p>
+</div>
+<div id="irrefutable-pattern-content" class="expandable-content">
+<p><em>Irrefutable patterns</em> are patterns that always match.
+Irrefutable patterns are the only patterns that can appear in
+<em>irrefutable contexts</em>: the <a href="/language/patterns#variable-declaration"><em>declaration</em></a> and <a href="/language/patterns#variable-assignment"><em>assignment</em></a>
+pattern contexts.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/patterns#places-patterns-can-appear" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Places patterns can appear</span>
+</a>
+</li>
+<li>
+<a href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    school
+  </span>
+<span>Dive into Dart patterns and records</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="mixin-application"
+  data-partial-matches="mixin application" data-full-matches="with mixin">
+<div class="card-header">
+<h2 class="card-title">Mixin application</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#mixin-application" title="Link to card" aria-label="Link to Mixin application card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="mixin-application-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Mixin application card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A class created when a mixin is applied to a class.</p>
+</div>
+<div id="mixin-application-content" class="expandable-content">
+<p>A <em>mixin application</em> is the class created when
+a mixin is applied to a class.
+For example, consider the following declarations:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#222222"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">mixin</span><span style="color:#0468D7"> M</span><span style="color:#222222"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> B</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> A</span><span style="color:#D43324"> with</span><span style="color:#0468D7"> M</span><span style="color:#222222"> {}</span></span></code></pre></div></div><p>The class <code>B</code> is a subclass of the mixin application of <code>M</code> to <code>A</code>,
+sometimes nomenclated as <code>A+M</code>. The class <code>A+M</code> is a subclass of <code>A</code> and
+has members that are copied from <code>M</code>.</p>
+<p>You can give an actual name to a mixin application by defining it as:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#222222"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">mixin</span><span style="color:#0468D7"> M</span><span style="color:#222222"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A_M</span><span style="color:#222222"> = </span><span style="color:#0468D7">A</span><span style="color:#D43324"> with</span><span style="color:#0468D7"> M</span><span style="color:#222222">;</span></span></code></pre></div></div><p>Given this declaration of <code>A_M</code>, the following declaration of <code>B</code> is
+equivalent to the declaration of <code>B</code> in the original example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> B</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> A_M</span><span style="color:#222222"> {}</span></span></code></pre></div></div><div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/mixins" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Mixins in Dart</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="override-inference"
+  data-partial-matches="override inference" data-full-matches="">
+<div class="card-header">
+<h2 class="card-title">Override inference</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#override-inference" title="Link to card" aria-label="Link to Override inference card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="override-inference-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Override inference card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>How missing types in a method declaration are inferred.</p>
+</div>
+<div id="override-inference-content" class="expandable-content">
+<p>Override inference is the process by which any missing types in
+a method declaration are inferred based on the corresponding types from
+the method or methods that it overrides.</p>
+<p>If a candidate method (the method that's missing type information)
+overrides a single inherited method, then the
+corresponding types from the overridden method are inferred.
+For example, consider the following code:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#6200EE"> m</span><span style="color:#222222">(</span><span style="color:#0468D7">String</span><span style="color:#222222"> s) => </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> B</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> A</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  @override</span></span>
+<span class="line"><span style="color:#6200EE">  m</span><span style="color:#222222">(s) => </span><span style="color:#11796D">1</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The declaration of <code>m</code> in <code>B</code> is a candidate because
+it's missing both the return type and the parameter type.
+Because it overrides a single method (the method <code>m</code> in <code>A</code>),
+the types from the overridden method will be used to infer
+the missing types and it will be as if the method in <code>B</code> had been
+declared as <code>int m(String s) =&gt; 1;</code>.</p>
+<p>If a candidate method overrides multiple methods, and
+the function type one of those overridden methods, M<sub>s</sub>,
+is a supertype of the function types of all of the other overridden methods,
+then M<sub>s</sub> is used to infer the missing types.
+For example, consider the following code:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  int</span><span style="color:#6200EE"> m</span><span style="color:#222222">(</span><span style="color:#0468D7">num</span><span style="color:#222222"> n) => </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> B</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#0468D7">  num</span><span style="color:#6200EE"> m</span><span style="color:#222222">(</span><span style="color:#0468D7">int</span><span style="color:#222222"> i) => </span><span style="color:#11796D">0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> C</span><span style="color:#D43324"> implements</span><span style="color:#0468D7"> A</span><span style="color:#222222">, </span><span style="color:#0468D7">B</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">  @override</span></span>
+<span class="line"><span style="color:#6200EE">  m</span><span style="color:#222222">(n) => </span><span style="color:#11796D">1</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>The declaration of <code>m</code> in <code>C</code> is a candidate for override inference because
+it's missing both the return type and the parameter type.
+It overrides both <code>m</code> in <code>A</code> and <code>m</code> in <code>B</code>, so the compiler needs to
+choose one of them from which the missing types can be inferred.
+But because the function type of <code>m</code> in <code>A</code> (<code>int Function(num)</code>) is
+a supertype of the function type of <code>m</code> in <code>B</code> (<code>num Function(int)</code>),
+the function in <code>A</code> is used to infer the missing types. The result is
+the same as declaring the method in <code>C</code> as <code>int m(num n) =&gt; 1;</code>.</p>
+<p>It is an error if none of the overridden methods have a function type that
+is a supertype of all the other overridden methods.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/extend" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Inheritance in Dart</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="part-file"
+  data-partial-matches="part file" data-full-matches="part">
+<div class="card-header">
+<h2 class="card-title">Part file</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#part-file" title="Link to card" aria-label="Link to Part file card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="part-file-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Part file card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A Dart source file that contains a <code>part of</code> directive.</p>
+</div>
+<div id="part-file-content" class="expandable-content">
+<p>A part file is a Dart source file that contains a <code>part of</code> directive
+and is included in a library using the <code>part</code> directive.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/tools/pub/create-packages#organizing-a-package" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Guidance on libraries and parts</span>
+</a>
+</li>
+<li>
+<a href="/effective-dart/usage#do-use-strings-in-part-of-directives" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Use library URIs in `part of` directives</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="potentially-non-nullable"
+  data-partial-matches="potentially non-nullable" data-full-matches="potentially nullable">
+<div class="card-header">
+<h2 class="card-title">Potentially non-nullable</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#potentially-non-nullable" title="Link to card" aria-label="Link to Potentially non-nullable card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="potentially-non-nullable-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Potentially non-nullable card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A type that is either non-nullable explicitly or
+due to being a type parameter.</p>
+</div>
+<div id="potentially-non-nullable-content" class="expandable-content">
+<p>A type is <em>potentially non-nullable</em> if it's either
+explicitly non-nullable or if it's a type parameter.</p>
+<p>A type is explicitly non-nullable if it is a
+type name that isn't followed by a question mark (<code>?</code>).
+Note that there are a few types that are always nullable, such as
+<code>Null</code> and <code>dynamic</code>, and that <code>FutureOr</code> is only non-nullable if
+it isn't followed by a question mark <em>and</em>
+the type argument is non-nullable (such as <code>FutureOr&lt;String&gt;</code>).</p>
+<p>Type parameters are potentially non-nullable because the actual
+runtime type (the type specified as a type argument) might be non-nullable.
+For example, given a declaration of <code>class C&lt;T&gt; {}</code>,
+the type <code>C</code> could be used with a non-nullable type argument as in <code>C&lt;int&gt;</code>.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/null-safety/understanding-null-safety#nullability-and-generics" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Nullability and generics</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="public-library"
+  data-partial-matches="public library" data-full-matches="">
+<div class="card-header">
+<h2 class="card-title">Public library</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#public-library" title="Link to card" aria-label="Link to Public library card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="public-library-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Public library card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A library that is located in a package's <code>lib</code> directory but
+not inside the <code>lib/src</code> directory.</p>
+</div>
+<div id="public-library-content" class="expandable-content">
+<p>A public library is a library that is located inside the package's <code>lib</code>
+directory but not inside the <code>lib/src</code> directory.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/tools/pub/create-packages#organizing-a-package" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Organizing a package's libraries</span>
+</a>
+</li>
+<li>
+<a href="/tools/pub/package-layout#public-directories" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Public package directories</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="quick-fix"
+  data-partial-matches="quick fix" data-full-matches="">
+<div class="card-header">
+<h2 class="card-title">Quick fix</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#quick-fix" title="Link to card" aria-label="Link to Quick fix card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="quick-fix-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Quick fix card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>An automated, local code edit targeted at fixing the issue reported by a
+specific diagnostic.</p>
+</div>
+<div id="quick-fix-content" class="expandable-content">
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="https://medium.com/dartlang/quick-fixes-for-analysis-issues-c10df084971a" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Quick fixes for analysis issues</span>
+</a>
+</li>
+<li>
+<a href="/tools/diagnostic-messages" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Diagnostic messages</span>
+</a>
+</li>
+<li>
+<a href="/tools/linter-rules" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Linter rules</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="refactor"
+  data-partial-matches="refactor" data-full-matches="">
+<div class="card-header">
+<h2 class="card-title">Refactor</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#refactor" title="Link to card" aria-label="Link to Refactor card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="refactor-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Refactor card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A code edit targeted at modifications that are either non-local or that
+require user interaction.</p>
+</div>
+<div id="refactor-content" class="expandable-content">
+<p>A refactor is a code edit targeted at modifications that are either non-local
+or that require user interaction.
+Examples of refactors include renaming, removing, or extracting code.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="#assist" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    dictionary
+  </span>
+<span>Assist</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="refutable-pattern"
+  data-partial-matches="refutable pattern" data-full-matches="matching contexts">
+<div class="card-header">
+<h2 class="card-title">Refutable pattern</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#refutable-pattern" title="Link to card" aria-label="Link to Refutable pattern card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="refutable-pattern-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Refutable pattern card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A pattern that can be tested against a value.</p>
+</div>
+<div id="refutable-pattern-content" class="expandable-content">
+<p>A <em>refutable pattern</em> is a pattern that can be tested against a value to
+determine if the pattern matches the value.
+If not, the pattern <em>refutes</em>, or denies, the match.
+Refutable patterns appear in <a href="/language/patterns#matching"><em>matching contexts</em></a>.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/patterns#places-patterns-can-appear" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Places patterns can appear</span>
+</a>
+</li>
+<li>
+<a href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    school
+  </span>
+<span>Dive into Dart patterns and records</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="subclass"
+  data-partial-matches="subclass" data-full-matches="child class">
+<div class="card-header">
+<h2 class="card-title">Subclass</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#subclass" title="Link to card" aria-label="Link to Subclass card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="subclass-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Subclass card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A class that inherits the implementation of another class.</p>
+</div>
+<div id="subclass-content" class="expandable-content">
+<p>A <em>subclass</em> is a class that inherits the implementation of another class by
+using the <a href="/language/extend"><code>extends</code></a> keyword, or by <a href="#mixin-application">mixin application</a>.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// A is a subclass of B; B is the superclass of A.</span></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> B</span><span style="color:#222222"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// B1 has the superclass `A with M`, which has the superclass A.</span></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> B1</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> A</span><span style="color:#D43324"> with</span><span style="color:#0468D7"> M</span><span style="color:#222222"> {}</span></span></code></pre></div></div><p>A subclass relation also implies an associated <a href="#subtype">subtype</a> relation.
+For example, <code>class A</code> implicitly defines an associated type <code>A</code>
+which instances of the class <code>A</code> inhabit.
+So, <code>class A extends B</code> declares not just that the class
+<code>A</code> is a subclass of <code>B</code>, but also establishes that the <em>type</em> <code>A</code> is a
+<em>subtype</em> of the type <code>B</code>.</p>
+<p>Subclass relations are a subset of subtype relations.
+When the documentation says &quot;<code>S</code> must be a subtype of <code>T</code>&quot;,
+it's fine for <code>S</code> to be a subclass of <code>T</code>.
+However, the converse is not true: not all subtypes are subclasses.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="/language/extend" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Inheritance in Dart</span>
+</a>
+</li>
+<li>
+<a href="#subtype" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    dictionary
+  </span>
+<span>Subtype relationship</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="subtype"
+  data-partial-matches="subtype" data-full-matches="subtyping,subtype polymorphism">
+<div class="card-header">
+<h2 class="card-title">Subtype</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#subtype" title="Link to card" aria-label="Link to Subtype card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="subtype-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Subtype card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>A type that can be used wherever a value of its supertype is expected.</p>
+</div>
+<div id="subtype-content" class="expandable-content">
+<p>A <em>subtype</em> relation is where a value of a certain type is substitutable
+where the value of another type, the supertype, is expected.
+For example, if <code>S</code> is a subtype of <code>T</code>,
+then you can substitute a value of type <code>S</code>
+where a value of type <code>T</code> is expected.</p>
+<p>A subtype supports all of the operations of its supertype
+(and possibly some extra operations).
+In practice, this means you can assign the value of a subtype
+to any location expecting the supertype,
+and all of the methods of the supertype are available on the subtype.</p>
+<p>This is true at least statically.
+A specific API might not allow the substitution at run time,
+depending on its operations.</p>
+<p>Some subtype relations are based on the structure of the type,
+like with nullable types (for example, <code>int</code> is a subtype of <code>int?</code>)
+and function types
+(for example, <code>String Function()</code> is a subtype of <code>void Function()</code>).</p>
+<p>Subtypes can also be introduced for classes by
+<a href="/language/classes#implicit-interfaces">implementation</a>
+or <a href="/language/extend">inheritance</a> (direct or indirect):</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// A is a subtype of B, but NOT a subclass of B.</span></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> A</span><span style="color:#D43324"> implements</span><span style="color:#0468D7"> B</span><span style="color:#222222"> {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// C is a subtype AND a subclass of D.</span></span>
+<span class="line"><span style="color:#D43324">class</span><span style="color:#0468D7"> C</span><span style="color:#D43324"> extends</span><span style="color:#0468D7"> D</span><span style="color:#222222"> {}</span></span></code></pre></div></div><div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="#subclass" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    dictionary
+  </span>
+<span>Subclass</span>
+</a>
+</li>
+<li>
+<a href="/language/type-system#substituting-types" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Substituting types</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card outlined-card glossary-card expandable-card" id="variance"
+  data-partial-matches="variance and variance positions" data-full-matches="variance positions,covariance,covariant,contravariance,contravariant">
+<div class="card-header">
+<h2 class="card-title">Variance and variance positions</h2>
+<div class="card-header-buttons">
+  <a class="share-button icon-button" href="#variance" title="Link to card" aria-label="Link to Variance and variance positions card">
+    <span class="material-symbols" aria-hidden="true">tag</span>
+  </a>
+  <button
+    class="expand-button icon-button"
+    aria-expanded="true"
+    aria-controls="variance-content"
+    title="Expand or collapse card"
+    aria-label="Expand or collapse Variance and variance positions card">
+    <span class="material-symbols" aria-hidden="true">keyboard_arrow_up</span>
+  </button>
+</div>
+</div>
+<div class="initial-content">
+<p>How changing a type argument of a type affects the relationship
+between the original type and the resulting one.</p>
+<p>In Dart, changing the type argument of a
+type declaration (like a class) or function return type, changes the
+overall type relationship in the same direction (covariant).</p>
+<p>However, changing the type of a function's parameter types, changes the
+overall type relationship in the opposite direction (contravariant).</p>
+</div>
+<div id="variance-content" class="expandable-content">
+<p>A type parameter of a class (or other type declaration, like a mixin) is
+said to be <em>covariant</em> when the type as a whole
+&quot;co-varies&quot; with the actual type argument.
+In other words, if the type argument is replaced by a
+subtype then the type as a whole is also a subtype.</p>
+<p>For example, the type parameter of the class <code>List</code> is covariant because
+list types co-vary with their type argument: <code>List&lt;int&gt;</code> is a subtype of
+<code>List&lt;Object&gt;</code> because <code>int</code> is a subtype of <code>Object</code>.</p>
+<p>In Dart, all type parameters of all class, mixin,
+mixin class, and enum declarations are covariant.</p>
+<p>However, function types are different:
+A function type is covariant in its return type, but
+the opposite (known as <em>contravariant</em>) in its parameter types.
+For example, the type <code>int Function(int)</code> is a
+subtype of the type <code>Object Function(int)</code>, but it is a
+supertype of <code>int Function(Object)</code>.</p>
+<p>This makes sense if you consider their <a href="#subtype">substitutability</a>.
+If you call a function with a static type of <code>int Function(int)</code>,
+that function can actually be of type <code>int Function(Object)</code> at runtime.
+Based on the static type, you expect to be able to pass an <code>int</code> to it.
+That will be fine since the function actually accepts any <code>Object</code>,
+and this includes every object of type <code>int</code>.
+Similarly, the returned result will be of type <code>int</code>,
+which is also what you expect based on the static type.</p>
+<p>Hence, <code>int Function(Object)</code> is a subtype of <code>int Function(int)</code>.</p>
+<p>Note that everything is turned upside-down for parameter types.
+In particular, this subtype relation among function types requires that
+the <em>opposite</em> subtype relation exists for the parameter type.
+For example, <code>void Function(Object)</code> is a subtype of <code>void Function(int)</code>
+because <code>int</code> is a subtype of <code>Object</code>.</p>
+<p>With a more complex type like <code>List&lt;void Function(int)&gt;</code>,
+you have to consider the <em>positions</em> in the type.
+To accomplish this, turn one of the parts of the type into a placeholder,
+and then consider what happens to the type when
+different types are placed in that position.</p>
+<p>For example, consider <code>List&lt;void Function(_)&gt;</code> as a template for
+a type where you can put different types in place of the placeholder <code>_</code>.
+This type is contravariant in the position where that placeholder occurs.</p>
+<p>The following illustrates this by substituting <code>Object</code> and <code>int</code> for <code>_</code>.
+<code>List&lt;void Function(Object)&gt;</code> is a subtype of <code>List&lt;void Function(int)&gt;</code>
+because <code>void Function(Object)</code> is a subtype of <code>void Function(int)</code> because
+<code>void</code> is a subtype of <code>void</code> (the return types) and
+<code>int</code> is a subtype of <code>Object</code> (the parameter types, in the opposite order).
+Hence, the type at <code>_</code> varies in the opposite direction of
+the type <code>List&lt;void Function(_)&gt;</code> as a whole, and this
+'opposite direction' by definition makes it a <em>contravariant position</em>.</p>
+<p>A <em>covariant position</em> is defined similarly.
+For example, <code>_</code> is at a covariant position in the type <code>List&lt;_&gt;</code>,
+and <code>_</code> is also at a covariant position in the type <code>_ Function(int)</code>.</p>
+<p>There is yet another kind of position known as <em>invariant</em>,
+but it occurs much more rarely so the details are omitted here.</p>
+<p>In practice, it's often sufficient to know that
+the type arguments of a class, mixin, etc. are in a covariant position,
+and so is the return type of a function type, but
+the parameter types are in a contravariant position.</p>
+<div>
+<h3 class="no_toc details-header">Related docs and resources</h3>
+<ul class="resources-list">
+<li>
+<a href="#subtype" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    dictionary
+  </span>
+<span>Subtype relationship</span>
+</a>
+</li>
+<li>
+<a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_(computer_science)" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>Covariance and contravariance</span>
+</a>
+</li>
+<li>
+<a href="/language/type-system#covariant-keyword" class="filled-button">
+<span class="material-symbols" aria-hidden="true">
+    article
+  </span>
+<span>The covariant keyword</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/resources/glossary.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/resources/glossary/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/resources/glossary.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

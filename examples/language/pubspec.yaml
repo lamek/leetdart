@@ -1,0 +1,12 @@
+name: language_examples
+description: dart.dev example code.
+
+resolution: workspace
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  examples_util: { path: ../util }
+
+dev_dependencies:
+  test: ^1.25.8

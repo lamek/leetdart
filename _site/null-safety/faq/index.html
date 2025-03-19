@@ -1,0 +1,1956 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="FAQs to help you migrate your Dart code to null safety">
+  <title>FAQ (null safety) | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Null safety: Frequently asked questions">
+  <meta name="twitter:description" content="FAQs to help you migrate your Dart code to null safety">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Null safety: Frequently asked questions">
+  <meta property="og:description" content="FAQs to help you migrate your Dart code to null safety">
+  <meta property="og:url" content="/null-safety/faq/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="true" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link active collapsible"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="true" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link active" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="false" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#what-runtime-changes-should-i-be-aware-of-for-users-of-migrated-code">What runtime changes should I be aware of for users of migrated code?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#what-if-a-value-is-only-null-in-tests">What if a value is only null in tests?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-does-required-compare-to-the-new-required-keyword">How does @required compare to the new required keyword?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-should-i-migrate-non-nullable-fields-that-should-be-final-but-arent">How should I migrate non-nullable fields that should be final, but aren't?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-should-i-migrate-a-built_value-class">How should I migrate a built_<wbr>value class?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-should-i-migrate-a-factory-that-can-return-null">How should I migrate a factory that can return null?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-should-i-migrate-an-assertx-null-that-now-shows-as-unnecessary">How should I migrate an assert(x != null) that now shows as unnecessary?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-should-i-migrate-a-runtime-null-check-that-now-shows-as-unnecessary">How should I migrate a runtime null check that now shows as unnecessary?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#the-iterable-firstwhere-method-no-longer-accepts-orelse-null">The Iterable.firstWhere method no longer accepts orElse: () =&gt; null.</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-do-i-deal-with-attributes-that-have-setters">How do I deal with attributes that have setters?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#how-do-i-signal-that-the-return-value-from-a-map-is-non-nullable">How do I signal that the return value from a Map is non-nullable?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#why-is-the-generic-type-on-my-listmap-nullable">Why is the generic type on my List/Map nullable?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#what-happened-to-the-default-list-constructor">What happened to the default List constructor?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#im-using-package-ffi-and-get-a-failure-with-dart_cobject_kunsupported-when-i-migrate-what-happened">I'm using package:ffi and get a failure with Dart_<wbr>CObject_<wbr>kUnsupported when I migrate. What happened?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#migration-comments">Why does the migration tool add comments to my code?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#what-should-i-know-about-compiling-to-javascript-and-null-safety">What should I know about compiling to JavaScript and null safety?</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#resources">Resources</a>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Null safety: Frequently asked questions</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#what-runtime-changes-should-i-be-aware-of-for-users-of-migrated-code">What runtime changes should I be aware of for users of migrated code?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#what-if-a-value-is-only-null-in-tests">What if a value is only null in tests?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-does-required-compare-to-the-new-required-keyword">How does @required compare to the new required keyword?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-should-i-migrate-non-nullable-fields-that-should-be-final-but-arent">How should I migrate non-nullable fields that should be final, but aren't?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-should-i-migrate-a-built_value-class">How should I migrate a built_value class?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-should-i-migrate-a-factory-that-can-return-null">How should I migrate a factory that can return null?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-should-i-migrate-an-assertx-null-that-now-shows-as-unnecessary">How should I migrate an assert(x != null) that now shows as unnecessary?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-should-i-migrate-a-runtime-null-check-that-now-shows-as-unnecessary">How should I migrate a runtime null check that now shows as unnecessary?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#the-iterable-firstwhere-method-no-longer-accepts-orelse-null">The Iterable.firstWhere method no longer accepts orElse: () =&gt; null.</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-do-i-deal-with-attributes-that-have-setters">How do I deal with attributes that have setters?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#how-do-i-signal-that-the-return-value-from-a-map-is-non-nullable">How do I signal that the return value from a Map is non-nullable?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#why-is-the-generic-type-on-my-listmap-nullable">Why is the generic type on my List/Map nullable?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#what-happened-to-the-default-list-constructor">What happened to the default List constructor?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#im-using-package-ffi-and-get-a-failure-with-dart_cobject_kunsupported-when-i-migrate-what-happened">I'm using package:ffi and get a failure with Dart_CObject_kUnsupported when I migrate. What happened?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#migration-comments">Why does the migration tool add comments to my code?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#what-should-i-know-about-compiling-to-javascript-and-null-safety">What should I know about compiling to JavaScript and null safety?</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#resources">Resources</a>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<p>This page collects some common questions we've heard about <a href="/null-safety">null safety</a>
+based on the experience of migrating Google internal code.</p>
+<div class="header-wrapper">
+<h2 id="what-runtime-changes-should-i-be-aware-of-for-users-of-migrated-code">What runtime changes should I be aware of for users of migrated code?</h2>
+<a class="heading-link" href="#what-runtime-changes-should-i-be-aware-of-for-users-of-migrated-code" aria-label="Link to 'What runtime changes should I be aware of for users of migrated code?' section">#</a></div>
+<p>Most of the effects of migration do not immediately affect users of migrated
+code:</p>
+<ul>
+<li>Static null safety checks for users first apply when they migrate their
+code.</li>
+<li>Full null safety checks happen when all the code is migrated and sound mode
+is turned on.</li>
+</ul>
+<p>Two exceptions to be aware of are:</p>
+<ul>
+<li>The <code>!</code> operator is a runtime null check in all modes, for all users. So,
+when migrating, ensure that you only add <code>!</code> where it's an error for a
+<code>null</code> to flow to that location, even if the calling code has not migrated
+yet.</li>
+<li>Runtime checks associated with the <code>late</code> keyword apply in all modes, for
+all users. Only mark a field <code>late</code> if you are sure it is always initialized
+before it is used.</li>
+</ul>
+<div class="header-wrapper">
+<h2 id="what-if-a-value-is-only-null-in-tests">What if a value is only <code>null</code> in tests?</h2>
+<a class="heading-link" href="#what-if-a-value-is-only-null-in-tests" aria-label="Link to 'What if a value is only null in tests?' section">#</a></div>
+<p>If a value is only ever <code>null</code> in tests, the code can be improved by marking it
+non-nullable and making the tests pass non-null values.</p>
+<div class="header-wrapper">
+<h2 id="how-does-required-compare-to-the-new-required-keyword">How does <code>@required</code> compare to the new <code>required</code> keyword?</h2>
+<a class="heading-link" href="#how-does-required-compare-to-the-new-required-keyword" aria-label="Link to 'How does @required compare to the new required keyword?' section">#</a></div>
+<p>The <code>@required</code> annotation marks named arguments that must be passed; if not,
+the analyzer reports a hint.</p>
+<p>With null safety, a named argument with a non-nullable type must either have a
+default or be marked with the new <code>required</code> keyword. Otherwise, it wouldn't
+make sense for it to be non-nullable, because it would default to <code>null</code> when
+not passed.</p>
+<p>When null safe code is called from legacy code the <code>required</code> keyword is treated
+exactly like the <code>@required</code> annotation: failure to supply the argument will
+cause an analyzer hint.</p>
+<p>When null safe code is called from null safe code, failing to supply a
+<code>required</code> argument is an error.</p>
+<p>What does this mean for migration? Be careful if adding <code>required</code> where there
+was no <code>@required</code> before. Any callers not passing the newly-required argument
+will no longer compile. Instead, you could add a default or make the argument
+type nullable.</p>
+<div class="header-wrapper">
+<h2 id="how-should-i-migrate-non-nullable-fields-that-should-be-final-but-arent">How should I migrate non-nullable fields that should be <code>final</code>, but aren't?</h2>
+<a class="heading-link" href="#how-should-i-migrate-non-nullable-fields-that-should-be-final-but-arent" aria-label="Link to 'How should I migrate non-nullable fields that should be final, but aren't?' section">#</a></div>
+<p>Some computations can be moved to the static initializer. Instead of:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Initialized without values</span></span>
+<span class="line"><span style="color:#0468D7">ListQueue</span><span style="color:#222222"> _context;</span></span>
+<span class="line"><span style="color:#0468D7">Float32List</span><span style="color:#222222"> _buffer;</span></span>
+<span class="line"><span style="color:#0468D7">dynamic</span><span style="color:#222222"> _readObject;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">Vec2D</span><span style="color:#222222">(</span><span style="color:#0468D7">Map</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">dynamic</span><span style="color:#222222">> object) {</span></span>
+<span class="line"><span style="color:#222222">  _buffer = </span><span style="color:#0468D7">Float32List</span><span style="color:#222222">.</span><span style="color:#6200EE">fromList</span><span style="color:#222222">([</span><span style="color:#11796D">0.0</span><span style="color:#222222">, </span><span style="color:#11796D">0.0</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#222222">  _readObject = object[</span><span style="color:#11796D">'container'</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#222222">  _context = </span><span style="color:#0468D7">ListQueue</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">dynamic</span><span style="color:#222222">>();</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>you can do:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-good"><span class="code-block-tag">good</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Initialized with values</span></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#0468D7"> ListQueue</span><span style="color:#222222"> _context = </span><span style="color:#0468D7">ListQueue</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">dynamic</span><span style="color:#222222">>();</span></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#0468D7"> Float32List</span><span style="color:#222222"> _buffer = </span><span style="color:#0468D7">Float32List</span><span style="color:#222222">.</span><span style="color:#6200EE">fromList</span><span style="color:#222222">([</span><span style="color:#11796D">0.0</span><span style="color:#222222">, </span><span style="color:#11796D">0.0</span><span style="color:#222222">]);</span></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#0468D7"> dynamic</span><span style="color:#222222"> _readObject;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">Vec2D</span><span style="color:#222222">(</span><span style="color:#0468D7">Map</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">String</span><span style="color:#222222">, </span><span style="color:#0468D7">dynamic</span><span style="color:#222222">> object) : _readObject = object[</span><span style="color:#11796D">'container'</span><span style="color:#222222">];</span></span></code></pre></div></div><p>However, if a field is initialized by doing computation in the constructor, then
+it can't be <code>final</code>. With null safety, you'll find this also makes it harder for
+it to be non-nullable; if it's initialized too late, then it's <code>null</code> until it's
+initialized, and must be nullable. Fortunately, you have options:</p>
+<ul>
+<li>Turn the constructor into a factory, then make it delegate to an actual
+constructor that initializes all the fields directly. A common name for such
+a private constructor is just an underscore: <code>_</code>. Then, the field can be
+<code>final</code> and non-nullable. This refactoring can be done <em>before</em> the
+migration to null safety.</li>
+<li>Or, mark the field <code>late final</code>. This enforces that it's initialized exactly
+once. It must be initialized before it can be read.</li>
+</ul>
+<div class="header-wrapper">
+<h2 id="how-should-i-migrate-a-built_value-class">How should I migrate a <code>built_value</code> class?</h2>
+<a class="heading-link" href="#how-should-i-migrate-a-built_value-class" aria-label="Link to 'How should I migrate a built_value class?' section">#</a></div>
+<p>Getters that were annotated <code>@nullable</code> should instead have nullable types; then
+remove all <code>@nullable</code> annotations. For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">@nullable</span></span>
+<span class="line"><span style="color:#0468D7">int</span><span style="color:#D43324"> get</span><span style="color:#222222"> count;</span></span></code></pre></div></div><p>becomes</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">int</span><span style="color:#222222">? </span><span style="color:#D43324">get</span><span style="color:#222222"> count; </span><span style="color:#6E6E70">//  Variable initialized with ?</span></span></code></pre></div></div><p>Getters that were <em>not</em> marked <code>@nullable</code> should <em>not</em> have nullable types,
+even if the migration tool suggests them. Add <code>!</code> hints as needed then rerun the
+analysis.</p>
+<div class="header-wrapper">
+<h2 id="how-should-i-migrate-a-factory-that-can-return-null">How should I migrate a factory that can return <code>null</code>?</h2>
+<a class="heading-link" href="#how-should-i-migrate-a-factory-that-can-return-null" aria-label="Link to 'How should I migrate a factory that can return null?' section">#</a></div>
+<p><em>Prefer factories that do not return null.</em> We have seen code that meant to
+throw an exception due to invalid input but instead ended up returning null.</p>
+<p>Instead of:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">  factory</span><span style="color:#0468D7"> StreamReader</span><span style="color:#222222">(</span><span style="color:#0468D7">dynamic</span><span style="color:#222222"> data) {</span></span>
+<span class="line"><span style="color:#0468D7">    StreamReader</span><span style="color:#222222"> reader;</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (data is </span><span style="color:#0468D7">ByteData</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#222222">      reader = </span><span style="color:#0468D7">BlockReader</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">    } </span><span style="color:#D43324">else</span><span style="color:#D43324"> if</span><span style="color:#222222"> (data is </span><span style="color:#0468D7">Map</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#222222">      reader = </span><span style="color:#0468D7">JSONBlockReader</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#222222"> reader;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span></code></pre></div></div><p>Do:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-good"><span class="code-block-tag">good</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">  factory</span><span style="color:#0468D7"> StreamReader</span><span style="color:#222222">(</span><span style="color:#0468D7">dynamic</span><span style="color:#222222"> data) {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (data is </span><span style="color:#0468D7">ByteData</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#6E6E70">      // Move the readIndex forward for the binary reader.</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#0468D7"> BlockReader</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">    } </span><span style="color:#D43324">else</span><span style="color:#D43324"> if</span><span style="color:#222222"> (data is </span><span style="color:#0468D7">Map</span><span style="color:#222222">) {</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#0468D7"> JSONBlockReader</span><span style="color:#222222">(data);</span></span>
+<span class="line"><span style="color:#222222">    } </span><span style="color:#D43324">else</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">      throw</span><span style="color:#0468D7"> ArgumentError</span><span style="color:#222222">(</span><span style="color:#11796D">'Unexpected type for data'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  }</span></span></code></pre></div></div><p>If the intent of the factory was indeed to return null, then you can turn it
+into a static method so it is allowed to return <code>null</code>.</p>
+<div class="header-wrapper">
+<h2 id="how-should-i-migrate-an-assertx-null-that-now-shows-as-unnecessary">How should I migrate an <code>assert(x != null)</code> that now shows as unnecessary?</h2>
+<a class="heading-link" href="#how-should-i-migrate-an-assertx-null-that-now-shows-as-unnecessary" aria-label="Link to 'How should I migrate an assert(x != null) that now shows as unnecessary?' section">#</a></div>
+<p>The assert will be unnecessary when everything is fully migrated, but for now it
+<em>is</em> needed if you actually want to keep the check. Options:</p>
+<ul>
+<li>Decide that the assert is not really necessary, and remove it. This is a
+change in behavior when asserts are enabled.</li>
+<li>Decide that the assert can be checked always, and turn it into
+<code>ArgumentError.checkNotNull</code>. This is a change in behavior when asserts are
+not enabled.</li>
+<li>Keep the behavior exactly as is: add <code>// ignore: unnecessary_null_comparison</code> to bypass the warning.</li>
+</ul>
+<div class="header-wrapper">
+<h2 id="how-should-i-migrate-a-runtime-null-check-that-now-shows-as-unnecessary">How should I migrate a runtime null check that now shows as unnecessary?</h2>
+<a class="heading-link" href="#how-should-i-migrate-a-runtime-null-check-that-now-shows-as-unnecessary" aria-label="Link to 'How should I migrate a runtime null check that now shows as unnecessary?' section">#</a></div>
+<p>The compiler flags an explicit runtime null check as an unnecessary
+comparison if you make <code>arg</code> non-nullable.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (arg == </span><span style="color:#11796D">null</span><span style="color:#222222">) </span><span style="color:#D43324">throw</span><span style="color:#0468D7"> ArgumentError</span><span style="color:#222222">(...)`</span></span></code></pre></div></div><p>You must include this check if the program is a mixed-version one.
+Until everything is fully migrated and the code switches to running
+with sound null safety, <code>arg</code> might be set to <code>null</code>.</p>
+<p>The simplest way to preserve behavior is change the check into
+<a href="https://api.dart.dev/dart-core/ArgumentError/checkNotNull.html"><code>ArgumentError.checkNotNull</code></a>.</p>
+<p>The same applies to some runtime type checks. If <code>arg</code>
+has static type <code>String</code>, then <code>if (arg is! String)</code> is actually checking
+whether <code>arg</code> is <code>null</code>. It might look like migrating to null safety means <code>arg</code>
+can never be <code>null</code>, but it could be <code>null</code> in unsound null safety. So, to preserve
+behavior, the null check should remain.</p>
+<div class="header-wrapper">
+<h2 id="the-iterable-firstwhere-method-no-longer-accepts-orelse-null">The <code>Iterable.firstWhere</code> method no longer accepts <code>orElse: () =&gt; null</code>.</h2>
+<a class="heading-link" href="#the-iterable-firstwhere-method-no-longer-accepts-orelse-null" aria-label="Link to 'The Iterable.firstWhere method no longer accepts orElse: () =&gt; null.' section">#</a></div>
+<p>Import <code>package:collection</code> and use the extension method <code>firstWhereOrNull</code>
+instead of <code>firstWhere</code>.</p>
+<div class="header-wrapper">
+<h2 id="how-do-i-deal-with-attributes-that-have-setters">How do I deal with attributes that have setters?</h2>
+<a class="heading-link" href="#how-do-i-deal-with-attributes-that-have-setters" aria-label="Link to 'How do I deal with attributes that have setters?' section">#</a></div>
+<p>Unlike the <code>late final</code> suggestion above, these attributes cannot be marked as
+final. Often, settable attributes also do not have initial values since they are
+expected to be set sometime later.</p>
+<p>In such cases, you have two options:</p>
+<ul>
+<li>
+<p>Set it to an initial value. Often times, the omission of an initial value is
+by mistake rather than deliberate.</p>
+</li>
+<li>
+<p>If you are <em>sure</em> that the attribute needs to be set before accessed, mark
+it as <code>late</code>.</p>
+<p>WARNING: The <code>late</code> keyword adds a runtime check. If any user calls <code>get</code>
+before <code>set</code> they'll get an error at runtime.</p>
+</li>
+</ul>
+<div class="header-wrapper">
+<h2 id="how-do-i-signal-that-the-return-value-from-a-map-is-non-nullable">How do I signal that the return value from a Map is non-nullable?</h2>
+<a class="heading-link" href="#how-do-i-signal-that-the-return-value-from-a-map-is-non-nullable" aria-label="Link to 'How do I signal that the return value from a Map is non-nullable?' section">#</a></div>
+<p>The
+<a href="https://api.dart.dev/dart-core/Map/operator_get.html">lookup operator</a>
+on Map (<code>[]</code>) by default returns a nullable type. There's no way to signal to
+the language that the value is guaranteed to be there.</p>
+<p>In this case, you should use the bang operator (<code>!</code>) to cast the value back to
+V:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">return</span><span style="color:#222222"> blockTypes[key]!;</span></span></code></pre></div></div><p>Which will throw if the map returns null. If you want explicit handling for that case:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> result = blockTypes[key];</span></span>
+<span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (result != </span><span style="color:#11796D">null</span><span style="color:#222222">) </span><span style="color:#D43324">return</span><span style="color:#222222"> result;</span></span>
+<span class="line"><span style="color:#6E6E70">// Handle the null case here, e.g. throw with explanation.</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="why-is-the-generic-type-on-my-listmap-nullable">Why is the generic type on my List/Map nullable?</h2>
+<a class="heading-link" href="#why-is-the-generic-type-on-my-listmap-nullable" aria-label="Link to 'Why is the generic type on my List/Map nullable?' section">#</a></div>
+<p>It is typically a code smell to end up with nullable code like this:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Foo</span><span style="color:#222222">?> fooList; </span><span style="color:#6E6E70">// fooList can contain null values</span></span></code></pre></div></div><p>This implies <code>fooList</code> might contain null values. This might happen if you are
+initializing the list with length and filling it in via a loop.</p>
+<p>If you are simply initializing the list with the same value, you should instead
+use the
+<a href="https://api.dart.dev/dart-core/List/List.filled.html"><code>filled</code></a>
+constructor.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">_jellyCounts = </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">?>(jellyMax + </span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">for</span><span style="color:#222222"> (</span><span style="color:#D43324">var</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">; i &#x3C;= jellyMax; i++) {</span></span>
+<span class="line"><span style="color:#222222">  _jellyCounts[i] = </span><span style="color:#11796D">0</span><span style="color:#222222">; </span><span style="color:#6E6E70">// List initialized with the same value</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-good"><span class="code-block-tag">good</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">_jellyCounts = </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">int</span><span style="color:#222222">>.</span><span style="color:#6200EE">filled</span><span style="color:#222222">(jellyMax + </span><span style="color:#11796D">1</span><span style="color:#222222">, </span><span style="color:#11796D">0</span><span style="color:#222222">); </span><span style="color:#6E6E70">// List initialized with filled constructor</span></span></code></pre></div></div><p>If you are setting the elements of the list via an index, or you are populating
+each element of the list with a distinct value, you should instead use the
+list literal syntax to build the list.</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-bad"><span class="code-block-tag">bad</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">_jellyPoints = </span><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Vec2D</span><span style="color:#222222">?>(jellyMax + </span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">for</span><span style="color:#222222"> (</span><span style="color:#D43324">var</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">; i &#x3C;= jellyMax; i++) {</span></span>
+<span class="line"><span style="color:#222222">  _jellyPoints[i] = </span><span style="color:#0468D7">Vec2D</span><span style="color:#222222">(); </span><span style="color:#6E6E70">// Each list element is a distinct Vec2D</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="code-block-wrapper language-dart"><div class="code-block-body has-tag tag-good"><span class="code-block-tag">good</span><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">_jellyPoints = [</span></span>
+<span class="line"><span style="color:#D43324">  for</span><span style="color:#222222"> (</span><span style="color:#D43324">var</span><span style="color:#222222"> i = </span><span style="color:#11796D">0</span><span style="color:#222222">; i &#x3C;= jellyMax; i++)</span></span>
+<span class="line"><span style="color:#0468D7">    Vec2D</span><span style="color:#222222">() </span><span style="color:#6E6E70">// Each list element is a distinct Vec2D</span></span>
+<span class="line"><span style="color:#222222">];</span></span></code></pre></div></div><p>To generate a fixed-length list,
+use the <a href="https://api.dart.dev/dart-core/List/List.generate.html"><code>List.generate</code></a> constructor
+with the <code>growable</code> parameter set to <code>false</code>:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">_jellyPoints = </span><span style="color:#0468D7">List</span><span style="color:#222222">.</span><span style="color:#6200EE">generate</span><span style="color:#222222">(jellyMax, (_) => </span><span style="color:#0468D7">Vec2D</span><span style="color:#222222">(), growable: </span><span style="color:#11796D">false</span><span style="color:#222222">);</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="what-happened-to-the-default-list-constructor">What happened to the default List constructor?</h2>
+<a class="heading-link" href="#what-happened-to-the-default-list-constructor" aria-label="Link to 'What happened to the default List constructor?' section">#</a></div>
+<p>You may encounter this error:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>The default 'List' constructor isn't available when null safety is enabled. #default_list_constructor</span></span></code></pre></div></div><p>The default list constructor fills the list with <code>null</code>, which is a problem.</p>
+<p>Change it to <code>List.filled(length, default)</code> instead.</p>
+<div class="header-wrapper">
+<h2 id="im-using-package-ffi-and-get-a-failure-with-dart_cobject_kunsupported-when-i-migrate-what-happened">I'm using <code>package:ffi</code> and get a failure with <code>Dart_CObject_kUnsupported</code> when I migrate. What happened?</h2>
+<a class="heading-link" href="#im-using-package-ffi-and-get-a-failure-with-dart_cobject_kunsupported-when-i-migrate-what-happened" aria-label="Link to 'I'm using package:ffi and get a failure with Dart_CObject_kUnsupported when I migrate. What happened?' section">#</a></div>
+<p>Lists sent via ffi can only be <code>List&lt;dynamic&gt;</code>, not <code>List&lt;Object&gt;</code> or
+<code>List&lt;Object?&gt;</code>. If you didn't change a list type explicitly in your migration,
+a type might still have changed because of changes to type inference that happen
+when you enable null safety.</p>
+<p>The fix is to explicitly create such lists as <code>List&lt;dynamic&gt;</code>.</p>
+<div class="header-wrapper">
+<h2 id="migration-comments">Why does the migration tool add comments to my code?</h2>
+<a class="heading-link" href="#migration-comments" aria-label="Link to 'Why does the migration tool add comments to my code?' section">#</a></div>
+<p>The migration tool adds <code>/* == false */</code> or <code>/* == true */</code> comments when it
+sees conditions that will always be false or true while running in sound mode.
+Comments like these might indicate that the automatic migration is incorrect and
+needs human intervention. For example:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">if</span><span style="color:#222222"> (registry.</span><span style="color:#6200EE">viewFactory</span><span style="color:#222222">(viewDescriptor.id) == </span><span style="color:#11796D">null</span><span style="color:#6E6E70"> /* == false */</span><span style="color:#222222">)</span></span></code></pre></div></div><p>In these cases, the migration tool can't distinguish defensive-coding situations
+and situations where a null value is really expected. So the tool tells you what
+it knows (&quot;it looks like this condition will always be false!&quot;) and lets you
+decide what to do.</p>
+<div class="header-wrapper">
+<h2 id="what-should-i-know-about-compiling-to-javascript-and-null-safety">What should I know about compiling to JavaScript and null safety?</h2>
+<a class="heading-link" href="#what-should-i-know-about-compiling-to-javascript-and-null-safety" aria-label="Link to 'What should I know about compiling to JavaScript and null safety?' section">#</a></div>
+<p>Null safety brings many benefits like reduced code size and improved
+app performance. Such benefits surface more when compiled to native
+targets like Flutter and AOT. Previous work on the production web
+compiler had introduced optimizations similar to what null safety
+later introduced. This may make resulting gains to production web apps
+seem less than their native targets.</p>
+<p>A few notes that are worth highlighting:</p>
+<ul>
+<li>
+<p>The production JavaScript compiler generates <code>!</code> null assertions. You might
+not notice them when comparing the output of the compiler before and
+after adding null assertions. That's because the compiler already
+generated null checks in programs that weren't null safe.</p>
+</li>
+<li>
+<p>The compiler generates these null assertions regardless of the
+soundness of null safety or optimization level. In fact, the compiler
+doesn't remove <code>!</code> when using <code>-O3</code> or <code>--omit-implicit-checks</code>.</p>
+</li>
+<li>
+<p>The production JavaScript compiler might remove unnecessary null checks.
+This happens because the optimizations that the production web
+compiler made prior to null safety removed those checks when it
+knew the value was not null.</p>
+</li>
+<li>
+<p>By default, the compiler would generate parameter subtype checks.
+These runtime checks ensure covariant virtual calls have appropriate
+arguments. The compiler skips these checks with the
+<code>--omit-implicit-checks</code> option. Using this option can generate apps
+with unexpected behavior if the code includes invalid types.
+To avoid any surprises, continue provide strong test coverage for
+your code. In particular, the compiler optimizes code based
+on the fact that inputs should comply with the type declaration. If
+the code provides arguments of an invalid type, those optimizations
+would be wrong and the program could misbehave. This was true for
+inconsistent types before, and is true with inconsistent
+nullabilities now with sound null-safety.</p>
+</li>
+<li>
+<p>You may notice that the development JavaScript compiler and the Dart
+VM have special error messages for null checks, but to keep
+applications small, the production JavaScript compiler does not.</p>
+</li>
+<li>
+<p>You may see errors indicating that <code>.toString</code> is not found on <code>null</code>.
+This is not a bug. The compiler has always encoded some null checks
+in this way. That is, the compiler represents some null checks
+compactly by making an unguarded access of a property of the
+receiver. So instead of <code>if (a == null) throw</code>, it generates
+<code>a.toString</code>. The <code>toString</code> method is defined in JavaScript Object
+and is a fast way to verify that an object is not null.</p>
+<p>If the very first action after a null check is an action that crashes
+when the value is null, the compiler can remove the null check and
+let the action cause the error.</p>
+<p>For example, a Dart expression <code>print(a!.foo());</code> could turn directly
+into:</p>
+<div class="code-block-wrapper language-js"><div class="code-block-body"><span class="code-block-language" title="Language js">js</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">  P.</span><span style="color:#6200EE">print</span><span style="color:#222222">(a.</span><span style="color:#6200EE">foo$0</span><span style="color:#222222">());</span></span></code></pre></div></div><p>This is because the call <code>a.foo$()</code> will crash if <code>a</code> is null.
+If the compiler inlines <code>foo</code>, it will preserve the null check.
+So for example, if <code>foo</code> was <code>int foo() =&gt; 1;</code>  the compiler might
+generate:</p>
+<div class="code-block-wrapper language-js"><div class="code-block-body"><span class="code-block-language" title="Language js">js</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">  a.toString;</span></span>
+<span class="line"><span style="color:#222222">  P.</span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span></code></pre></div></div><p>If the inlined method first accessed a field on the receiver, like
+<code>int foo() =&gt; this.x + 1;</code>, then the production compiler can remove
+the redundant <code>a.toString</code> null check, as non-inlined calls, and
+generate:</p>
+<div class="code-block-wrapper language-js"><div class="code-block-body"><span class="code-block-language" title="Language js">js</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">  P.</span><span style="color:#6200EE">print</span><span style="color:#222222">(a.x + </span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span></code></pre></div></div></li>
+</ul>
+<div class="header-wrapper">
+<h2 id="resources">Resources</h2>
+<a class="heading-link" href="#resources" aria-label="Link to 'Resources' section">#</a></div>
+<ul>
+<li><a href="https://dartpad.dev">DartPad with Null Safety</a></li>
+<li><a href="/null-safety">Sound null safety</a></li>
+</ul>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/null-safety/faq.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/null-safety/faq/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/null-safety/faq.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

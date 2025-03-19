@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Manage your asynchronous code: handle uncaught errors,  override behavior (such as printing and scheduling tasks), and more.">
+  <title>Zones | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="Zones">
+  <meta name="twitter:description" content="Manage your asynchronous code: handle uncaught errors,  override behavior (such as printing and scheduling tasks), and more.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Zones">
+  <meta property="og:description" content="Manage your asynchronous code: handle uncaught errors,  override behavior (such as printing and scheduling tasks), and more.">
+  <meta property="og:url" content="/libraries/async/zones/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html obsolete">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  <div class="alert alert-warning">
+    <h4 class="text-center">
+      Some of the content of this page might be out of date.
+    </h4>
+  </div>
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="true" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link active" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#asynchronous-dynamic-extents">Asynchronous dynamic extents</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#zone-basics">Zone basics</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#handling-uncaught-errors">Handling uncaught errors</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-errors-cant-cross-into-error-zones">Example: Errors can't cross into error zones</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-errors-cant-leave-error-zones">Example: Errors can't leave error zones</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#using-zones-with-streams">Using zones with streams</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-using-a-stream-with-runzonedguarded">Example: Using a stream with runZonedGuarded()</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#storing-zone-local-values">Storing zone-local values</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-using-a-zone-local-value-for-debug-logs">Example: Using a zone-local value for debug logs</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#overriding-functionality">Overriding functionality</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-overriding-print">Example: Overriding print</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#arguments-to-interceptors-and-delegates">Arguments to interceptors and delegates</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-delegating-to-the-parent-zone">Example: Delegating to the parent zone</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-executing-code-when-entering-and-leaving-a-zone">Example: Executing code when entering and leaving a zone</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#example-handling-callbacks">Example: Handling callbacks</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#implementing-asynchronous-callbacks">Implementing asynchronous callbacks</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#summary">Summary</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#more-resources">More resources</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#more-examples">More examples</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>Zones</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#asynchronous-dynamic-extents">Asynchronous dynamic extents</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#zone-basics">Zone basics</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#handling-uncaught-errors">Handling uncaught errors</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#example-errors-cant-cross-into-error-zones">Example: Errors can't cross into error zones</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#example-errors-cant-leave-error-zones">Example: Errors can't leave error zones</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#using-zones-with-streams">Using zones with streams</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#example-using-a-stream-with-runzonedguarded">Example: Using a stream with runZonedGuarded()</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#storing-zone-local-values">Storing zone-local values</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#example-using-a-zone-local-value-for-debug-logs">Example: Using a zone-local value for debug logs</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#overriding-functionality">Overriding functionality</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#example-overriding-print">Example: Overriding print</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#arguments-to-interceptors-and-delegates">Arguments to interceptors and delegates</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#example-delegating-to-the-parent-zone">Example: Delegating to the parent zone</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#example-executing-code-when-entering-and-leaving-a-zone">Example: Executing code when entering and leaving a zone</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#example-handling-callbacks">Example: Handling callbacks</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#implementing-asynchronous-callbacks">Implementing asynchronous callbacks</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#summary">Summary</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#more-resources">More resources</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#more-examples">More examples</a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<style>
+.zone1 {
+  background-color: rgb(208, 211, 255);
+}
+
+.zone2 {
+  background-color: rgb(195, 255, 231);
+}
+
+.zone3 {
+  background-color: rgb(255, 240, 164);
+}
+</style>
+<div class="header-wrapper">
+<h2 id="asynchronous-dynamic-extents">Asynchronous dynamic extents</h2>
+<a class="heading-link" href="#asynchronous-dynamic-extents" aria-label="Link to 'Asynchronous dynamic extents' section">#</a></div>
+<p>This article discusses zone-related APIs in the <a href="(https://api.dart.dev/dart-async/dart-async-library.html)">dart:async</a> library,
+with a focus on the top-level <a href="(https://api.dart.dev/dart-async/runZoned.html)"><code>runZoned()</code></a>
+and <a href="(https://api.dart.dev/dart-async/runZonedGuarded.html)"><code>runZonedGuarded()</code></a> functions.
+Review the techniques covered in
+<a href="/libraries/async/futures-error-handling">Futures and Error Handling</a>
+before reading this article.</p>
+<p>Zones make the following tasks possible:</p>
+<ul>
+<li>
+<p><strong>Protecting your app from exiting due to
+an uncaught exception</strong>.
+For example,
+a simple HTTP server
+might use the following asynchronous code:</p>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><mark class="highlight"><span style="color:#6200EE">runZonedGuarded</span><span style="color:#222222">(() {</span></mark></span>
+<span class="line"><span style="color:#0468D7">  HttpServer</span><span style="color:#222222">.</span><span style="color:#6200EE">bind</span><span style="color:#222222">(</span><span style="color:#11796D">'0.0.0.0'</span><span style="color:#222222">, port).</span><span style="color:#6200EE">then</span><span style="color:#222222">((server) {</span></span>
+<span class="line"><span style="color:#222222">    server.</span><span style="color:#6200EE">listen</span><span style="color:#222222">(staticFiles.serveRequest);</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"><mark class="highlight"><span style="color:#222222">},</span></mark></span>
+<span class="line"><mark class="highlight"><span style="color:#222222">(error, stackTrace) => </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Oh noes! </span><span style="color:#11796D">$</span><span style="color:#222222">error</span><span style="color:#11796D"> $</span><span style="color:#222222">stackTrace</span><span style="color:#11796D">'</span><span style="color:#222222">));</span></mark></span></code></pre></div></div><p>Running the HTTP server in a zone
+enables the app to continue running despite uncaught (but non-fatal)
+errors in the server's asynchronous code.</p>
+</li>
+<li>
+<p><strong>Associating data</strong>—known as
+<em>zone-local values</em>—<strong>with individual zones</strong>.</p>
+</li>
+<li>
+<p><strong>Overriding a limited set of methods</strong>,
+such as <code>print()</code> and <code>scheduleMicrotask()</code>,
+within part or all of the code.</p>
+</li>
+<li>
+<p><strong>Performing an operation each time that
+code enters or exits a zone</strong>.
+Such operations could include
+starting or stopping a timer,
+or saving a stack trace.</p>
+</li>
+</ul>
+<p>You might have encountered something similar to zones in other languages.
+<em>Domains</em> in Node.js were an inspiration for Dart's zones.
+Java's <em>thread-local storage</em>
+also has some similarities.
+Closest of all is Brian Ford's JavaScript port of Dart zones,
+<a href="https://github.com/btford/zone.js/">zone.js</a>, which he describes in
+<a href="https://www.youtube.com/watch?v=3IqtmUscE_U">this video</a>.</p>
+<div class="header-wrapper">
+<h2 id="zone-basics">Zone basics</h2>
+<a class="heading-link" href="#zone-basics" aria-label="Link to 'Zone basics' section">#</a></div>
+<p>A <em>zone</em> represents the asynchronous dynamic extent of a call.
+It is the computation that is performed as part of a call and, transitively,
+the asynchronous callbacks that have been registered by that code.</p>
+<p>For example,
+in the HTTP server example,
+<code>bind()</code>, <code>then()</code>, and the callback of <code>then()</code>
+all execute in the same zone—the zone
+that was created using <code>runZoned()</code>.</p>
+<p>In the next example,
+the code executes in 3 different zones:
+<span class="zone1">zone #1</span> (the root zone),
+<span class="zone2">zone #2</span>, and
+<span class="zone3">zone #3</span>.</p>
+<!-- ex1.dart -->
+<!-- Using pre instead of prettify so we can use background colors -->
+<pre>
+import 'dart:async';
+
+<span class="zone1">main() {
+  foo();
+  var future;
+  runZoned(() {</span>          // Starts a new child zone (zone #2).
+<span class="zone2">    future = new Future(bar).then(baz);
+  </span><span class="zone1">});
+  future.then(qux);
+}</span>
+
+foo() => <em><span class="zone1">...foo</span><span class="zone3">-body...</span></em>  // Executed twice (once each in two zones).
+bar() => <em><span class="zone2">...bar-body...</span></em>
+baz(x) => <span class="zone2">runZoned(() =></span> <span class="zone3">foo()</span><span class="zone2">);</span> // New child zone (zone #3).
+qux(x) => <em><span class="zone1">...qux-body...</span></em>
+</pre>
+<p>The following figure shows the code's execution order,
+as well as which zone the code executes in.</p>
+<p><img src="/assets/img/articles/zones/trace.png" alt="illustration of program execution"></p>
+<p>Each call to <code>runZoned()</code> creates a new zone
+and executes code in that zone.
+When that code schedules a task—such
+as calling baz()—that
+task executes in the zone where it was scheduled.
+For example, the call to qux() (last line of main())
+runs in
+<span class="zone1">zone #1</span> (the root zone)
+even though it's attached to a future that itself runs in
+<span class="zone2">zone #2</span>.</p>
+<p>Child zones don't completely replace their parent zone.
+Instead new zones are nested inside their surrounding zone.
+For example,
+<span class="zone2">zone #2</span> contains
+<span class="zone3">zone #3</span>, and
+<span class="zone1">zone #1</span> (the root zone)
+contains both
+<span class="zone2">zone #2</span> and
+<span class="zone3">zone #3</span>.</p>
+<p>All Dart code executes in the root zone.
+Code might execute in other nested child zones as well,
+but at a minimum it always runs in the root zone.</p>
+<div class="header-wrapper">
+<h2 id="handling-uncaught-errors">Handling uncaught errors</h2>
+<a class="heading-link" href="#handling-uncaught-errors" aria-label="Link to 'Handling uncaught errors' section">#</a></div>
+<p>Zones are able to catch and handle uncaught errors.</p>
+<p><em>Uncaught errors</em> often occur because of code using <code>throw</code>
+to raise an exception without an accompanying <code>catch</code>
+statement to handle it.
+Uncaught errors can also arise in <code>async</code> functions
+when a Future completes with an error result,
+but is missing a corresponding <code>await</code> to handle the error.</p>
+<p>An uncaught error reports to the current zone that failed to catch it.
+By default, zones will crash the program in response to uncaught errors.
+You can install your own custom <em>uncaught error handler</em> to a new zone
+to intercept and handle uncaught errors however you prefer.</p>
+<p>To introduce a new zone with an uncaught error handler,
+use the <code>runZoneGuarded</code> method. Its <code>onError</code> callback becomes the
+uncaught error handler of a new zone. This callback handles any
+synchronous errors that the call throws.</p>
+<!-- run_zoned1.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">runZonedGuarded</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#0468D7">  Timer</span><span style="color:#222222">.</span><span style="color:#6200EE">run</span><span style="color:#222222">(() { </span><span style="color:#D43324">throw</span><span style="color:#11796D"> 'Would normally kill the program'</span><span style="color:#222222">; });</span></span>
+<span class="line"><span style="color:#222222">}, (error, stackTrace) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'Uncaught error: </span><span style="color:#11796D">$</span><span style="color:#222222">error</span><span style="color:#11796D">'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">});</span></span></code></pre></div></div><p><em>Other zone APIs that facilitate uncaught error handling include
+<a href="https://api.dart.dev/dart-async/Zone/fork.html"><code>Zone.fork</code></a>, <a href="https://api.dart.dev/dart-async/Zone/runGuarded.html"><code>Zone.runGuarded</code></a>
+and <a href="https://api.dart.dev/dart-async/ZoneSpecification/handleUncaughtError.html"><code>ZoneSpecification.uncaughtErrorHandler</code></a>.</em></p>
+<p>The preceding code has an asynchronous callback
+(through <code>Timer.run()</code>) that throws an exception.
+Normally this exception would be an unhandled error and reach the top level
+(which, in the standalone Dart executable, would kill the running process).
+However, with the zoned error handler,
+the error is passed to the error handler and doesn't shut down the program.</p>
+<p>One notable difference between try-catch and zoned error handlers is
+that zones continue to execute after uncaught errors occur.
+If other asynchronous callbacks are scheduled within the zone,
+they still execute.
+As a consequence a zoned error handler might
+be invoked multiple times.</p>
+<p>Any zone with an uncaught error handler is called an <em>error zone</em>.
+An error zone might handle errors that originate
+in a descendant of that zone.
+A simple rule determines where
+errors are handled in a sequence of future transformations
+(using <code>then()</code> or <code>catchError()</code>):
+Errors on Future chains never cross the boundaries of error zones.</p>
+<p>If an error reaches an error zone boundary,
+it is treated as unhandled error at that point.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>API note</span></div>
+<div class="alert-content">
+<p>Handling uncaught errors doesn't <em>require</em> zones.
+The isolate API <a href="https://api.dart.dev/dev/dart-isolate/Isolate/run.html"><code>Isolate.run()</code></a> also handles
+listening for uncaught errors.</p>
+</div></aside>
+<div class="header-wrapper">
+<h3 id="example-errors-cant-cross-into-error-zones">Example: Errors can't cross into error zones</h3>
+<a class="heading-link" href="#example-errors-cant-cross-into-error-zones" aria-label="Link to 'Example: Errors can't cross into error zones' section">#</a></div>
+<p>In the following example,
+the error raised by the first line
+can't cross into an error zone.</p>
+<!-- run_zoned2.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> f = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Future</span><span style="color:#222222">.</span><span style="color:#6200EE">error</span><span style="color:#222222">(</span><span style="color:#11796D">499</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">f = f.</span><span style="color:#6200EE">whenComplete</span><span style="color:#222222">(() { </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Outside of zones'</span><span style="color:#222222">); });</span></span>
+<span class="line"><span style="color:#6200EE">runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#222222">  f = f.</span><span style="color:#6200EE">whenComplete</span><span style="color:#222222">(() { </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Inside non-error zone'</span><span style="color:#222222">); });</span></span>
+<span class="line"><span style="color:#222222">});</span></span>
+<span class="line"><span style="color:#6200EE">runZonedGuarded</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#222222">  f = f.</span><span style="color:#6200EE">whenComplete</span><span style="color:#222222">(() { </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Inside error zone (not called)'</span><span style="color:#222222">); });</span></span>
+<span class="line"><span style="color:#222222">}, (error) { </span><span style="color:#6200EE">print</span><span style="color:#222222">(error); });</span></span></code></pre></div></div><p>Here's the output you see if you run the example:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>Outside of zones</span></span>
+<span class="line"><span>Inside non-error zone</span></span>
+<span class="line"><span>Uncaught Error: 499</span></span>
+<span class="line"><span>Unhandled exception:</span></span>
+<span class="line"><span>499</span></span>
+<span class="line"><span>...stack trace...</span></span></code></pre></div></div><p>If you remove the call to <code>runZoned()</code> or
+to <code>runZonedGuarded()</code>,
+you see this output:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>Outside of zones</span></span>
+<span class="line"><span>Inside non-error zone</span></span>
+<span class="line"><mark class="highlight"><span>Inside error zone (not called)</span></mark></span>
+<span class="line"><span>Uncaught Error: 499</span></span>
+<span class="line"><span>Unhandled exception:</span></span>
+<span class="line"><span>499</span></span>
+<span class="line"><span>...stack trace...</span></span></code></pre></div></div><p>Note how removing either the zone or error zone causes
+the error to propagate further.</p>
+<p>The stack trace appears because the error happens outside an error zone.
+If you add an error zone around the whole code snippet,
+then you can avoid the stack trace.</p>
+<div class="header-wrapper">
+<h3 id="example-errors-cant-leave-error-zones">Example: Errors can't leave error zones</h3>
+<a class="heading-link" href="#example-errors-cant-leave-error-zones" aria-label="Link to 'Example: Errors can't leave error zones' section">#</a></div>
+<p>As the preceding code shows,
+errors can't cross into error zones.
+Similarly, errors can't cross <em>out</em> of error zones.
+Consider this example:</p>
+<!-- run_zoned3.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> completer = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Completer</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> future = completer.future.</span><span style="color:#6200EE">then</span><span style="color:#222222">((x) => x + </span><span style="color:#11796D">1</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> zoneFuture;</span></span>
+<span class="line"><span style="color:#6200EE">runZonedGuarded</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#222222">  zoneFuture = future.</span><span style="color:#6200EE">then</span><span style="color:#222222">((y) => </span><span style="color:#D43324">throw</span><span style="color:#11796D"> 'Inside zone'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">}, (error) { </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Caught: </span><span style="color:#11796D">$</span><span style="color:#222222">error</span><span style="color:#11796D">'</span><span style="color:#222222">); });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">zoneFuture.</span><span style="color:#6200EE">catchError</span><span style="color:#222222">((e) { </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Never reached'</span><span style="color:#222222">); });</span></span>
+<span class="line"><span style="color:#222222">completer.</span><span style="color:#6200EE">complete</span><span style="color:#222222">(</span><span style="color:#11796D">499</span><span style="color:#222222">);</span></span></code></pre></div></div><p>Even though the future chain ends in a <code>catchError()</code>,
+the asynchronous error can't leave the error zone.
+The zoned error handler found in <code>runZonedGuarded()</code>
+handles the error.
+As a result, <em>zoneFuture never completes</em> — neither
+with a value, nor with an error.</p>
+<div class="header-wrapper">
+<h2 id="using-zones-with-streams">Using zones with streams</h2>
+<a class="heading-link" href="#using-zones-with-streams" aria-label="Link to 'Using zones with streams' section">#</a></div>
+<p>The rule for zones and streams
+is simpler than for futures:</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>Transformations and other callbacks execute in the zone
+where the stream is listened to.</p>
+</div></aside>
+<p>This rule follows from the guideline that
+streams should have no side effect until listened to.
+A similar situation in synchronous code is the behavior of Iterables,
+which aren't evaluated until you ask for values.</p>
+<div class="header-wrapper">
+<h3 id="example-using-a-stream-with-runzonedguarded">Example: Using a stream with <code>runZonedGuarded()</code></h3>
+<a class="heading-link" href="#example-using-a-stream-with-runzonedguarded" aria-label="Link to 'Example: Using a stream with runZonedGuarded()' section">#</a></div>
+<p>The following example sets up a stream with a callback,
+and then executes that stream in a new zone with <code>runZonedGuarded()</code>:</p>
+<!-- stream.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> stream = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(</span><span style="color:#11796D">'stream.dart'</span><span style="color:#222222">).</span><span style="color:#6200EE">openRead</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">    .</span><span style="color:#6200EE">map</span><span style="color:#222222">((x) => </span><span style="color:#D43324">throw</span><span style="color:#11796D"> 'Callback throws'</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">runZonedGuarded</span><span style="color:#222222">(() { stream.</span><span style="color:#6200EE">listen</span><span style="color:#222222">(print); },</span></span>
+<span class="line"><span style="color:#222222">         (e) { </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">'Caught error: </span><span style="color:#11796D">$</span><span style="color:#222222">e</span><span style="color:#11796D">'</span><span style="color:#222222">); });</span></span></code></pre></div></div><p>The error handler in <code>runZonedGuarded()</code>
+catches the error the callback throws.
+Here's the output:</p>
+<div class="code-block-wrapper language-plaintext"><div class="code-block-body"><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span>Caught error: Callback throws</span></span></code></pre></div></div><p>As the output shows,
+the callback is associated with the listening zone,
+not with the zone where <code>map()</code> is called.</p>
+<div class="header-wrapper">
+<h2 id="storing-zone-local-values">Storing zone-local values</h2>
+<a class="heading-link" href="#storing-zone-local-values" aria-label="Link to 'Storing zone-local values' section">#</a></div>
+<p>If you ever wanted to use a static variable
+but couldn't because
+multiple concurrently running computations interfered with each other,
+consider using a zone-local value.
+You might add a zone-local value to help with debugging.
+Another use case is dealing with an HTTP request:
+you could have the user ID
+and its authorization token in zone-local values.</p>
+<p>Use the <code>zoneValues</code> argument to <code>runZoned()</code> to
+store values in the newly created zone:</p>
+<!-- value1.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#0468D7">Zone</span><span style="color:#222222">.current[#key]);</span></span>
+<span class="line"><span style="color:#222222">}, zoneValues: { #key: </span><span style="color:#11796D">499</span><span style="color:#222222"> });</span></span></code></pre></div></div><p>To read zone-local values, use the zone's index operator and the value's key:
+<code>[<em>key</em>]</code>.
+Any object can be used as a key, as long as it has compatible
+<code>operator ==</code> and <code>hashCode</code> implementations.
+Typically, a key is a symbol literal:
+<code>#<em>identifier</em></code>.</p>
+<p>You can't change the object that a key maps to,
+but you can manipulate the object.
+For example, the following code
+adds an item to a zone-local list:</p>
+<!-- value1_1.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#0468D7">  Zone</span><span style="color:#222222">.current[#key].</span><span style="color:#6200EE">add</span><span style="color:#222222">(</span><span style="color:#11796D">499</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#0468D7">Zone</span><span style="color:#222222">.current[#key]); </span><span style="color:#6E6E70">// [499]</span></span>
+<span class="line"><span style="color:#222222">}, zoneValues: { #key: [] });</span></span></code></pre></div></div><p>A zone inherits zone-local values from its parent zone,
+so adding nested zones doesn't accidentally drop existing values.
+Nested zones can, however, shadow parent values.</p>
+<aside class="alert alert-important">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">feedback</span>
+<span>Important</span></div>
+<div class="alert-content">
+<p>Try to use unique objects for keys,
+so they're less likely to conflict with other libraries.</p>
+</div></aside>
+<div class="header-wrapper">
+<h3 id="example-using-a-zone-local-value-for-debug-logs">Example: Using a zone-local value for debug logs</h3>
+<a class="heading-link" href="#example-using-a-zone-local-value-for-debug-logs" aria-label="Link to 'Example: Using a zone-local value for debug logs' section">#</a></div>
+<p>Say you have two files, foo.txt and bar.txt,
+and want to print all of their lines.
+The program might look like this:</p>
+<!-- value2.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:async'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:convert'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:io'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">Future</span><span style="color:#6200EE"> splitLinesStream</span><span style="color:#222222">(stream) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> stream</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#0468D7">ASCII</span><span style="color:#222222">.decoder)</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> LineSplitter</span><span style="color:#222222">())</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">toList</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">Future</span><span style="color:#6200EE"> splitLines</span><span style="color:#222222">(filename) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#6200EE"> splitLinesStream</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(filename).</span><span style="color:#6200EE">openRead</span><span style="color:#222222">());</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"><span style="color:#6200EE">main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#0468D7">  Future</span><span style="color:#222222">.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">([</span><span style="color:#11796D">'foo.txt'</span><span style="color:#222222">, </span><span style="color:#11796D">'bar.txt'</span><span style="color:#222222">],</span></span>
+<span class="line"><span style="color:#222222">                 (file) => </span><span style="color:#6200EE">splitLines</span><span style="color:#222222">(file)</span></span>
+<span class="line"><span style="color:#222222">                     .</span><span style="color:#6200EE">then</span><span style="color:#222222">((lines) { lines.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(print); }));</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>This program works,
+but let's assume that you now want to know
+which file each line comes from,
+and that you can't just add a filename argument to <code>splitLinesStream()</code>.
+With zone-local values you can add the filename to the returned string
+(new lines are highlighted):</p>
+<!-- value3.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:async'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:convert'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:io'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">Future</span><span style="color:#6200EE"> splitLinesStream</span><span style="color:#222222">(stream) {</span></span>
+<span class="line"><span style="color:#D43324">  return</span><span style="color:#222222"> stream</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#0468D7">ASCII</span><span style="color:#222222">.decoder)</span></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">transform</span><span style="color:#222222">(</span><span style="color:#D43324">const</span><span style="color:#0468D7"> LineSplitter</span><span style="color:#222222">())</span></span>
+<span class="line"><mark class="highlight"><span style="color:#222222">      .</span><span style="color:#6200EE">map</span><span style="color:#222222">((line) => </span><span style="color:#11796D">'</span><span style="color:#11796D">${</span><span style="color:#0468D7">Zone</span><span style="color:#11796D">.</span><span style="color:#222222">current</span><span style="color:#11796D">[#</span><span style="color:#222222">filename</span><span style="color:#11796D">]}</span><span style="color:#11796D">: </span><span style="color:#11796D">$</span><span style="color:#222222">line</span><span style="color:#11796D">'</span><span style="color:#222222">)</span></mark></span>
+<span class="line"><span style="color:#222222">      .</span><span style="color:#6200EE">toList</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#0468D7">Future</span><span style="color:#6200EE"> splitLines</span><span style="color:#222222">(filename) {</span></span>
+<span class="line"><mark class="highlight"><span style="color:#D43324">  return</span><span style="color:#6200EE"> runZoned</span><span style="color:#222222">(() {</span></mark></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#6200EE"> splitLinesStream</span><span style="color:#222222">(</span><span style="color:#D43324">new</span><span style="color:#0468D7"> File</span><span style="color:#222222">(filename).</span><span style="color:#6200EE">openRead</span><span style="color:#222222">());</span></span>
+<span class="line"><mark class="highlight"><span style="color:#222222">  }, zoneValues: { #filename: filename });</span></mark></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#0468D7">  Future</span><span style="color:#222222">.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">([</span><span style="color:#11796D">'foo.txt'</span><span style="color:#222222">, </span><span style="color:#11796D">'bar.txt'</span><span style="color:#222222">],</span></span>
+<span class="line"><span style="color:#222222">                 (file) => </span><span style="color:#6200EE">splitLines</span><span style="color:#222222">(file)</span></span>
+<span class="line"><span style="color:#222222">                     .</span><span style="color:#6200EE">then</span><span style="color:#222222">((lines) { lines.</span><span style="color:#6200EE">forEach</span><span style="color:#222222">(print); }));</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Note that the new code doesn't modify the function signatures or
+pass the filename from <code>splitLines()</code> to <code>splitLinesStream()</code>.
+Instead, it uses zone-local values to implement
+a feature similar to a static variable
+that works in asynchronous contexts.</p>
+<div class="header-wrapper">
+<h2 id="overriding-functionality">Overriding functionality</h2>
+<a class="heading-link" href="#overriding-functionality" aria-label="Link to 'Overriding functionality' section">#</a></div>
+<p>Use the <code>zoneSpecification</code> argument to <code>runZoned()</code>
+to override functionality that is managed by zones.
+The argument's value is a
+<a href="https://api.dart.dev/dart-async/ZoneSpecification-class.html">ZoneSpecification</a> object,
+with which you can override any of the following functionality:</p>
+<ul>
+<li>Forking child zones</li>
+<li>Registering and running callbacks in the zone</li>
+<li>Scheduling microtasks and timers</li>
+<li>Handling uncaught asynchronous errors
+(<code>runZonedGuarded()</code> is a shortcut for this)</li>
+<li>Printing</li>
+</ul>
+<div class="header-wrapper">
+<h3 id="example-overriding-print">Example: Overriding print</h3>
+<a class="heading-link" href="#example-overriding-print" aria-label="Link to 'Example: Overriding print' section">#</a></div>
+<p>As a simple example of overriding functionality,
+here is a way to silence all prints inside a zone:</p>
+<!-- specification1.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:async'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#6200EE">  runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(</span><span style="color:#11796D">'Will be ignored'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">  }, zoneSpecification: </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ZoneSpecification</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#222222">    print: (self, parent, zone, message) {</span></span>
+<span class="line"><span style="color:#6E6E70">      // Ignore message.</span></span>
+<span class="line"><span style="color:#222222">    }));</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Inside the forked zone,
+the <code>print()</code> function is overridden by the specified print interceptor,
+which simply discards the message.
+Overriding print is possible because <code>print()</code>
+(like <code>scheduleMicrotask()</code> and the Timer constructors)
+uses the current zone (<code>Zone.current</code>) to do its work.</p>
+<div class="header-wrapper">
+<h3 id="arguments-to-interceptors-and-delegates">Arguments to interceptors and delegates</h3>
+<a class="heading-link" href="#arguments-to-interceptors-and-delegates" aria-label="Link to 'Arguments to interceptors and delegates' section">#</a></div>
+<p>As the print example shows,
+an interceptor adds three arguments
+to those defined in the Zone class's corresponding method.
+For example, Zone's <code>print()</code> method has one argument:
+<code>print(String line)</code>.
+The interceptor version of <code>print()</code>,
+as defined by ZoneSpecification,
+has four arguments:
+<code>print(Zone self, ZoneDelegate parent, Zone zone, String line)</code>.</p>
+<p>The three interceptor arguments always appear in the same order,
+before any other arguments.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd>The zone that's handling the callback.</dd>
+<dt><code>parent</code></dt>
+<dd>A ZoneDelegate representing the parent zone.
+Use it to forward operations to the parent.</dd>
+<dt><code>zone</code></dt>
+<dd>The zone where the operation originated.
+Some operations need to know which zone the operation was invoked on.
+For example, <code>zone.fork(specification)</code> must
+create a new zone as child of <code>zone</code>.
+As another example,
+even when you delegate <code>scheduleMicrotask()</code> to another zone,
+the original <code>zone</code> must be the one that executes the microtask.</dd>
+</dl>
+<p>When an interceptor delegates a method to the parent,
+the parent (ZoneDelegate) version of the method
+has just one additional argument:
+<code>zone</code>, the zone where the original call originated from.
+For example,
+the signature of the <code>print()</code> method on a ZoneDelegate is
+<code>print(Zone zone, String line)</code>.</p>
+<p>Here's an example of the arguments
+for another interceptable method, <code>scheduleMicrotask()</code>:</p>
+<p>| <strong>Where defined</strong> | <strong>Method signature</strong> |
+| Zone              | <code>void scheduleMicrotask(void f())</code> |
+| ZoneSpecification  | <code>void scheduleMicrotask(Zone self, ZoneDelegate parent, Zone zone, void f())</code> |
+| ZoneDelegate      | <code>void scheduleMicrotask(Zone zone, void f())</code> |</p>
+<div class="header-wrapper">
+<h3 id="example-delegating-to-the-parent-zone">Example: Delegating to the parent zone</h3>
+<a class="heading-link" href="#example-delegating-to-the-parent-zone" aria-label="Link to 'Example: Delegating to the parent zone' section">#</a></div>
+<p>Here is an example that shows how to delegate to the parent zone:</p>
+<!-- specification2.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:async'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#6200EE">  runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#D43324">    var</span><span style="color:#222222"> currentZone = </span><span style="color:#0468D7">Zone</span><span style="color:#222222">.current;</span></span>
+<span class="line"><span style="color:#6200EE">    scheduleMicrotask</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#6200EE">      print</span><span style="color:#222222">(</span><span style="color:#6200EE">identical</span><span style="color:#222222">(currentZone, </span><span style="color:#0468D7">Zone</span><span style="color:#222222">.current));  </span><span style="color:#6E6E70">// prints true.</span></span>
+<span class="line"><span style="color:#222222">    });</span></span>
+<span class="line"><span style="color:#222222">  }, zoneSpecification: </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ZoneSpecification</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#222222">    scheduleMicrotask: (self, parent, zone, task) {</span></span>
+<span class="line"><span style="color:#6200EE">      print</span><span style="color:#222222">(</span><span style="color:#11796D">'scheduleMicrotask has been called inside the zone'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#6E6E70">      // The origin `zone` needs to be passed to the parent so that</span></span>
+<span class="line"><span style="color:#6E6E70">      // the task can be executed in it.</span></span>
+<span class="line"><span style="color:#222222">      parent.</span><span style="color:#6200EE">scheduleMicrotask</span><span style="color:#222222">(zone, task);</span></span>
+<span class="line"><span style="color:#222222">    }));</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="example-executing-code-when-entering-and-leaving-a-zone">Example: Executing code when entering and leaving a zone</h3>
+<a class="heading-link" href="#example-executing-code-when-entering-and-leaving-a-zone" aria-label="Link to 'Example: Executing code when entering and leaving a zone' section">#</a></div>
+<p>Say you want to know how much time some asynchronous code
+spends executing.
+You can do this by putting the code in a zone,
+starting a timer every time the zone is entered,
+and stopping the timer whenever the zone is left.</p>
+<p>Providing <code>run*</code> parameters to the ZoneSpecification
+lets you specify the code that the zone executes.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>API note</span></div>
+<div class="alert-content">
+<p>In the future, zones might provide a simpler alternative
+for the common case of sandwiching zone code:
+an onEnter/onLeave API.
+See <a href="https://github.com/dart-lang/sdk/issues/17532">issue 17532</a>
+for details.</p>
+</div></aside>
+<p>The <code>run*</code> parameters—<code>run</code>, <code>runUnary</code>, and <code>runBinary</code>—specify
+code to execute every time the zone is asked to execute code.
+These parameters work for zero-argument, one-argument,
+and two-argument callbacks, respectively.
+The <code>run</code> parameter also works for the initial, synchronous code
+that executes just after calling <code>runZoned()</code>.</p>
+<p>Here's an example of profiling code using <code>run*</code>:</p>
+<!-- profile_run.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">final</span><span style="color:#222222"> total = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Stopwatch</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#222222"> user = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Stopwatch</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#222222"> specification = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ZoneSpecification</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#222222">  run: (self, parent, zone, f) {</span></span>
+<span class="line"><span style="color:#222222">    user.</span><span style="color:#6200EE">start</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#D43324">    try</span><span style="color:#222222"> { </span><span style="color:#D43324">return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">run</span><span style="color:#222222">(zone, f); } </span><span style="color:#D43324">finally</span><span style="color:#222222"> { user.</span><span style="color:#6200EE">stop</span><span style="color:#222222">(); }</span></span>
+<span class="line"><span style="color:#222222">  },</span></span>
+<span class="line"><span style="color:#222222">  runUnary: (self, parent, zone, f, arg) {</span></span>
+<span class="line"><span style="color:#222222">    user.</span><span style="color:#6200EE">start</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#D43324">    try</span><span style="color:#222222"> { </span><span style="color:#D43324">return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">runUnary</span><span style="color:#222222">(zone, f, arg); } </span><span style="color:#D43324">finally</span><span style="color:#222222"> { user.</span><span style="color:#6200EE">stop</span><span style="color:#222222">(); }</span></span>
+<span class="line"><span style="color:#222222">  },</span></span>
+<span class="line"><span style="color:#222222">  runBinary: (self, parent, zone, f, arg1, arg2) {</span></span>
+<span class="line"><span style="color:#222222">    user.</span><span style="color:#6200EE">start</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#D43324">    try</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">runBinary</span><span style="color:#222222">(zone, f, arg1, arg2);</span></span>
+<span class="line"><span style="color:#222222">    } </span><span style="color:#D43324">finally</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#222222">      user.</span><span style="color:#6200EE">stop</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#222222">  total.</span><span style="color:#6200EE">start</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#6E6E70">  // ... Code that runs synchronously...</span></span>
+<span class="line"><span style="color:#6E6E70">  // ... Then code that runs asynchronously ...</span></span>
+<span class="line"><span style="color:#222222">    .</span><span style="color:#6200EE">then</span><span style="color:#222222">((...) {</span></span>
+<span class="line"><span style="color:#6200EE">      print</span><span style="color:#222222">(total.elapsedMilliseconds);</span></span>
+<span class="line"><span style="color:#6200EE">      print</span><span style="color:#222222">(user.elapsedMilliseconds);</span></span>
+<span class="line"><span style="color:#222222">    });</span></span>
+<span class="line"><span style="color:#222222">}, zoneSpecification: specification);</span></span></code></pre></div></div><p>In this code,
+each <code>run*</code> override just starts the user timer,
+executes the specified function,
+and then stops the user timer.</p>
+<div class="header-wrapper">
+<h3 id="example-handling-callbacks">Example: Handling callbacks</h3>
+<a class="heading-link" href="#example-handling-callbacks" aria-label="Link to 'Example: Handling callbacks' section">#</a></div>
+<p>Provide <code>register*Callback</code> parameters to the ZoneSpecification
+to wrap or change callback code—the code
+that's executed asynchronously in the zone.
+Like the <code>run*</code> parameters,
+the <code>register*Callback</code> parameters have three forms:
+<code>registerCallback</code> (for callbacks with no arguments),
+<code>registerUnaryCallback</code> (one argument), and
+<code>registerBinaryCallback</code> (two arguments).</p>
+<p>Here's an example that makes the zone
+save a stack trace
+before the code disappears into an asynchronous context.</p>
+<!-- debug.dart -->
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:async'</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">get</span><span style="color:#222222"> currentStackTrace {</span></span>
+<span class="line"><span style="color:#D43324">  try</span><span style="color:#222222"> {</span></span>
+<span class="line"><span style="color:#D43324">    throw</span><span style="color:#11796D"> 0</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  } </span><span style="color:#D43324">catch</span><span style="color:#222222">(_, st) {</span></span>
+<span class="line"><span style="color:#D43324">    return</span><span style="color:#222222"> st;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> lastStackTrace = </span><span style="color:#11796D">null</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">bar</span><span style="color:#222222">() => </span><span style="color:#D43324">throw</span><span style="color:#11796D"> "in bar"</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#6200EE">foo</span><span style="color:#222222">() => </span><span style="color:#D43324">new</span><span style="color:#0468D7"> Future</span><span style="color:#222222">(bar);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">main</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> specification = </span><span style="color:#D43324">new</span><span style="color:#0468D7"> ZoneSpecification</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#222222">    registerCallback: (self, parent, zone, f) {</span></span>
+<span class="line"><span style="color:#D43324">      var</span><span style="color:#222222"> stackTrace = currentStackTrace;</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">registerCallback</span><span style="color:#222222">(zone, () {</span></span>
+<span class="line"><span style="color:#222222">        lastStackTrace = stackTrace;</span></span>
+<span class="line"><span style="color:#D43324">        return</span><span style="color:#6200EE"> f</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">      });</span></span>
+<span class="line"><span style="color:#222222">    },</span></span>
+<span class="line"><span style="color:#222222">    registerUnaryCallback: (self, parent, zone, f) {</span></span>
+<span class="line"><span style="color:#D43324">      var</span><span style="color:#222222"> stackTrace = currentStackTrace;</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">registerUnaryCallback</span><span style="color:#222222">(zone, (arg) {</span></span>
+<span class="line"><span style="color:#222222">        lastStackTrace = stackTrace;</span></span>
+<span class="line"><span style="color:#D43324">        return</span><span style="color:#6200EE"> f</span><span style="color:#222222">(arg);</span></span>
+<span class="line"><span style="color:#222222">      });</span></span>
+<span class="line"><span style="color:#222222">    },</span></span>
+<span class="line"><span style="color:#222222">    registerBinaryCallback: (self, parent, zone, f) {</span></span>
+<span class="line"><span style="color:#D43324">      var</span><span style="color:#222222"> stackTrace = currentStackTrace;</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">registerBinaryCallback</span><span style="color:#222222">(zone, (arg1, arg2) {</span></span>
+<span class="line"><span style="color:#222222">        lastStackTrace = stackTrace;</span></span>
+<span class="line"><span style="color:#D43324">        return</span><span style="color:#6200EE"> f</span><span style="color:#222222">(arg1, arg2);</span></span>
+<span class="line"><span style="color:#222222">      });</span></span>
+<span class="line"><span style="color:#222222">    },</span></span>
+<span class="line"><span style="color:#222222">    handleUncaughtError: (self, parent, zone, error, stackTrace) {</span></span>
+<span class="line"><span style="color:#D43324">      if</span><span style="color:#222222"> (lastStackTrace != </span><span style="color:#11796D">null</span><span style="color:#222222">) </span><span style="color:#6200EE">print</span><span style="color:#222222">(</span><span style="color:#11796D">"last stack: </span><span style="color:#11796D">$</span><span style="color:#222222">lastStackTrace</span><span style="color:#11796D">"</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#D43324">      return</span><span style="color:#222222"> parent.</span><span style="color:#6200EE">handleUncaughtError</span><span style="color:#222222">(zone, error, stackTrace);</span></span>
+<span class="line"><span style="color:#222222">    });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">  runZoned</span><span style="color:#222222">(() {</span></span>
+<span class="line"><span style="color:#6200EE">    foo</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">  }, zoneSpecification: specification);</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>Go ahead and run the example.
+You'll see a &quot;last stack&quot; trace (<code>lastStackTrace</code>)
+that includes <code>foo()</code>,
+since <code>foo()</code> was called synchronously.
+The next stack trace (<code>stackTrace</code>)
+is from the asynchronous context,
+which knows about <code>bar()</code> but not <code>foo()</code>.</p>
+<div class="header-wrapper">
+<h3 id="implementing-asynchronous-callbacks">Implementing asynchronous callbacks</h3>
+<a class="heading-link" href="#implementing-asynchronous-callbacks" aria-label="Link to 'Implementing asynchronous callbacks' section">#</a></div>
+<p>Even if you're implementing an asynchronous API,
+you might not have to deal with zones at all.
+For example, although you might expect the dart:io library
+to keep track of the current zones,
+it instead relies on the zone handling of dart:async classes
+such as Future and Stream.</p>
+<p>If you do handle zones explicitly,
+then you need to register all asynchronous callbacks
+and ensure that each callback is invoked in the zone
+where it was registered.
+The <code>bind*Callback</code> helper methods of Zone
+make this task easier.
+They're shortcuts for <code>register*Callback</code> and <code>run*</code>,
+ensuring that each callback is registered and runs in that Zone.</p>
+<p>If you need more control than <code>bind*Callback</code> gives you,
+then you need to use <code>register*Callback</code> and <code>run*</code>.
+You might also want to use the <code>run*Guarded</code> methods of Zone,
+which wrap the call into a try-catch
+and invoke the <code>uncaughtErrorHandler</code>
+if an error occurs.</p>
+<div class="header-wrapper">
+<h2 id="summary">Summary</h2>
+<a class="heading-link" href="#summary" aria-label="Link to 'Summary' section">#</a></div>
+<p>Zones are good for protecting your code from
+uncaught exceptions in asynchronous code,
+but they can do much more.
+You can associate data with zones,
+and you can override core functionality such as
+printing and task scheduling.
+Zones enable better debugging and provide hooks
+that you can use for functionality such as profiling.</p>
+<div class="header-wrapper">
+<h3 id="more-resources">More resources</h3>
+<a class="heading-link" href="#more-resources" aria-label="Link to 'More resources' section">#</a></div>
+<dl>
+<dt>Zone-related API documentation</dt>
+<dd>Read the docs for
+<a href="https://api.dart.dev/dart-async/runZoned.html">runZoned()</a>,
+<a href="https://api.dart.dev/dart-async/runZonedGuarded.html">runZonedGuarded()</a>,
+<a href="https://api.dart.dev/dart-async/Zone-class.html">Zone</a>,
+<a href="https://api.dart.dev/dart-async/ZoneDelegate-class.html">ZoneDelegate</a>, and
+<a href="https://api.dart.dev/dart-async/ZoneSpecification-class.html">ZoneSpecification</a>.</dd>
+<dt>stack_trace</dt>
+<dd>With the stack_trace library's
+<a href="https://pub.dev/documentation/stack_trace/latest/stack_trace/Chain-class.html">Chain class</a>
+you can get better stack traces for asynchronously executed code.
+See the <a href="https://pub.dev/packages/stack_trace">stack_trace package</a>
+at the pub.dev site for more information.</dd>
+</dl>
+<div class="header-wrapper">
+<h3 id="more-examples">More examples</h3>
+<a class="heading-link" href="#more-examples" aria-label="Link to 'More examples' section">#</a></div>
+<p>Here are some more complex examples of using zones.</p>
+<dl>
+<dt>The task_interceptor example</dt>
+<dd>The toy zone in
+<a href="https://github.com/dart-archive/www.dartlang.org/blob/master/src/tests/site/articles/zones/task_interceptor.dart">task_interceptor.dart</a>
+intercepts <code>scheduleMicrotask</code>, <code>createTimer</code>, and <code>createPeriodicTimer</code>
+to simulate the behavior of the Dart primitives
+without yielding to the event loop.</dd>
+<dt>The source code for the stack_trace package</dt>
+<dd>The <a href="https://pub.dev/packages/stack_trace">stack_trace package</a>
+uses zones to form chains of stack traces
+for debugging asynchronous code.
+Zone features used include error handling, zone-local values, and callbacks.
+You can find the stack_trace source code in the
+<a href="https://github.com/dart-lang/stack_trace">stack_trace GitHub project</a>.</dd>
+<dt>The source code for dart:async</dt>
+<dd>These two SDK libraries implement APIs featuring asynchronous callbacks,
+and thus they deal with zones.
+You can browse or download their source code under the
+<a href="https://github.com/dart-lang/sdk/tree/main/sdk/lib">sdk/lib directory</a>
+of the
+<a href="https://github.com/dart-lang/sdk">Dart GitHub project</a>.</dd>
+</dl>
+<p><em>Thanks to Anders Johnsen and Lasse Reichstein Nielsen
+for their reviews of this article.</em></p>
+
+            
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2014-03-03.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/libraries/async/zones.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/libraries/async/zones/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/libraries/async/zones.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>

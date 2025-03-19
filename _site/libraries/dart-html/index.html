@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5VSZM5J');</script>
+  <!-- End Google Tag Manager -->
+  
+  <meta name="description" content="Learn about the major features in Dart's dart:html library.">
+  <title>dart:html | Dart</title>
+
+  <!-- Favicon / Touch Icons -->
+  <link rel="icon" sizes="64x64" href="/assets/img/logo/dart-64.png" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone.png" rel="apple-touch-icon" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad.png" rel="apple-touch-icon" sizes="152x152" eleventy:ignore>
+  <link href="/assets/img/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="180x180" eleventy:ignore>
+  <link href="/assets/img/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="167x167" eleventy:ignore>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@dart_lang">
+  <meta name="twitter:title" content="dart:html">
+  <meta name="twitter:description" content="Learn about the major features in Dart's dart:html library.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="dart:html">
+  <meta property="og:description" content="Learn about the major features in Dart's dart:html library.">
+  <meta property="og:url" content="/libraries/dart-html/">
+
+  <meta property="og:image" content="/assets/img/logo/dart-logo-for-shares.png?2" eleventy:ignore>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/css/main.css?v=3">
+  <script src="/assets/js/os-tabs.js?v=3"></script>
+  <script src="/assets/js/main.js?v=3"></script>
+
+  <script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-26406144-4', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</head>
+
+  
+    <body class="default.html">
+    <a id="skip-to-main" class="filled-button" href="#site-content-title" tabindex="1">Skip to main content</a>
+    <section id="cookie-notice">
+  <div class="container">
+    <p>dart.dev uses cookies from Google to deliver and
+      enhance the quality of its services and to analyze traffic.</p>
+    <div class="button-group">
+      <a class="text-button" href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">Learn more</a>
+      <button id="cookie-consent" class="filled-button">OK, got it</button>
+    </div>
+  </div>
+</section>
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5VSZM5J"
+ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <div id="site-banner" role="alert">
+  <p>Announcing Dart 3.7! Find out about updates to the language, analyzer,
+pub.dev, and more, in the
+<a href="https://medium.com/dartlang/announcing-dart-3-7-bf864a1b195c" target="_blank">blog post</a>.
+</p>
+</div>
+<header id="site-header">
+  <nav id="mainnav">
+  <div id="menu-toggle"><span class="material-symbols" title="Toggle side navigation menu." aria-label="Toggle side navigation menu." type="button">menu</span></div>
+  <a href="/" class="brand" title="Dart">
+    <img src="/assets/img/logo/logo-white-text.svg" alt="Dart">
+  </a>
+  <ul class="navbar">
+    <li>
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="mainnav__get-started">
+      <a href="/docs" class="nav-link active">
+        <span>Docs</span>
+      </a>
+    </li>
+    <li>
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li>
+      <a href="/#try-dart" class="nav-link">Try Dart</a>
+    </li>
+    <li>
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="searchfield">
+      <form action="/search" class="site-header-search form-inline" id="cse-search-box">
+        <input type="hidden" name="cx" value="011220921317074318178:_yy-tmb5t_i">
+        <input type="hidden" name="ie" value="UTF-8">
+        <input type="hidden" name="hl" value="en">
+        <input class="site-header-searchfield form-control search-field" type="search" name="q"
+          id="search-main" autocomplete="off" placeholder="Search" aria-label="Search">
+      </form>
+    </li>
+  </ul>
+</nav>
+
+  </header>
+
+    <div id="site-below-header">
+      <div id="site-main-row">
+      <div id="sidenav">
+  <form action="/search/" class="site-header-search form-inline">
+    <input class="site-header-searchfield form-control search-field" type="search" name="q"
+           id="search-side" autocomplete="off" placeholder="Search" aria-label="Search">
+  </form>
+
+  <ul class="navbar-nav">
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+      <a href="/overview" class="nav-link">Overview</a>
+    </li>
+    <li class="nav-item">
+      <a href="/community" class="nav-link">Community</a>
+    </li>
+    <li class="nav-item">
+      <a href="https://dartpad.dev" class="nav-link">Try Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/get-dart" class="nav-link">Get Dart</a>
+    </li>
+    <li class="nav-item">
+      <a href="/docs" class="nav-link">Docs</a>
+    </li>
+    <li aria-hidden="true"><div class="sidenav-divider"></div></li>
+  </ul>
+
+  <ul class="nav"><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-1" role="button" aria-expanded="false" aria-controls="-sidenav-1">
+            <span>Language</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-1">
+            <li class="nav-item">
+    <a class="nav-link" href="/language">
+      <div>
+        <span>Introduction</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-2">
+      <span>Syntax basics</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/variables">
+      <div>
+        <span>Variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/operators">
+      <div>
+        <span>Operators</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/comments">
+      <div>
+        <span>Comments</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/metadata">
+      <div>
+        <span>Metadata</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/libraries">
+      <div>
+        <span>Libraries & imports</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/keywords">
+      <div>
+        <span>Keywords</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-3">
+      <span>Types</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-3">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/built-in-types">
+      <div>
+        <span>Built-in types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/records">
+      <div>
+        <span>Records</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/collections">
+      <div>
+        <span>Collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/generics">
+      <div>
+        <span>Generics</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/typedefs">
+      <div>
+        <span>Typedefs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/type-system">
+      <div>
+        <span>Type system</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-4">
+      <span>Patterns</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/patterns">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/pattern-types">
+      <div>
+        <span>Pattern types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://codelabs.developers.google.com/codelabs/dart-patterns-records" target="_blank" rel="noopener">
+      <div>
+        <span>Applied tutorial</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/language/functions">
+      <div>
+        <span>Functions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-6">
+      <span>Control flow</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/loops">
+      <div>
+        <span>Loops</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/branches">
+      <div>
+        <span>Branches</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/error-handling">
+      <div>
+        <span>Error handling</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-7">
+      <span>Classes & objects</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/classes">
+      <div>
+        <span>Classes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/constructors">
+      <div>
+        <span>Constructors</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/methods">
+      <div>
+        <span>Methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extend">
+      <div>
+        <span>Extend a class</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/mixins">
+      <div>
+        <span>Mixins</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/enums">
+      <div>
+        <span>Enums</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-methods">
+      <div>
+        <span>Extension methods</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/extension-types">
+      <div>
+        <span>Extension types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/callable-objects">
+      <div>
+        <span>Callable objects</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-8"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-8">
+      <span>Class modifiers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-8">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers">
+      <div>
+        <span>Overview & usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/class-modifiers-for-apis">
+      <div>
+        <span>Class modifiers for API maintainers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/modifier-reference">
+      <div>
+        <span>Reference</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-9"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-9">
+      <span>Concurrency</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-9">
+      <li class="nav-item">
+    <a class="nav-link" href="/language/concurrency">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/async">
+      <div>
+        <span>Asynchronous support</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/language/isolates">
+      <div>
+        <span>Isolates</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-1-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-1-10">
+      <span>Null safety</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-1-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/null-safety">
+      <div>
+        <span>Sound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/migration-guide">
+      <div>
+        <span>Migrating to null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/understanding-null-safety">
+      <div>
+        <span>Understanding null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/unsound-null-safety">
+      <div>
+        <span>Unsound null safety</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/null-safety/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link active collapsible" data-toggle="collapse" data-target="#-sidenav-2" role="button" aria-expanded="true" aria-controls="-sidenav-2">
+            <span>Core libraries</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-2">
+            <li class="nav-item">
+    <a class="nav-link active" href="/libraries">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-core">
+      <div>
+        <span>dart:core</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-async">
+      <div>
+        <span>dart:async</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-math">
+      <div>
+        <span>dart:math</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-convert">
+      <div>
+        <span>dart:convert</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/dart-io">
+      <div>
+        <span>dart:io</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>dart:js_interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/collections/iterables">
+      <div>
+        <span>Iterable collections</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-2-10"
+      role="button" aria-expanded="false" aria-controls="-sidenav-2-10">
+      <span>Asynchronous programming</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-2-10">
+      <li class="nav-item">
+    <a class="nav-link" href="/libraries/async/async-await">
+      <div>
+        <span>Tutorial</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/futures-error-handling">
+      <div>
+        <span>Futures and error handling</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/using-streams">
+      <div>
+        <span>Using streams</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/libraries/async/creating-streams">
+      <div>
+        <span>Creating streams</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-3" role="button" aria-expanded="false" aria-controls="-sidenav-3">
+            <span>Effective Dart</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-3">
+            <li class="nav-item">
+    <a class="nav-link" href="/effective-dart">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/style">
+      <div>
+        <span>Style</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/documentation">
+      <div>
+        <span>Documentation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/effective-dart/design">
+      <div>
+        <span>Design</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-4" role="button" aria-expanded="false" aria-controls="-sidenav-4">
+            <span>Packages</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-4">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/packages">
+      <div>
+        <span>How to use packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/useful-packages">
+      <div>
+        <span>Commonly used packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/create-packages">
+      <div>
+        <span>Creating packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/publishing">
+      <div>
+        <span>Publishing packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/writing-package-pages">
+      <div>
+        <span>Writing package pages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/workspaces">
+      <div>
+        <span>Workspaces (monorepo support)</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-4-7"
+      role="button" aria-expanded="false" aria-controls="-sidenav-4-7">
+      <span>Package reference</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-4-7">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/dependencies">
+      <div>
+        <span>Dependencies</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/package-layout">
+      <div>
+        <span>Package layout conventions</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/environment-variables">
+      <div>
+        <span>Pub environment variables</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/pubspec">
+      <div>
+        <span>Pubspec file</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/troubleshoot">
+      <div>
+        <span>Troubleshooting pub</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/verified-publishers">
+      <div>
+        <span>Verified publishers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/security-advisories">
+      <div>
+        <span>Security advisories</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/versioning">
+      <div>
+        <span>Versioning</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/pub/custom-package-repositories">
+      <div>
+        <span>Custom package repositories</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/tools/pub/private-files">
+      <div>
+        <span>What not to commit</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-5" role="button" aria-expanded="false" aria-controls="-sidenav-5">
+            <span>Development</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-5">
+            <li class="nav-item">
+    <a class="nav-link" href="/libraries/serialization/json">
+      <div>
+        <span>JSON serialization</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/number-representation">
+      <div>
+        <span>Number representation</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/google-apis">
+      <div>
+        <span>Google APIs</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/multiplatform-apps">
+      <div>
+        <span>Multi-platform apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-5">
+      <span>Command-line & server apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/server">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/cmdline">
+      <div>
+        <span>Write command-line apps</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/fetch-data">
+      <div>
+        <span>Fetch data from the internet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials/server/httpserver">
+      <div>
+        <span>Write HTTP servers</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/server/google-cloud">
+      <div>
+        <span>Google Cloud</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-5-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-5-6">
+      <span>Web apps</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-5-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/web">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/get-started">
+      <div>
+        <span>Get started</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/deployment">
+      <div>
+        <span>Deployment</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/libraries">
+      <div>
+        <span>Libraries & packages</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/wasm">
+      <div>
+        <span>Wasm compilation</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <a class="nav-link" href="/libraries/core/environment-declarations">
+      <div>
+        <span>Environment declarations</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-6" role="button" aria-expanded="false" aria-controls="-sidenav-6">
+            <span>Interoperability</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-6">
+            <li class="nav-item">
+    <a class="nav-link" href="/interop/c-interop">
+      <div>
+        <span>C interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/objective-c-interop">
+      <div>
+        <span>Objective-C & Swift interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/java-interop">
+      <div>
+        <span>Java & Kotlin interop</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-6-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-6-4">
+      <span>JavaScript interop</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-6-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/usage">
+      <div>
+        <span>Usage</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/js-types">
+      <div>
+        <span>JS types</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/past-js-interop">
+      <div>
+        <span>Past JS interop</span></div>
+    </a>
+  </li>
+
+<div class="sidenav-divider"></div><li class="nav-item">
+    <a class="nav-link" href="/interop/js-interop/package-web">
+      <div>
+        <span>Web interop</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-7" role="button" aria-expanded="false" aria-controls="-sidenav-7">
+            <span>Tools & techniques</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-7">
+            <li class="nav-item">
+    <a class="nav-link" href="/tools">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-2"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-2">
+      <span>Editors & debuggers</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/jetbrains-plugin">
+      <div>
+        <span>IntelliJ & Android Studio</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/vs-code">
+      <div>
+        <span>VS Code</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/dart-devtools">
+      <div>
+        <span>Dart DevTools</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed" data-toggle="collapse" data-target="#-sidenav-7-2-4"
+      role="button"  aria-expanded="false" aria-controls="-sidenav-7-2-4">
+      <span>DartPad</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-2-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartpad/troubleshoot">
+      <div>
+        <span>Troubleshooting DartPad</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-3"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-3">
+      <span>Command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-3">
+      <li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-1"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-1">
+      <span>Dart SDK</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-1">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/sdk">
+      <div>
+        <span>Overview</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-tool">
+      <div>
+        <span>dart</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-analyze">
+      <div>
+        <span>dart analyze</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-compile">
+      <div>
+        <span>dart compile</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-create">
+      <div>
+        <span>dart create</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-doc">
+      <div>
+        <span>dart doc</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-fix">
+      <div>
+        <span>dart fix</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-format">
+      <div>
+        <span>dart format</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-info">
+      <div>
+        <span>dart info</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/pub/cmd">
+      <div>
+        <span>dart pub</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-run">
+      <div>
+        <span>dart run</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dart-test">
+      <div>
+        <span>dart test</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/dartaotruntime">
+      <div>
+        <span>dartaotruntime</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/experiment-flags">
+      <div>
+        <span>Experiment flags</span></div>
+    </a>
+  </li>
+  </ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible" data-toggle="collapse" data-target="#-sidenav-7-3-2"
+      role="button"  aria-expanded="true" aria-controls="-sidenav-7-3-2">
+      <span>Other command-line tools</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse show" id="-sidenav-7-3-2">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/build_runner">
+      <div>
+        <span>build_runner</span></div>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/tools/webdev">
+      <div>
+        <span>webdev</span></div>
+    </a>
+  </li>
+  </ul>
+  </li></ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-4"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-4">
+      <span>Static analysis</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-4">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/analysis">
+      <div>
+        <span>Customizing static analysis</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/non-promotion-reasons">
+      <div>
+        <span>Fixing type promotion failures</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/linter-rules">
+      <div>
+        <span>Linter rules</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tools/diagnostic-messages">
+      <div>
+        <span>Diagnostic messages</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-7-5"
+      role="button" aria-expanded="false" aria-controls="-sidenav-7-5">
+      <span>Testing & optimization</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-7-5">
+      <li class="nav-item">
+    <a class="nav-link" href="/tools/testing">
+      <div>
+        <span>Testing</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/web/debugging">
+      <div>
+        <span>Debugging web apps</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li>
+</ul>
+        </li><li aria-hidden="true"><div class="sidenav-divider"></div></li>
+    <li class="nav-item">
+          <button class="nav-link collapsed collapsible" data-toggle="collapse" data-target="#-sidenav-9" role="button" aria-expanded="false" aria-controls="-sidenav-9">
+            <span>Resources</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse " id="-sidenav-9">
+            <li class="nav-item">
+    <a class="nav-link" href="/resources/dart-cheatsheet">
+      <div>
+        <span>Language cheatsheet</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/breaking-changes">
+      <div>
+        <span>Breaking changes</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/evolution">
+      <div>
+        <span>Language evolution</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/language/spec">
+      <div>
+        <span>Language specification</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/dart-3-migration">
+      <div>
+        <span>Dart 3 migration guide</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <button class="nav-link collapsible collapsed"
+      data-toggle="collapse" data-target="#-sidenav-9-6"
+      role="button" aria-expanded="false" aria-controls="-sidenav-9-6">
+      <span>Coming from ...</span>
+      <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+    </button>
+    <ul class="nav collapse " id="-sidenav-9-6">
+      <li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/js-to-dart">
+      <div>
+        <span>JavaScript to Dart</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/coming-from/swift-to-dart">
+      <div>
+        <span>Swift to Dart</span></div>
+    </a>
+  </li>
+
+</ul>
+  </li><div class="sidenav-divider"></div>
+<li class="nav-item">
+    <a class="nav-link" href="/resources/faq">
+      <div>
+        <span>FAQ</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/glossary">
+      <div>
+        <span>Glossary</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/books">
+      <div>
+        <span>Books</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/resources/videos">
+      <div>
+        <span>Videos</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="/tutorials">
+      <div>
+        <span>Tutorials</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li><li class="nav-item">
+          <button class="nav-link  collapsible" data-toggle="collapse" data-target="#-sidenav-10" role="button" aria-expanded="true" aria-controls="-sidenav-10">
+            <span>Related sites</span>
+            <span class="material-symbols expander" aria-hidden="true">expand_more</span>
+          </button>
+          <ul class="nav collapse show" id="-sidenav-10">
+            <li class="nav-item">
+    <a class="nav-link" href="https://api.dart.dev" target="_blank" rel="noopener">
+      <div>
+        <span>API reference</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://medium.com/dartlang" target="_blank" rel="noopener">
+      <div>
+        <span>Blog</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://dartpad.dev" target="_blank" rel="noopener">
+      <div>
+        <span>DartPad (online editor)</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://flutter.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Flutter</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+<li class="nav-item">
+    <a class="nav-link" href="https://pub.dev" target="_blank" rel="noopener">
+      <div>
+        <span>Package site</span><span class="material-symbols" aria-hidden="true">open_in_new</span></div>
+    </a>
+  </li>
+
+
+</ul>
+        </li></ul>
+
+</div>
+
+      <main id="page-content">
+        <div id="site-toc--side" class="site-toc">
+  <header class="site-toc__title">
+    Contents
+  </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#manipulating-the-dom">Manipulating the DOM</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#finding-elements">Finding elements</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#manipulating-elements">Manipulating elements</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#creating-elements">Creating elements</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#adding-replacing-and-removing-nodes">Adding, replacing, and removing nodes</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#manipulating-css-styles">Manipulating CSS styles</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#handling-events">Handling events</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#using-http-resources-with-httprequest">Using HTTP resources with HttpRequest</a>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#sending-and-receiving-real-time-data-with-websockets">Sending and receiving real-time data with WebSockets</a>
+      
+      <ul class="nav">
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#sending-data">Sending data</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#receiving-data">Receiving data</a>
+        </li>
+        
+        <li class="toc-entry nav-item">
+          <a class="nav-link" href="#handling-websocket-events">Handling WebSocket events</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry nav-item">
+      <a class="nav-link" href="#more-information">More information</a>
+      </li>
+    </ul>
+</div>
+
+        <article>
+          <div class="content">
+            <div id="site-content-title">
+              
+              <h1>dart:html</h1>
+              </div>
+            
+
+
+  
+
+  
+<div id="site-toc--inline" class="site-toc toc-collapsible toc-collapsed">
+  <header class="site-toc__title">
+    Contents
+    
+      <span class="site-toc--inline__toggle toc-toggle-down"><i class="material-symbols">keyboard_arrow_down</i></span>
+      <span class="site-toc--inline__toggle toc-toggle-up"><i class="material-symbols">keyboard_arrow_up</i></span>
+    </header>
+  <ul class="section-nav">
+    
+    <li class="toc-entry">
+      <a href="#manipulating-the-dom">Manipulating the DOM</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#finding-elements">Finding elements</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#manipulating-elements">Manipulating elements</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#creating-elements">Creating elements</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#adding-replacing-and-removing-nodes">Adding, replacing, and removing nodes</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#manipulating-css-styles">Manipulating CSS styles</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#handling-events">Handling events</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#using-http-resources-with-httprequest">Using HTTP resources with HttpRequest</a>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#sending-and-receiving-real-time-data-with-websockets">Sending and receiving real-time data with WebSockets</a>
+      
+      <ul>
+        
+        <li class="toc-entry">
+          <a href="#sending-data">Sending data</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#receiving-data">Receiving data</a>
+        </li>
+        
+        <li class="toc-entry">
+          <a href="#handling-websocket-events">Handling WebSocket events</a>
+        </li>
+        </ul>
+      </li>
+    
+    <li class="toc-entry">
+      <a href="#more-information">More information</a>
+      </li>
+    </ul>
+  
+    <span class="site-toc--inline__toggle toc-toggle-more-items"><i class="material-symbols">more_horiz</i></span>
+  </div>
+<aside class="alert alert-warning">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">warning</span>
+<span>Warning</span></div>
+<div class="alert-content">
+<p>The <code>dart:html</code> library is deprecated.
+Instead, use <a href="/interop/js-interop"><code>dart:js_interop</code></a> and <a href="https://pub.dev/packages/web"><code>package:web</code></a>.</p>
+</div></aside>
+<p>Use the <a href="https://api.dart.dev/dart-html/dart-html-library.html">dart:html</a> library to program the browser, manipulate objects and
+elements in the DOM, and access HTML5 APIs. DOM stands for <em>Document Object
+Model</em>, which describes the hierarchy of an HTML page.</p>
+<p>Other common uses of dart:html are manipulating styles (<em>CSS</em>), getting
+data using HTTP requests, and exchanging data using
+<a href="#sending-and-receiving-real-time-data-with-websockets">WebSockets</a>.
+HTML5 (and dart:html) has many
+additional APIs that this section doesn't cover. Only web apps can use
+dart:html, not command-line apps.</p>
+<aside class="alert alert-info">
+<div class="alert-header">
+<span class="material-symbols" aria-hidden="true">info</span>
+<span>Note</span></div>
+<div class="alert-content">
+<p>For larger applications or if you already have a Flutter application,
+consider using <a href="https://flutter.dev/web">Flutter for web.</a></p>
+</div></aside>
+<p>To use the HTML library in your web app, import dart:html:</p>
+<?code-excerpt "html/lib/html.dart (import)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">import</span><span style="color:#11796D"> 'dart:html'</span><span style="color:#222222">;</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="manipulating-the-dom">Manipulating the DOM</h2>
+<a class="heading-link" href="#manipulating-the-dom" aria-label="Link to 'Manipulating the DOM' section">#</a></div>
+<p>To use the DOM, you need to know about <em>windows</em>, <em>documents</em>,
+<em>elements</em>, and <em>nodes</em>.</p>
+<p>A <a href="https://api.dart.dev/dart-html/Window-class.html">Window</a> object represents
+the actual window of the web browser. Each Window has a Document object,
+which points to the document that's currently loaded. The Window object
+also has accessors to various APIs such as IndexedDB (for storing data),
+requestAnimationFrame (for animations), and more. In tabbed browsers,
+each tab has its own Window object.</p>
+<p>With the <a href="https://api.dart.dev/dart-html/Document-class.html">Document</a> object, you can create and manipulate <a href="https://api.dart.dev/dart-html/Element-class.html">Element</a> objects
+within the document. Note that the document itself is an element and can be
+manipulated.</p>
+<p>The DOM models a tree of
+<a href="https://api.dart.dev/dart-html/Node-class.html">Nodes.</a> These nodes are often
+elements, but they can also be attributes, text, comments, and other DOM
+types. Except for the root node, which has no parent, each node in the
+DOM has one parent and might have many children.</p>
+<div class="header-wrapper">
+<h3 id="finding-elements">Finding elements</h3>
+<a class="heading-link" href="#finding-elements" aria-label="Link to 'Finding elements' section">#</a></div>
+<p>To manipulate an element, you first need an object that represents it.
+You can get this object using a query.</p>
+<p>Find one or more elements using the top-level functions
+<code>querySelector()</code> and <code>querySelectorAll()</code>.
+You can query by ID, class, tag, name, or any combination of these.
+The <a href="https://www.w3.org/TR/css3-selectors/">CSS Selector Specification guide</a>
+defines the formats of the selectors such as using a # prefix to specify IDs
+and a period (.) for classes.</p>
+<p>The <code>querySelector()</code> function returns the first element that matches
+the selector, while <code>querySelectorAll()</code>returns a collection of elements
+that match the selector.</p>
+<?code-excerpt "html/lib/html.dart (query-selector)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Find an element by id (an-id).</span></span>
+<span class="line"><span style="color:#0468D7">Element</span><span style="color:#222222"> idElement = </span><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#an-id'</span><span style="color:#222222">)!;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Find an element by class (a-class).</span></span>
+<span class="line"><span style="color:#0468D7">Element</span><span style="color:#222222"> classElement = </span><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'.a-class'</span><span style="color:#222222">)!;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Find all elements by tag (&#x3C;div>).</span></span>
+<span class="line"><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Element</span><span style="color:#222222">> divElements = </span><span style="color:#6200EE">querySelectorAll</span><span style="color:#222222">(</span><span style="color:#11796D">'div'</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Find all text inputs.</span></span>
+<span class="line"><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Element</span><span style="color:#222222">> textInputElements = </span><span style="color:#6200EE">querySelectorAll</span><span style="color:#222222">(</span><span style="color:#11796D">'input[type="text"]'</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// Find all elements with the CSS class 'class'</span></span>
+<span class="line"><span style="color:#6E6E70">// inside of a &#x3C;p> that is inside an element with</span></span>
+<span class="line"><span style="color:#6E6E70">// the ID 'id'.</span></span>
+<span class="line"><span style="color:#0468D7">List</span><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">Element</span><span style="color:#222222">> specialParagraphElements = </span><span style="color:#6200EE">querySelectorAll</span><span style="color:#222222">(</span><span style="color:#11796D">'#id p.class'</span><span style="color:#222222">);</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="manipulating-elements">Manipulating elements</h3>
+<a class="heading-link" href="#manipulating-elements" aria-label="Link to 'Manipulating elements' section">#</a></div>
+<p>You can use properties to change the state of an element. Node and its
+subtype Element define the properties that all elements have. For
+example, all elements have <code>classes</code>, <code>hidden</code>, <code>id</code>, <code>style</code>, and
+<code>title</code> properties that you can use to set state. Subclasses of Element
+define additional properties, such as the <code>href</code> property of
+<a href="https://api.dart.dev/dart-html/AnchorElement-class.html">AnchorElement.</a></p>
+<p>Consider this example of specifying an anchor element in HTML:</p>
+<?code-excerpt "html/test/html_test.dart (anchor-html)" replace="/.*'(.*?)'.*/$1/g"?>
+<div class="code-block-wrapper language-html"><div class="code-block-body"><span class="code-block-language" title="Language html">html</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">a</span><span style="color:#6200EE"> id</span><span style="color:#222222">=</span><span style="color:#11796D">"example"</span><span style="color:#6200EE"> href</span><span style="color:#222222">=</span><span style="color:#11796D">"/another/example"</span><span style="color:#222222">>link text&#x3C;/</span><span style="color:#0468D7">a</span><span style="color:#222222">></span></span></code></pre></div></div><p>This <code>&lt;a&gt;</code> tag specifies an element with an <code>href</code> attribute and a text
+node (accessible via a <code>text</code> property) that contains the string
+&quot;link text&quot;. To change the URL that the link goes to, you can use
+AnchorElement's <code>href</code> property:</p>
+<?code-excerpt "html/test/html_test.dart (href)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> anchor = </span><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#example'</span><span style="color:#222222">) </span><span style="color:#D43324">as</span><span style="color:#0468D7"> AnchorElement</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">anchor.href = </span><span style="color:#11796D">'https://dart.dev'</span><span style="color:#222222">;</span></span></code></pre></div></div><p>Often you need to set properties on multiple elements. For example, the
+following code sets the <code>hidden</code> property of all elements that have a
+class of &quot;mac&quot;, &quot;win&quot;, or &quot;linux&quot;. Setting the <code>hidden</code> property to true
+has the same effect as adding <code>display: none</code> to the CSS.</p>
+<?code-excerpt "html/test/html_test.dart (os-html)" replace="/.*? = '''|''';$//g"?>
+<div class="code-block-wrapper language-html"><div class="code-block-body"><span class="code-block-language" title="Language html">html</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">&#x3C;!-- In HTML: --></span></span>
+<span class="line"><span style="color:#222222">&#x3C;</span><span style="color:#0468D7">p</span><span style="color:#222222">></span></span>
+<span class="line"><span style="color:#222222">  &#x3C;</span><span style="color:#0468D7">span</span><span style="color:#6200EE"> class</span><span style="color:#222222">=</span><span style="color:#11796D">"linux"</span><span style="color:#222222">>Words for Linux&#x3C;/</span><span style="color:#0468D7">span</span><span style="color:#222222">></span></span>
+<span class="line"><span style="color:#222222">  &#x3C;</span><span style="color:#0468D7">span</span><span style="color:#6200EE"> class</span><span style="color:#222222">=</span><span style="color:#11796D">"macos"</span><span style="color:#222222">>Words for Mac&#x3C;/</span><span style="color:#0468D7">span</span><span style="color:#222222">></span></span>
+<span class="line"><span style="color:#222222">  &#x3C;</span><span style="color:#0468D7">span</span><span style="color:#6200EE"> class</span><span style="color:#222222">=</span><span style="color:#11796D">"windows"</span><span style="color:#222222">>Words for Windows&#x3C;/</span><span style="color:#0468D7">span</span><span style="color:#222222">></span></span>
+<span class="line"><span style="color:#222222">&#x3C;/</span><span style="color:#0468D7">p</span><span style="color:#222222">></span></span></code></pre></div></div><?code-excerpt "html/test/html_test.dart (os)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// In Dart:</span></span>
+<span class="line"><span style="color:#D43324">const</span><span style="color:#222222"> osList = [</span><span style="color:#11796D">'macos'</span><span style="color:#222222">, </span><span style="color:#11796D">'windows'</span><span style="color:#222222">, </span><span style="color:#11796D">'linux'</span><span style="color:#222222">];</span></span>
+<span class="line"><span style="color:#D43324">final</span><span style="color:#222222"> userOs = </span><span style="color:#6200EE">determineUserOs</span><span style="color:#222222">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">// For each possible OS...</span></span>
+<span class="line"><span style="color:#D43324">for</span><span style="color:#222222"> (</span><span style="color:#D43324">final</span><span style="color:#222222"> os </span><span style="color:#D43324">in</span><span style="color:#222222"> osList) {</span></span>
+<span class="line"><span style="color:#6E6E70">  // Matches user OS?</span></span>
+<span class="line"><span style="color:#0468D7">  bool</span><span style="color:#222222"> shouldShow = (os == userOs);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6E6E70">  // Find all elements with class=os. For example, if</span></span>
+<span class="line"><span style="color:#6E6E70">  // os == 'windows', call querySelectorAll('.windows')</span></span>
+<span class="line"><span style="color:#6E6E70">  // to find all elements with the class "windows".</span></span>
+<span class="line"><span style="color:#6E6E70">  // Note that '.$os' uses string interpolation.</span></span>
+<span class="line"><span style="color:#D43324">  for</span><span style="color:#222222"> (</span><span style="color:#D43324">final</span><span style="color:#222222"> elem </span><span style="color:#D43324">in</span><span style="color:#6200EE"> querySelectorAll</span><span style="color:#222222">(</span><span style="color:#11796D">'.</span><span style="color:#11796D">$</span><span style="color:#222222">os</span><span style="color:#11796D">'</span><span style="color:#222222">)) {</span></span>
+<span class="line"><span style="color:#222222">    elem.hidden = !shouldShow; </span><span style="color:#6E6E70">// Show or hide.</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><p>When the right property isn't available or convenient, you can use
+Element's <code>attributes</code> property. This property is a
+<code>Map&lt;String, String&gt;</code>, where the keys are attribute names. For a list of
+attribute names and their meanings, see the <a href="https://developer.mozilla.org/docs/Web/HTML/Attributes">MDN Attributes
+page.</a> Here's an
+example of setting an attribute's value:</p>
+<?code-excerpt "html/lib/html.dart (attributes)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">elem.attributes[</span><span style="color:#11796D">'someAttribute'</span><span style="color:#222222">] = </span><span style="color:#11796D">'someValue'</span><span style="color:#222222">;</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="creating-elements">Creating elements</h3>
+<a class="heading-link" href="#creating-elements" aria-label="Link to 'Creating elements' section">#</a></div>
+<p>You can add to existing HTML pages by creating new elements and
+attaching them to the DOM. Here's an example of creating a paragraph
+(&lt;p&gt;) element:</p>
+<?code-excerpt "html/lib/html.dart (creating-elements)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> elem = </span><span style="color:#0468D7">ParagraphElement</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">elem.text = </span><span style="color:#11796D">'Creating is easy!'</span><span style="color:#222222">;</span></span></code></pre></div></div><p>You can also create an element by parsing HTML text. Any child elements
+are also parsed and created.</p>
+<?code-excerpt "html/lib/html.dart (creating-from-html)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> elem2 = </span><span style="color:#0468D7">Element</span><span style="color:#222222">.</span><span style="color:#6200EE">html</span><span style="color:#222222">(</span><span style="color:#11796D">'&#x3C;p>Creating &#x3C;em>is&#x3C;/em> easy!&#x3C;/p>'</span><span style="color:#222222">);</span></span></code></pre></div></div><p>Note that <code>elem2</code> is a <code>ParagraphElement</code> in the preceding example.</p>
+<p>Attach the newly created element to the document by assigning a parent
+to the element. You can add an element to any existing element's
+children. In the following example, <code>body</code> is an element, and its child
+elements are accessible (as a <code>List&lt;Element&gt;</code>) from the <code>children</code> property.</p>
+<?code-excerpt "html/lib/html.dart (body-children-add)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">document.body!.children.</span><span style="color:#6200EE">add</span><span style="color:#222222">(elem2);</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="adding-replacing-and-removing-nodes">Adding, replacing, and removing nodes</h3>
+<a class="heading-link" href="#adding-replacing-and-removing-nodes" aria-label="Link to 'Adding, replacing, and removing nodes' section">#</a></div>
+<p>Recall that elements are just a kind of node. You can find all the
+children of a node using the <code>nodes</code> property of Node, which returns a
+<code>List&lt;Node&gt;</code> (as opposed to <code>children</code>, which omits non-Element nodes).
+Once you have this list, you can use the usual List methods and
+operators to manipulate the children of the node.</p>
+<p>To add a node as the last child of its parent, use the List <code>add()</code>
+method:</p>
+<?code-excerpt "html/lib/html.dart (nodes-add)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#inputs'</span><span style="color:#222222">)!.nodes.</span><span style="color:#6200EE">add</span><span style="color:#222222">(elem);</span></span></code></pre></div></div><p>To replace a node, use the Node <code>replaceWith()</code> method:</p>
+<?code-excerpt "html/lib/html.dart (replace-with)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#status'</span><span style="color:#222222">)!.</span><span style="color:#6200EE">replaceWith</span><span style="color:#222222">(elem);</span></span></code></pre></div></div><p>To remove a node, use the Node <code>remove()</code> method:</p>
+<?code-excerpt "html/lib/html.dart (remove)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Find a node by ID, and remove it from the DOM if it is found.</span></span>
+<span class="line"><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#expendable'</span><span style="color:#222222">)?.</span><span style="color:#6200EE">remove</span><span style="color:#222222">();</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="manipulating-css-styles">Manipulating CSS styles</h3>
+<a class="heading-link" href="#manipulating-css-styles" aria-label="Link to 'Manipulating CSS styles' section">#</a></div>
+<p>CSS, or <em>cascading style sheets</em>, defines the presentation styles of DOM
+elements. You can change the appearance of an element by attaching ID
+and class attributes to it.</p>
+<p>Each element has a <code>classes</code> field, which is a list. Add and remove CSS
+classes simply by adding and removing strings from this collection. For
+example, the following sample adds the <code>warning</code> class to an element:</p>
+<?code-excerpt "html/lib/html.dart (classes-add)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> elem = </span><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#message'</span><span style="color:#222222">)!;</span></span>
+<span class="line"><span style="color:#222222">elem.classes.</span><span style="color:#6200EE">add</span><span style="color:#222222">(</span><span style="color:#11796D">'warning'</span><span style="color:#222222">);</span></span></code></pre></div></div><p>It's often very efficient to find an element by ID. You can dynamically
+set an element ID with the <code>id</code> property:</p>
+<?code-excerpt "html/lib/html.dart (set-id)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> message = </span><span style="color:#0468D7">DivElement</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">message.id = </span><span style="color:#11796D">'message2'</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">message.text = </span><span style="color:#11796D">'Please subscribe to the Dart mailing list.'</span><span style="color:#222222">;</span></span></code></pre></div></div><p>You can reduce the redundant text in this example by using method
+cascades:</p>
+<?code-excerpt "html/lib/html.dart (elem-set-cascade)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> message =</span></span>
+<span class="line"><span style="color:#0468D7">    DivElement</span><span style="color:#222222">()</span></span>
+<span class="line"><span style="color:#222222">      ..id = </span><span style="color:#11796D">'message2'</span></span>
+<span class="line"><span style="color:#222222">      ..text = </span><span style="color:#11796D">'Please subscribe to the Dart mailing list.'</span><span style="color:#222222">;</span></span></code></pre></div></div><p>While using IDs and classes to associate an element with a set of styles
+is best practice, sometimes you want to attach a specific style directly
+to the element:</p>
+<?code-excerpt "html/lib/html.dart (set-style)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">message.style</span></span>
+<span class="line"><span style="color:#222222">  ..fontWeight = </span><span style="color:#11796D">'bold'</span></span>
+<span class="line"><span style="color:#222222">  ..fontSize = </span><span style="color:#11796D">'3em'</span><span style="color:#222222">;</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="handling-events">Handling events</h3>
+<a class="heading-link" href="#handling-events" aria-label="Link to 'Handling events' section">#</a></div>
+<p>To respond to external events such as clicks, changes of focus, and
+selections, add an event listener. You can add an event listener to any
+element on the page. Event dispatch and propagation is a complicated
+subject; <a href="https://www.w3.org/TR/DOM-Level-3-Events/#dom-event-architecture">research the
+details</a>
+if you're new to web programming.</p>
+<p>Add an event handler using
+<code><em>element</em>.on<em>Event</em>.listen(<em>function</em>)</code>,
+where <code><em>Event</em></code> is the event
+name and <code><em>function</em></code> is the event handler.</p>
+<p>For example, here's how you can handle clicks on a button:</p>
+<?code-excerpt "html/lib/html.dart (on-click)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#6E6E70">// Find a button by ID and add an event handler.</span></span>
+<span class="line"><span style="color:#6200EE">querySelector</span><span style="color:#222222">(</span><span style="color:#11796D">'#submitInfo'</span><span style="color:#222222">)!.onClick.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((e) {</span></span>
+<span class="line"><span style="color:#6E6E70">  // When the button is clicked, it runs this code.</span></span>
+<span class="line"><span style="color:#6200EE">  submitData</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">});</span></span></code></pre></div></div><p>Events can propagate up and down through the DOM tree. To discover which
+element originally fired the event, use <code>e.target</code>:</p>
+<?code-excerpt "html/lib/html.dart (target)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">document.body!.onClick.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((e) {</span></span>
+<span class="line"><span style="color:#D43324">  final</span><span style="color:#222222"> clickedElem = e.target;</span></span>
+<span class="line"><span style="color:#6E6E70">  // ...</span></span>
+<span class="line"><span style="color:#222222">});</span></span></code></pre></div></div><p>To see all the events for which you can register an event listener, look
+for &quot;onEventType&quot; properties in the API docs for <a href="https://api.dart.dev/dart-html/Element-class.html">Element</a> and its
+subclasses. Some common events include:</p>
+<ul>
+<li>change</li>
+<li>blur</li>
+<li>keyDown</li>
+<li>keyUp</li>
+<li>mouseDown</li>
+<li>mouseUp</li>
+</ul>
+<div class="header-wrapper">
+<h2 id="using-http-resources-with-httprequest">Using HTTP resources with HttpRequest</h2>
+<a class="heading-link" href="#using-http-resources-with-httprequest" aria-label="Link to 'Using HTTP resources with HttpRequest' section">#</a></div>
+<p>You should avoid directly using <code>dart:html</code> to make HTTP requests.
+The <a href="https://api.dart.dev/dart-html/HttpRequest-class.html"><code>HttpRequest</code></a> class in <code>dart:html</code> is platform-dependent
+and tied to a single implementation.
+Instead, use a higher-level library like
+<a href="https://pub.dev/packages/http"><code>package:http</code></a>.</p>
+<p>The <a href="/tutorials/server/fetch-data">Fetch data from the internet</a> tutorial
+explains how to make HTTP requests
+using <code>package:http</code>.</p>
+<div class="header-wrapper">
+<h2 id="sending-and-receiving-real-time-data-with-websockets">Sending and receiving real-time data with WebSockets</h2>
+<a class="heading-link" href="#sending-and-receiving-real-time-data-with-websockets" aria-label="Link to 'Sending and receiving real-time data with WebSockets' section">#</a></div>
+<p>A WebSocket allows your web app to exchange data with a server
+interactively—no polling necessary. A server creates the WebSocket and
+listens for requests on a URL that starts with <strong>ws://</strong>—for example,
+ws://127.0.0.1:1337/ws. The data transmitted over a WebSocket can be a
+string or a blob.  Often, the data is a JSON-formatted string.</p>
+<p>To use a WebSocket in your web app, first create a <a href="https://api.dart.dev/dart-html/WebSocket-class.html">WebSocket</a> object, passing
+the WebSocket URL as an argument:</p>
+<?code-excerpt "html/test/html_test.dart (WebSocket)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">var</span><span style="color:#222222"> ws = </span><span style="color:#0468D7">WebSocket</span><span style="color:#222222">(</span><span style="color:#11796D">'ws://echo.websocket.org'</span><span style="color:#222222">);</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="sending-data">Sending data</h3>
+<a class="heading-link" href="#sending-data" aria-label="Link to 'Sending data' section">#</a></div>
+<p>To send string data on the WebSocket, use the <code>send()</code> method:</p>
+<?code-excerpt "html/test/html_test.dart (send)"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">ws.</span><span style="color:#6200EE">send</span><span style="color:#222222">(</span><span style="color:#11796D">'Hello from Dart!'</span><span style="color:#222222">);</span></span></code></pre></div></div><div class="header-wrapper">
+<h3 id="receiving-data">Receiving data</h3>
+<a class="heading-link" href="#receiving-data" aria-label="Link to 'Receiving data' section">#</a></div>
+<p>To receive data on the WebSocket, register a listener for message
+events:</p>
+<?code-excerpt "html/test/html_test.dart (onMessage)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#222222">ws.onMessage.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((</span><span style="color:#0468D7">MessageEvent</span><span style="color:#222222"> e) {</span></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'Received message: </span><span style="color:#11796D">${</span><span style="color:#222222">e</span><span style="color:#11796D">.</span><span style="color:#222222">data</span><span style="color:#11796D">}</span><span style="color:#11796D">'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">});</span></span></code></pre></div></div><p>The message event handler receives a <a href="https://api.dart.dev/dart-html/MessageEvent-class.html">MessageEvent</a> object.
+This object's <code>data</code> field has the data from the server.</p>
+<div class="header-wrapper">
+<h3 id="handling-websocket-events">Handling WebSocket events</h3>
+<a class="heading-link" href="#handling-websocket-events" aria-label="Link to 'Handling WebSocket events' section">#</a></div>
+<p>Your app can handle the following WebSocket events: open, close, error,
+and (as shown earlier) message. Here's an example of a method that
+creates a WebSocket object and registers handlers for open, close,
+error, and message events:</p>
+<?code-excerpt "html/test/html_test.dart (initWebSocket)" plaster="none"?>
+<div class="code-block-wrapper language-dart"><div class="code-block-body"><span class="code-block-language" title="Language dart">dart</span><pre class="shiki dash-light" tabindex="0"><code><span class="line"><span style="color:#D43324">void</span><span style="color:#6200EE"> initWebSocket</span><span style="color:#222222">([</span><span style="color:#0468D7">int</span><span style="color:#222222"> retrySeconds = </span><span style="color:#11796D">1</span><span style="color:#222222">]) {</span></span>
+<span class="line"><span style="color:#D43324">  var</span><span style="color:#222222"> reconnectScheduled = </span><span style="color:#11796D">false</span><span style="color:#222222">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6200EE">  print</span><span style="color:#222222">(</span><span style="color:#11796D">'Connecting to websocket'</span><span style="color:#222222">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D43324">  void</span><span style="color:#6200EE"> scheduleReconnect</span><span style="color:#222222">() {</span></span>
+<span class="line"><span style="color:#D43324">    if</span><span style="color:#222222"> (!reconnectScheduled) {</span></span>
+<span class="line"><span style="color:#0468D7">      Timer</span><span style="color:#222222">(</span></span>
+<span class="line"><span style="color:#0468D7">        Duration</span><span style="color:#222222">(seconds: retrySeconds),</span></span>
+<span class="line"><span style="color:#222222">        () => </span><span style="color:#6200EE">initWebSocket</span><span style="color:#222222">(retrySeconds * </span><span style="color:#11796D">2</span><span style="color:#222222">),</span></span>
+<span class="line"><span style="color:#222222">      );</span></span>
+<span class="line"><span style="color:#222222">    }</span></span>
+<span class="line"><span style="color:#222222">    reconnectScheduled = </span><span style="color:#11796D">true</span><span style="color:#222222">;</span></span>
+<span class="line"><span style="color:#222222">  }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  ws.onOpen.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((e) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(</span><span style="color:#11796D">'Connected'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">    ws.</span><span style="color:#6200EE">send</span><span style="color:#222222">(</span><span style="color:#11796D">'Hello from Dart!'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  ws.onClose.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((e) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(</span><span style="color:#11796D">'Websocket closed, retrying in </span><span style="color:#11796D">$</span><span style="color:#222222">retrySeconds</span><span style="color:#11796D"> seconds'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#6200EE">    scheduleReconnect</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  ws.onError.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((e) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(</span><span style="color:#11796D">'Error connecting to ws'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#6200EE">    scheduleReconnect</span><span style="color:#222222">();</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#222222">  ws.onMessage.</span><span style="color:#6200EE">listen</span><span style="color:#222222">((</span><span style="color:#0468D7">MessageEvent</span><span style="color:#222222"> e) {</span></span>
+<span class="line"><span style="color:#6200EE">    print</span><span style="color:#222222">(</span><span style="color:#11796D">'Received message: </span><span style="color:#11796D">${</span><span style="color:#222222">e</span><span style="color:#11796D">.</span><span style="color:#222222">data</span><span style="color:#11796D">}</span><span style="color:#11796D">'</span><span style="color:#222222">);</span></span>
+<span class="line"><span style="color:#222222">  });</span></span>
+<span class="line"><span style="color:#222222">}</span></span></code></pre></div></div><div class="header-wrapper">
+<h2 id="more-information">More information</h2>
+<a class="heading-link" href="#more-information" aria-label="Link to 'More information' section">#</a></div>
+<p>This section barely scratched the surface of using the dart:html
+library. For more information, see the documentation for
+<a href="https://api.dart.dev/dart-html/dart-html-library.html">dart:html.</a>
+Dart has additional libraries for more specialized web APIs, such as
+<a href="https://api.dart.dev/dart-web_audio/dart-web_audio-library.html">web audio,</a> <a href="https://api.dart.dev/dart-indexed_db/dart-indexed_db-library.html">IndexedDB,</a> and <a href="https://api.dart.dev/dart-web_gl/dart-web_gl-library.html">WebGL.</a></p>
+<p>For more information about Dart web libraries, see the
+<a href="/web/libraries">web library overview.</a></p>
+
+            
+<nav id="prev-next">
+  <ul>
+    <li class="previous">
+      
+        <a href="/libraries/dart-io">&lang;&nbsp;&nbsp;dart:io</a>
+      
+    </li>
+    <li class="next">
+      
+    </li>
+  </ul>
+</nav>
+
+
+
+            <p id="page-github-links">
+  <span>Unless stated otherwise, the documentation on this site reflects Dart 3.7.1. Page last updated on 2025-03-16.</span>
+  <a href="https://github.com/dart-lang/site-www/tree/main/src/content/libraries/dart-html.md" target="_blank" rel="noopener">View source</a>
+  <span> or </span>
+  <a href="https://github.com/dart-lang/site-www/issues/new?template=1_page_issue.yml&page-url=https://dart.dev/libraries/dart-html/&page-source=https://github.com/dart-lang/site-www/tree/main/src/content/libraries/dart-html.md" title="Report an issue with this page" target="_blank" rel="noopener">report an issue</a>.
+</p>
+</div>
+        </article>
+      </main>
+      </div>
+      <footer id="page-footer">
+  <div class="footer-section footer-main">
+    <a href="/" class="brand" title="Dart">
+      <img src="/assets/img/logo/logo-white-text.svg" alt="Dart" width="164">
+    </a>
+    <div class="footer-social-links">
+      <a href="https://medium.com/dartlang" target="_blank" rel="noopener" title="Dart's Medium publication">
+        <svg>
+          <use href="/assets/img/social/medium.svg#medium"></use>
+        </svg>
+      </a>
+      <a href="https://github.com/dart-lang" target="_blank" rel="noopener" title="Dart's GitHub organization">
+        <svg>
+          <use href="/assets/img/social/github.svg#github"></use>
+        </svg>
+      </a>
+      <a href="https://bsky.app/profile/dart.dev" target="_blank" rel="noopener" title="Dart's Bluesky profile">
+        <svg>
+          <use href="/assets/img/social/bluesky.svg#bluesky"></use>
+        </svg>
+      </a>
+      <a href="https://twitter.com/dart_lang" target="_blank" rel="noopener" title="Dart's X (Twitter) profile">
+        <svg>
+          <use href="/assets/img/social/x.svg#x"></use>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-section footer-tray">
+    <div class="footer-licenses">
+      Except as otherwise noted, this site is licensed under a
+      <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+      and code samples are licensed under the
+      <a href="https://opensource.org/licenses/BSD-3-Clause">3-Clause BSD License</a>.
+    </div>
+    <div class="footer-utility-links">
+      <ul>
+        <li><a href="/terms" title="Terms of use">Terms</a></li>
+        <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener" title="Privacy policy">Privacy</a></li>
+        <li><a href="/security" title="Security philosophy and practices">Security</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+    </div>
+  </body>
+</html>
