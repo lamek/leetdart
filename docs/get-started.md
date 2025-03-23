@@ -1,3 +1,0 @@
-# Get started
-
-COMMING SOON!

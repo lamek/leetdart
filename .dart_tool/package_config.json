@@ -782,8 +782,8 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-03-16T01:10:26.771966Z",
+  "generated": "2025-03-23T17:10:04.336773Z",
   "generator": "pub",
-  "generatorVersion": "3.7.1",
+  "generatorVersion": "3.7.2",
   "pubCache": "file:///home/lamenzo/.pub-cache"
 }
